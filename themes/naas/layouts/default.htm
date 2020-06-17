@@ -1,0 +1,17 @@
+description = "Default layout"
+==
+<! DOCTYPE html>
+<html {% if activeLocale =='ar'%} dir="rtl" lang="ar" {% endif %}>
+    <head>
+        <title>NAAS network homepage </title>
+        <link rel="stylesheet" href="{{'assets/dist/semantic.min.css'|theme}}">
+    </head>
+    <body>
+        <!-- Nav -->
+        <br><br>
+        {% page %}
+        <script type="text/javascript" src="{{['assets/js/jquery-3.5.1.min.js','assets/dist/semantic.min.js']|theme}}"></script>
+        {% framework %}
+        {% scripts %}
+    </body>
+</html>
