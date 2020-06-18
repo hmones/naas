@@ -1,0 +1,11 @@
+columns:
+    theme:
+        label: theme
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: false
+        sortable: true

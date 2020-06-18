@@ -1,0 +1,27 @@
+columns:
+    question:
+        label: Question
+        type: text
+        searchable: true
+        sortable: true
+    theme:
+        label: Theme
+        type: text
+        searchable: true
+        sortable: true
+        select: theme
+        relation: theme
+    order:
+        label: 'Display Order'
+        type: number
+        searchable: false
+        sortable: true
+    type:
+        label: 'Question Type'
+        type: number
+        sortable: true
+    updated_at:
+        label: 'Last Updated'
+        type: datetime
+        searchable: true
+        sortable: true

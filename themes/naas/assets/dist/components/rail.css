@@ -65,10 +65,10 @@
 .ui.left.dividing.rail {
   padding: 0em 2.5rem 0em 0em;
   margin: 0em 2.5rem 0em 0em;
-  border-right: 1px solid rgba(253, 210, 186, 0.13);
+  border-right: 1px solid rgba(253, 210, 186, 0.15);
 }
 .ui.right.dividing.rail {
-  border-left: 1px solid rgba(253, 210, 186, 0.13);
+  border-left: 1px solid rgba(253, 210, 186, 0.15);
   padding: 0em 0em 0em 2.5rem;
   margin: 0em 0em 0em 2.5rem;
 }
@@ -115,28 +115,28 @@
 ---------------*/
 
 .ui.mini.rail {
-  font-size: 0.8rem;
+  font-size: 0.78571429rem;
 }
 .ui.tiny.rail {
-  font-size: 0.86666667rem;
+  font-size: 0.85714286rem;
 }
 .ui.small.rail {
-  font-size: 0.93333333rem;
+  font-size: 0.92857143rem;
 }
 .ui.rail {
   font-size: 1rem;
 }
 .ui.large.rail {
-  font-size: 1.13333333rem;
+  font-size: 1.14285714rem;
 }
 .ui.big.rail {
-  font-size: 1.26666667rem;
+  font-size: 1.28571429rem;
 }
 .ui.huge.rail {
-  font-size: 1.4rem;
+  font-size: 1.42857143rem;
 }
 .ui.massive.rail {
-  font-size: 1.73333333rem;
+  font-size: 1.71428571rem;
 }
 
 

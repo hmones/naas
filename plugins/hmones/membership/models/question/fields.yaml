@@ -1,0 +1,23 @@
+fields:
+    question:
+        label: Question
+        span: auto
+        required: 1
+        type: text
+    theme:
+        label: Theme
+        span: auto
+        nameFrom: theme
+        descriptionFrom: Theme
+        type: relation
+    type:
+        label: 'Question Type'
+        options:
+            - Text
+            - 'Text area'
+            - Checkbox
+            - Radio
+        showSearch: true
+        span: auto
+        required: 1
+        type: dropdown

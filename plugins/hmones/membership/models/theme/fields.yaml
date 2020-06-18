@@ -1,0 +1,6 @@
+fields:
+    theme:
+        label: 'Theme Text'
+        span: auto
+        required: 1
+        type: text

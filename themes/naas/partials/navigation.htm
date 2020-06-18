@@ -1,0 +1,85 @@
+<div class="ui top menu topAdditionalMenu">
+    <div class="ui container">
+        <a href="#">العربية</a>&nbsp;|&nbsp;<a href="#">English</a>
+        <div class="socialMediaIcons">
+            {% partial 'socialMediaLinks' %}
+        </div>    
+        <div class="right menu">
+            {% partial 'navSearch' %}
+            <a href="#"> <i class="user red small icon"></i> MEMBER SPACE</a>
+        </div>
+    </div>
+</div>
+<div class="ui top fixed menu topMainMenu">
+    <div class="ui container">
+        <div class="item">
+            <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
+        </div>
+        <div class="right menu">
+            {% partial 'menu-items' items=items %}
+        </div>
+    </div>
+    
+</div>
+
+<div class="ui top menu mobileMenu">
+    <div class="ui container">
+        <div class="item">
+            <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
+        </div>
+        <div class="right menu">
+            <a href="#" onclick="onToggleMenu();"><i class="bars large icon"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="ui left sidebar vertical menu mobileMenuContent">
+    <div class="item">
+        <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
+    </div>
+    <div class="item">
+        {% partial 'navSearch' %}
+    </div>
+    {% partial 'menu-items' items=items type="mobile" %}
+    <div class="ui divider"></div>
+    <div class="item">
+        <a href="#">العربية</a>&nbsp;|&nbsp;<a href="#">English</a>
+    </div>
+    <div class="item">
+        <a href="#"> <i class="user red small icon"></i> MEMBER SPACE</a>
+    </div>
+    
+    <div class="item">
+        {% partial 'socialMediaLinks' %}
+    </div>    
+    <br><br>
+</div>
+
+{% put scripts %}
+<script>
+    $(function(){
+        $('.ui.top.menu')
+        .visibility({
+            onBottomVisible: function() {
+                console.log('On Screen');
+                $('.ui.top.fixed.menu').css('top','27px');
+            },
+            onBottomPassed: function() {
+                console.log('Off Screen');
+                $('.ui.top.fixed.menu').css('top', '0px');
+            },
+            continuous: true
+        })
+        ;
+    });
+    function onToggleMenu() {
+        $('.ui.left.sidebar')
+        .sidebar({
+            dimPage: true,
+            transition: 'overlay'
+        })
+        .sidebar('toggle')
+        ;
+    };
+</script>
+{% endput %}

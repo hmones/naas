@@ -1,0 +1,106 @@
+/*-------------------
+    Navigation
+--------------------*/
+.ui.simple.dropdown.item > div.menu {
+    border-top: solid 2px #fdd2ba;
+}
+
+.ui.top.fixed.menu.topMainMenu{
+    top:27px;
+    border: none;
+    box-shadow: none;
+    transition: top ease 0.5s;
+}
+.socialMediaIcons{
+    margin-left:19%;
+}
+.right.menu > div.item > a{
+    color:black;
+    font-weight: bold;
+}
+.right.menu > div.item > a:hover{
+    color:#ed1d24;
+    right:0px;
+}
+.menu>.item>a{
+    color:black;
+    font-weight: normal;
+}
+.menu>.item>a:hover{
+    color:#ed1d24;
+}
+.navSearch{
+    height: 26px;
+    margin-right: 25px;
+}
+div.ui.top.menu.mobileMenu{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    box-shadow: none;
+}
+.mobileMenuContent a{
+    color:black;
+}
+.mobileMenuContent a:hover{
+    color:#ed1d24;
+}
+.mobileMenuContent .ui.simple.dropdown.item:hover{
+    background: #ffffff;
+
+}
+div.mobileMenu>div>.right.menu {
+    margin-right: 10px;
+    margin-top: 8px;
+}
+div.ui.bottom.sidebar.inverted.vertical.menu.mobileMenuContent{
+    top:60px !important;
+}
+
+/* Mobile */
+
+@media (min-width: 898px){
+    div.topAdditionalMenu{
+        display: block !important;
+    }
+    div.topMainMenu{
+        display: block !important;
+    }
+    div.mobileMenu{
+        display: none !important;
+    }
+}
+@media (max-width: 898px){
+    div.topAdditionalMenu{
+        display: none !important;
+    }
+    div.topMainMenu{
+        display: none !important;
+    }
+    div.mobileMenu{
+        display: block !important;
+    }
+}
+
+/*-------------------
+    Page
+--------------------*/
+
+div.pusher{
+    margin-top: 60px;
+}
+
+/*-------------------
+    Links
+--------------------*/
+
+.linkAnimation{
+    position:relative;
+    right:0;
+    transition: right ease 0.5s;
+}
+.linkAnimation:hover{
+    right:-10px;
+}

@@ -25,10 +25,10 @@
   font-style: normal;
   font-weight: normal;
   line-height: 1.21428571em;
-  padding: 0.62619048em 0.93333333em;
+  padding: 0.67857143em 1em;
   font-size: 1em;
   background: #FFFFFF;
-  border: 1px solid rgba(253, 210, 186, 0.13);
+  border: 1px solid rgba(253, 210, 186, 0.15);
   color: rgba(0, 0, 0, 0.87);
   -webkit-box-shadow: 0em 0em 0em 0em transparent inset;
           box-shadow: 0em 0em 0em 0em transparent inset;
@@ -66,17 +66,17 @@
   background: #FFFFFF;
   margin-top: 0.5em;
   width: 18em;
-  border-radius: 0.26666667rem;
+  border-radius: 0px;
   -webkit-box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);
           box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);
-  border: 1px solid #FDD2BA;
+  border: 1px solid #fdd2ba;
   z-index: 998;
 }
 .ui.search > .results > :first-child {
-  border-radius: 0.26666667rem 0.26666667rem 0em 0em;
+  border-radius: 0px 0px 0em 0em;
 }
 .ui.search > .results > :last-child {
-  border-radius: 0em 0em 0.26666667rem 0.26666667rem;
+  border-radius: 0em 0em 0px 0px;
 }
 
 /*--------------
@@ -88,10 +88,10 @@
   display: block;
   overflow: hidden;
   font-size: 1em;
-  padding: 0.86666667em 1.13333333em;
+  padding: 0.85714286em 1.14285714em;
   color: rgba(0, 0, 0, 0.87);
   line-height: 1.33;
-  border-bottom: 1px solid rgba(253, 210, 186, 0.06);
+  border-bottom: 1px solid rgba(253, 210, 186, 0.1);
 }
 .ui.search > .results .result:last-child {
   border-bottom: none !important;
@@ -121,19 +121,19 @@
 }
 .ui.search > .results .result .title {
   margin: -0.14285714em 0em 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Cairo', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 1em;
   color: rgba(0, 0, 0, 0.85);
 }
 .ui.search > .results .result .description {
   margin-top: 0;
-  font-size: 0.93333333em;
+  font-size: 0.92857143em;
   color: rgba(0, 0, 0, 0.4);
 }
 .ui.search > .results .result .price {
   float: right;
-  color: #78CB5B;
+  color: #c4e2bb;
 }
 
 /*--------------
@@ -144,7 +144,7 @@
   padding: 1em 1em;
 }
 .ui.search > .results > .message .header {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Cairo', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 1rem;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.87);
@@ -160,7 +160,7 @@
   display: block;
   border-top: none;
   background: #F3F4F5;
-  padding: 0.93333333em 1em;
+  padding: 0.92857143em 1em;
   color: rgba(0, 0, 0, 0.87);
   font-weight: bold;
   text-align: center;
@@ -177,7 +177,7 @@
 ---------------------*/
 
 .ui.search > .prompt:focus {
-  border-color: #FDD2BA;
+  border-color: rgba(253, 210, 186, 0.35);
   background: #FFFFFF;
   color: rgba(0, 0, 0, 0.95);
 }
@@ -191,9 +191,9 @@
   content: '';
   top: 50%;
   left: 50%;
-  margin: -0.63333333em 0em 0em -0.63333333em;
-  width: 1.26666667em;
-  height: 1.26666667em;
+  margin: -0.64285714em 0em 0em -0.64285714em;
+  width: 1.28571429em;
+  height: 1.28571429em;
   border-radius: 500rem;
   border: 0.2em solid rgba(0, 0, 0, 0.1);
 }
@@ -202,15 +202,15 @@
   content: '';
   top: 50%;
   left: 50%;
-  margin: -0.63333333em 0em 0em -0.63333333em;
-  width: 1.26666667em;
-  height: 1.26666667em;
+  margin: -0.64285714em 0em 0em -0.64285714em;
+  width: 1.28571429em;
+  height: 1.28571429em;
   -webkit-animation: button-spin 0.6s linear;
           animation: button-spin 0.6s linear;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
   border-radius: 500rem;
-  border-color: #767676 transparent transparent;
+  border-color: #e6e7e8 transparent transparent;
   border-style: solid;
   border-width: 0.2em;
   -webkit-box-shadow: 0px 0px 0px 1px transparent;
@@ -242,7 +242,7 @@
 .ui.search > .results .result.active,
 .ui.category.search > .results .category .result.active {
   position: relative;
-  border-left-color: rgba(253, 210, 186, 0.06);
+  border-left-color: rgba(253, 210, 186, 0.1);
   background: #F3F4F5;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -277,7 +277,7 @@
 ---------------*/
 
 .ui.search.selection .prompt {
-  border-radius: 0.26666667rem;
+  border-radius: 0px;
 }
 
 /* Remove input */
@@ -302,7 +302,7 @@
 }
 .ui.search.selection > .icon.input > .remove.icon:hover {
   opacity: 1;
-  color: #ED1D24;
+  color: #ed1d24;
 }
 
 /*--------------
@@ -334,10 +334,10 @@
 
 /* First / Last */
 .ui.category.search > .results .category:first-child .name + .result {
-  border-radius: 0em 0.26666667rem 0em 0em;
+  border-radius: 0em 0px 0em 0em;
 }
 .ui.category.search > .results .category:last-child .result:last-child {
-  border-radius: 0em 0em 0.26666667rem 0em;
+  border-radius: 0em 0em 0px 0em;
 }
 
 /* Category Result Name */
@@ -347,26 +347,26 @@
   width: 100px;
   white-space: nowrap;
   background: transparent;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Cairo', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 1em;
   padding: 0.4em 1em;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid rgba(253, 210, 186, 0.06);
+  border-bottom: 1px solid rgba(253, 210, 186, 0.1);
 }
 
 /* Category Result */
 .ui.category.search > .results .category .results {
   display: table-cell;
   background: #FFFFFF;
-  border-left: 1px solid rgba(253, 210, 186, 0.13);
-  border-bottom: 1px solid rgba(253, 210, 186, 0.06);
+  border-left: 1px solid rgba(253, 210, 186, 0.15);
+  border-bottom: 1px solid rgba(253, 210, 186, 0.1);
 }
 .ui.category.search > .results .category .result {
-  border-bottom: 1px solid rgba(253, 210, 186, 0.06);
+  border-bottom: 1px solid rgba(253, 210, 186, 0.1);
   -webkit-transition: background 0.1s ease, border-color 0.1s ease;
   transition: background 0.1s ease, border-color 0.1s ease;
-  padding: 0.86666667em 1.13333333em;
+  padding: 0.85714286em 1.14285714em;
 }
 
 
@@ -401,25 +401,25 @@
 ---------------*/
 
 .ui.mini.search {
-  font-size: 0.8em;
+  font-size: 0.78571429em;
 }
 .ui.small.search {
-  font-size: 0.93333333em;
+  font-size: 0.92857143em;
 }
 .ui.search {
   font-size: 1em;
 }
 .ui.large.search {
-  font-size: 1.13333333em;
+  font-size: 1.14285714em;
 }
 .ui.big.search {
-  font-size: 1.26666667em;
+  font-size: 1.28571429em;
 }
 .ui.huge.search {
-  font-size: 1.4em;
+  font-size: 1.42857143em;
 }
 .ui.massive.search {
-  font-size: 1.73333333em;
+  font-size: 1.71428571em;
 }
 
 /*--------------

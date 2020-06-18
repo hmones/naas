@@ -1,0 +1,20 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table hmones_membership_rounds'
+    - builder_table_create_hmones_membership_rounds.php
+1.0.3:
+    - 'Created table hmones_membership_submissions'
+    - builder_table_create_hmones_membership_submissions.php
+1.0.4:
+    - 'Created table hmones_membership_responses'
+    - builder_table_create_hmones_membership_responses.php
+1.0.5:
+    - 'Created table hmones_membership_themes'
+    - builder_table_create_hmones_membership_themes.php
+1.0.6:
+    - 'Created table hmones_membership_questions'
+    - builder_table_create_hmones_membership_questions.php
+1.0.7:
+    - 'Created table hmones_membership_options'
+    - builder_table_create_hmones_membership_options.php

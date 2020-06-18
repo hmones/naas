@@ -1,0 +1,28 @@
+plugin:
+    name: Membership
+    description: 'The plugin is for managing NAAS membership forms and applications'
+    author: hmones
+    icon: oc-icon-users
+    homepage: ''
+navigation:
+    membership:
+        label: Membership
+        url: hmones/membership/round
+        icon: icon-users
+        sideMenu:
+            rounds:
+                label: Rounds
+                url: hmones/membership/round
+                icon: icon-refresh
+            submissions:
+                label: Submissions
+                url: /membership/submissions
+                icon: icon-edit
+            q:
+                label: Themes
+                url: hmones/membership/theme
+                icon: icon-sitemap
+            questions:
+                label: Questions
+                url: hmones/membership/question
+                icon: icon-question
