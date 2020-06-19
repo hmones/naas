@@ -35,4 +35,8 @@ class Response extends Model
         'question' => 'Hmones\Membership\Models\Question',
         'option' => 'Hmones\Membership\Models\Option'
     ];
+
+    public $attachMany = [
+        'attachments' => 'System\Models\File'
+    ];
 }

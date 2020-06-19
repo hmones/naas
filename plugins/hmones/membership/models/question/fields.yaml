@@ -17,7 +17,13 @@ fields:
             - 'Text area'
             - Checkbox
             - Radio
+            - Attachment
         showSearch: true
         span: auto
         required: 1
         type: dropdown
+    description:
+        label: Tooltip
+        span: auto
+        size: small
+        type: textarea
