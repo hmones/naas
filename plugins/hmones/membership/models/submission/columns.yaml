@@ -1,0 +1,42 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: false
+        sortable: true
+    year:
+        label: 'Round year'
+        type: number
+        searchable: true
+        sortable: true
+        select: year
+        relation: round
+    name:
+        label: 'Member''s name'
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: user
+    email:
+        label: 'Member''s email'
+        type: text
+        searchable: true
+        sortable: true
+        select: email
+        relation: user
+    status:
+        label: Status
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: 'Created at'
+        type: timesince
+        searchable: true
+        sortable: true
+    lang:
+        label: 'Submission Language'
+        type: text
+        searchable: true
+        sortable: true

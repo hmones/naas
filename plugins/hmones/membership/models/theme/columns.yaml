@@ -9,3 +9,7 @@ columns:
         type: datetime
         searchable: false
         sortable: true
+    id:
+        label: ID
+        type: number
+        sortable: true

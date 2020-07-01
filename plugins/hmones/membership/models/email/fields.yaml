@@ -1,0 +1,12 @@
+fields:
+    name:
+        label: 'Name of Email template'
+        span: auto
+        required: 1
+        type: text
+    email_txt:
+        label: 'Content of the email'
+        size: ''
+        span: auto
+        required: 1
+        type: richeditor

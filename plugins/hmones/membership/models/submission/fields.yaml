@@ -1,0 +1,16 @@
+fields:
+    responses:
+        span: full
+        path: field_response
+        type: partial
+    status:
+        label: 'Status of Application'
+        options:
+            - Draft
+            - Submitted
+            - 'In Review'
+            - Accepted
+            - Rejected
+        showSearch: true
+        span: auto
+        type: dropdown

@@ -1,0 +1,27 @@
+columns:
+    theme:
+        label: Section
+        type: text
+        searchable: true
+        sortable: true
+        select: theme
+        relation: theme
+    question:
+        label: Question
+        type: text
+        searchable: true
+        sortable: true
+        select: question
+        relation: question
+    question_type:
+        label: "Qyestion Type"
+        type: text
+        searchable: true
+        sortable: true
+        select: type
+        relation: question
+    created_at:
+        label: "Created at"
+        type: datetime
+        searchable: true
+        sortable: true

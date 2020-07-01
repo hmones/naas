@@ -1,0 +1,65 @@
+fields:
+    question:
+        label: "Question Type"
+        nameFrom: question
+        descriptionFrom: description
+        select: type
+        span: auto
+        hidden: 0
+        type: relation
+    text:
+        label: Answer
+        size: small
+        span: auto
+        trigger:
+            action: show
+            field: question
+            condition: "value[0], value[1]"
+        type: textarea
+    text_other:
+        label: "Other: Answer"
+        span: auto
+        trigger:
+            action: show
+            field: question
+            condition: "value[2],value[3]"
+        type: text
+    attachments:
+        label: Attachments
+        mode: file
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        readOnly: 1
+        trigger:
+            action: show
+            field: question
+            condition: "value[5]"
+        type: fileupload
+    option:
+        label: "Selected option"
+        nameFrom: option
+        span: auto
+        trigger:
+            action: show
+            field: question
+            condition: "value[3],value[4]"
+        type: relation
+    options_id:
+        label: Repeater
+        prompt: "Add new item"
+        span: auto
+        trigger:
+            action: show
+            field: question
+            condition: "value[3],value[4]"
+        type: repeater
+        form:
+            fields:
+                option:
+                    label: Option
+                    nameFrom: option
+                    span: auto
+                    type: relation

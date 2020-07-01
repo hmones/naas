@@ -16,13 +16,21 @@ navigation:
                 icon: icon-refresh
             submissions:
                 label: Submissions
-                url: /membership/submissions
+                url: hmones/membership/submission
                 icon: icon-edit
             q:
-                label: Themes
+                label: Sections
                 url: hmones/membership/theme
                 icon: icon-sitemap
             questions:
                 label: Questions
                 url: hmones/membership/question
                 icon: icon-question
+            email:
+                label: 'Email Templates'
+                url: hmones/membership/email
+                icon: icon-envelope
+            resposes:
+                label: Responses
+                url: hmones/membership/response
+                icon: icon-pencil
