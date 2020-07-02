@@ -4,6 +4,7 @@ use System\Classes\PluginBase;
 use RainLab\User\Models\User;
 use RainLab\User\Controllers\Users as UsersController;
 use Hmones\Membership\Models\Profile;
+use Event;
 
 class Plugin extends PluginBase
 {
@@ -19,6 +20,46 @@ class Plugin extends PluginBase
 
     public function boot()
     {
+
+        Event::listen('backend.list.overrideColumnValue', function ($listWidget, $record, $column, &$value) {
+            if ($column->columnName == 'type'){
+                switch ($value) {
+                    case 0:
+                        $value = 'Text';
+                        break;
+                    case 1:
+                        $value = 'Text area';
+                        break;
+                    case 2:
+                        $value = 'Checkbox';
+                        break;
+                    case 3:
+                        $value = 'Radio';
+                        break;
+                    case 4:
+                        $value = 'Dropdown';
+                        break;
+                    case 5:
+                        $value = 'Attachment';
+                        break;
+                    case 6:
+                        $value = 'City';
+                        break;
+                    case 7:
+                        $value = 'Country';
+                        break;
+                    case 8:
+                        $value = 'Phone';
+                        break;
+                    case 9:
+                        $value = 'Language Percentage';
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+        });
 
         UsersController::extendFormFields(function($form, $model, $context){
 

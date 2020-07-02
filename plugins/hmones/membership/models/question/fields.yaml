@@ -1,83 +1,144 @@
-fields:
-    question:
-        label: Question
-        span: auto
-        required: 1
-        type: text
-    theme:
-        label: Theme
-        span: auto
-        nameFrom: theme
-        descriptionFrom: Theme
-        type: relation
-    type:
-        label: 'Question Type'
+tabs:
+    fields:
+        question:
+            label: Question
+            span: auto
+            required: 1
+            type: text
+            tab: 'Basic Settings'
+        theme:
+            label: Theme
+            span: auto
+            nameFrom: theme
+            descriptionFrom: Theme
+            type: relation
+            tab: 'Basic Settings'
+        type:
+            label: 'Question Type'
+            options:
+                - Text
+                - 'Text area'
+                - Checkbox
+                - Radio
+                - Dropdown
+                - Attachment
+                - City
+                - Country
+                - Phone
+                - 'Language Percentage'
+            showSearch: true
+            span: auto
+            required: 1
+            type: dropdown
+            tab: 'Basic Settings'
+        description:
+            label: Description
+            size: small
+            span: auto
+            type: textarea
+            tab: 'Basic Settings'
+        required:
+            label: 'Required?'
+            span: auto
+            type: switch
+            tab: 'Basic Settings'
+        published:
+            label: 'Published?'
+            span: auto
+            type: switch
+            tab: 'Basic Settings'
+        order:
+            label: 'Question''s Order'
+            span: auto
+            type: number
+            comment: '0 appears first'
+            tab: 'Basic Settings'
+        section1:
+            label: Options
+            span: full
+            type: section
+            tab: 'Basic Settings'
+        header:
+            label: 'Question Header'
+            span: auto
+            type: text
+            tab: 'Basic Settings'
+        subheader:
+            label: 'Question subheader'
+            span: auto
+            type: text
+            tab: 'Basic Settings'
         options:
-            - Text
-            - 'Text area'
-            - Checkbox
-            - Radio
-            - Dropdown
-            - Attachment
-            - City
-            - Country
-            - Phone
-            - 'Language Percentage'
-        showSearch: true
-        span: auto
-        required: 1
-        type: dropdown
-    description:
-        label: Description
-        size: small
-        span: auto
-        type: textarea
-    order:
-        label: 'Question''s Order'
-        span: auto
-        type: number
-        comment: '0 appears first'
-    published:
-        label: 'Published?'
-        span: auto
-        type: switch
-    section1:
-        label: Options
-        span: full
-        type: section
-    options:
-        span: full
-        path: field_option
-        hidden: 0
-        trigger:
-            action: show
-            field: type
-            condition: 'value[2], value[3]'
-        type: partial
-    other_active:
-        label: 'Add "other" field'
-        span: auto
-        hidden: 0
-        trigger:
-            action: show
-            field: type
-            condition: 'value[2], value[3]'
-        type: switch
-    other_text:
-        label: 'Title of "other" field'
-        span: auto
-        hidden: 0
-        trigger:
-            action: show
-            field: type
-            condition: 'value[2], value[3]'
-        type: text
-    section2:
-        label: 'Conditional Settings'
-        span: full
-        type: section
-    cond_option_id:
-        label: 'Conditional display'
-        span: auto
-        type: number
-        comment: 'Enter the ID of the option that this question depends on'
+            span: full
+            path: field_option
+            hidden: 0
+            trigger:
+                action: show
+                field: type
+                condition: 'value[2], value[3]'
+            type: partial
+            tab: 'Basic Settings'
+        other_active:
+            label: 'Add "other" field'
+            span: auto
+            hidden: 0
+            trigger:
+                action: show
+                field: type
+                condition: 'value[2], value[3]'
+            type: switch
+            tab: 'Basic Settings'
+        other_text:
+            label: 'Title of "other" field'
+            span: auto
+            hidden: 0
+            trigger:
+                action: show
+                field: type
+                condition: 'value[2], value[3]'
+            type: text
+            tab: 'Basic Settings'
+        section2:
+            label: 'Conditional Settings'
+            span: full
+            type: section
+            tab: 'Basic Settings'
+        cond_option_id:
+            label: 'Conditional display'
+            span: auto
+            type: number
+            comment: 'Enter the ID of the option that this question depends on'
+            tab: 'Basic Settings'
+        group:
+            label: 'Group ID'
+            span: auto
+            type: number
+            comment: 'A number (ID) of the group of questions to which this question belong'
+            tab: 'Advanced Settings'
+        validation:
+            label: 'Validation rule that is applied to the field'
+            span: auto
+            type: text
+            tab: 'Advanced Settings'
+        repeat_active:
+            label: 'Is this question/group repeatable?'
+            span: auto
+            type: switch
+            tab: 'Advanced Settings'
+        repeat_text:
+            label: 'Text or HTML to appear on the repeat button'
+            span: auto
+            type: text
+            tab: 'Advanced Settings'
+        add_css:
+            label: 'Additional CSS'
+            size: small
+            span: auto
+            type: textarea
+            tab: 'Advanced Settings'
+        add_script:
+            label: 'Additional Scripts'
+            size: small
+            span: auto
+            type: textarea
+            tab: 'Advanced Settings'

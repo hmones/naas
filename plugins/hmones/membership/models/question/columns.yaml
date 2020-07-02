@@ -1,9 +1,4 @@
 columns:
-    question:
-        label: Question
-        type: text
-        searchable: true
-        sortable: true
     theme:
         label: Theme
         type: text
@@ -11,17 +6,22 @@ columns:
         sortable: true
         select: theme
         relation: theme
+    question:
+        label: Question
+        type: text
+        searchable: true
+        sortable: true
+    type:
+        label: "Question Type"
+        type: number
+        sortable: true
     order:
-        label: 'Display Order'
+        label: "Display Order"
         type: number
         searchable: false
         sortable: true
-    type:
-        label: 'Question Type'
-        type: number
-        sortable: true
     updated_at:
-        label: 'Last Updated'
+        label: "Last Updated"
         type: datetime
         searchable: true
         sortable: true
