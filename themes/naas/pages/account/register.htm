@@ -1,0 +1,108 @@
+title = "Register"
+url = "/register/:code?"
+layout = "default"
+is_hidden = 0
+
+[account]
+redirect = "account/login"
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+==
+<?php
+public function onRegistration(){
+    
+    $this->account->onRegister();
+    $user = $this->account->user();
+    if($user){
+        $user->email_org=post('email_org');
+        $user->website=post('website');
+        $user->facebook=post('facebook');
+        $user->twitter=post('twitter');
+        $user->youtube=post('youtube');
+        $user->instagram=post('instagram');
+        $user->save();
+        return Redirect::to('login/');
+    }else{
+        return Redirect::to('/');
+    }
+}
+public function onEnd(){
+    if($this->param('code')){
+        return Redirect::to('login/');
+    }
+}
+?>
+==
+<div class="ui container">
+    <div class="ui header"><i class="pencil red icon"></i>Membership Registration</div>
+    <div class="ui divider"></div>
+    <div class="ui hidden divider"></div>
+    {{ form_ajax('onRegistration', { class: 'ui form'}) }}
+        <div class="two fields">
+            <div class="field">
+                <label>Email</label>
+                <input name="email" type="email" placeholder="Enter your email" />
+                
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input name="password" type="password" placeholder="Choose a password" />
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Full Name</label>
+                <input name="name" type="text" placeholder="Enter your full name" />
+                
+            </div>
+            <div class="field">
+                <label>Organization Email</label>
+                <input name="email_org" type="email" placeholder="Enter your organization official email" />
+            </div>
+        </div>
+        <div class="three fields">
+            <div class="field">
+                <label>Website</label>
+                <div class="ui left icon input">
+                    <input name="website" type="text" placeholder="Enter your organization's website" />
+                    <i class="globe icon"></i>
+                </div>
+                
+            </div>
+            <div class="field">
+                <label>Twitter</label>
+                <div class="ui left icon input">
+                    <input name="twitter" type="text" placeholder="Enter your organization's twitter" />
+                    <i class="twitter icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <label>Instagram</label>
+                <div class="ui left icon input">
+                    <input name="instagram" type="text" placeholder="Enter your organization's instagram" />
+                    <i class="instagram icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Facebook</label><div class="ui left icon input">
+                    <input name="facebook" type="text" placeholder="Enter your organization's facebook" />
+                    <i class="facebook icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <label>YouTube</label>
+                <div class="ui left icon input">
+                    <input name="youtube" type="text" placeholder="Enter your organization's YouTube" />
+                    <i class="youtube icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="field">
+            <button type="submit" class="ui red button">Register</button>
+        </div>
+    {{ form_close() }}
+</div>

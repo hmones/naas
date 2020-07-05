@@ -1,20 +1,27 @@
 <div class="ui top menu topAdditionalMenu">
     <div class="ui container">
-        <a href="#">العربية</a>&nbsp;|&nbsp;<a href="#">English</a>
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'ar'">العربية</a>
+        &nbsp;|&nbsp;
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'">English</a>
+        &nbsp;|&nbsp;
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'">Français</a>
         <div class="socialMediaIcons">
             {% partial 'socialMediaLinks' %}
         </div>    
         <div class="right menu">
             {% partial 'navSearch' %}
-            <a href="#"> <i class="user red small icon"></i> MEMBER SPACE</a>
+            <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> MEMBER SPACE</a> &nbsp;&nbsp;&nbsp;
+            {% if user %}
+                <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i></a>
+            {% endif %}
         </div>
     </div>
 </div>
 <div class="ui top fixed menu topMainMenu">
     <div class="ui container">
-        <div class="item">
+        <a class="item" href="{{'home'|page}}">
             <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
-        </div>
+        </a>
         <div class="right menu">
             {% partial 'menu-items' items=items %}
         </div>
@@ -24,9 +31,9 @@
 
 <div class="ui top menu mobileMenu">
     <div class="ui container">
-        <div class="item">
+        <a class="item" href="{{'home'|page}}">
             <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
-        </div>
+        </a>
         <div class="right menu">
             <a href="#" onclick="onToggleMenu();"><i class="bars large icon"></i></a>
         </div>
@@ -43,11 +50,21 @@
     {% partial 'menu-items' items=items type="mobile" %}
     <div class="ui divider"></div>
     <div class="item">
-        <a href="#">العربية</a>&nbsp;|&nbsp;<a href="#">English</a>
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'ar'">العربية</a>
+        &nbsp;|&nbsp;
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'">English</a>
+        &nbsp;|&nbsp;
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'">Français</a>
     </div>
     <div class="item">
-        <a href="#"> <i class="user red small icon"></i> MEMBER SPACE</a>
+        <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> MEMBER SPACE</a>
     </div>
+    
+    {% if user %}
+        <div class="item">
+            <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i> LOGOUT</a>
+        </div>
+    {% endif %}
     
     <div class="item">
         {% partial 'socialMediaLinks' %}

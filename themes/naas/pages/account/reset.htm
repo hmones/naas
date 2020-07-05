@@ -1,0 +1,43 @@
+title = "Password Reset"
+url = "/password/reset/:code?"
+layout = "default"
+is_hidden = 0
+
+[resetPassword]
+paramCode = "code"
+==
+public function onResetPassword(){
+    try {
+        $this->resetPassword->onResetPassword();
+        Flash::success('Check your email for password reset code!');
+        return Redirect::to('account/login/');
+    }catch(Exception $e){}
+}
+==
+<div class="ui container">
+    <div class="ui stackable grid">
+        <div class="centered four wide column">
+            {% if this.param.code %}
+            <h3 class="ui small left aligned header"><i class="key red mini icon"></i> RESET PASSWORD </h3>
+                {{ form_ajax('onResetPassword', { class: 'ui form', update: {flash:'#FlashMessage'} }) }}
+                    <div class="field">
+                        <input name="code" type="text" id="resetCode" placeholder="Enter the activation code" value="{{ this.param.code }}">
+                    </div>
+                    <div class="field">
+                        <input name="password" type="password" id="resetPassword" placeholder="Enter a new password">
+                    </div>
+                    <div class="ui hidden divider"></div>
+                    <button type="submit" class="fluid ui red button">Reset password</button>
+                {{ form_close() }}
+            {% else %}
+                <h3 class="ui small left aligned header">FORGOT PASSWORD? <div class="sub header">After submitting this form you should receive an email with password reset instructions.</div></h3>
+                {{ form_ajax('onRestorePassword', { class: 'ui form', update: {flash:'#FlashMessage'}}) }}
+                    <input name="email" type="email" id="userRestoreEmail" placeholder="Enter your email" />
+                    <div class="ui hidden divider"></div>
+                    <button type="submit" class="fluid ui red button">Restore password</button>
+                {{ form_close() }}
+            {% endif %}
+
+        </div>
+    </div>
+</div>

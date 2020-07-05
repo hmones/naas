@@ -2,6 +2,8 @@ description = "Default layout"
 
 [staticMenu]
 code = "main-menu"
+
+[localePicker]
 ==
 <! DOCTYPE html>
 <html {% if activeLocale =='ar'%} dir="rtl" lang="ar" {% endif %}>
@@ -25,6 +27,13 @@ code = "main-menu"
         {% partial 'navigation' items=staticMenu.menuItems %}
         
         <div class="pusher">
+            <div class="ui hidden divider"></div>
+            <div class="ui hidden divider"></div>
+            <div class="ui container" id="FlashMessage">
+                {% partial 'flash' %}
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui hidden divider"></div>
             {% page %}
             {% partial 'footer' %}
         </div>

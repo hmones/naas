@@ -73,19 +73,7 @@ class Plugin extends PluginBase
                     'span' => 'auto',
                     'type'=> 'switch'
                 ],
-                'role' => [
-                    'label' => 'Type of membership',
-                    'tab' => 'Profile',
-                    'span' => 'auto',
-                    'type'=> 'dropdown',
-                    'required' => 1,
-                    'showSearch' => true,
-                    'options' => [
-                        'new',
-                        'core',
-                        'affiliate'
-                    ]
-                ],
+                
                 'email_org' => [
                     'label' => 'Organizational Email',
                     'tab' => 'Profile',

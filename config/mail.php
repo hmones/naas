@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'noreply@domain.tld', 'name' => 'OctoberCMS'],
+    'from' => ['address' => env('MAIL_USERNAME','noreply@domain.tld'), 'name' => 'NAAS Network'],
 
     /*
     |--------------------------------------------------------------------------
