@@ -9,8 +9,15 @@ paramCode = "code"
 public function onResetPassword(){
     try {
         $this->resetPassword->onResetPassword();
+        Flash::success('Password Reset Successfully!');
+        return Redirect::to('login/');
+    }catch(Exception $e){}
+}
+public function onRestorePassword(){
+    try {
+        $this->resetPassword->onRestorePassword();
         Flash::success('Check your email for password reset code!');
-        return Redirect::to('account/login/');
+        return Redirect::to('account/dashboard/');
     }catch(Exception $e){}
 }
 ==
