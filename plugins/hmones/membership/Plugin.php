@@ -12,6 +12,9 @@ class Plugin extends PluginBase
 
     public function registerComponents()
     {
+        return [
+            'Hmones\Membership\Components\Countries' => 'Countries',
+        ];
     }
 
     public function registerSettings()
