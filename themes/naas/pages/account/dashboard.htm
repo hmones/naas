@@ -3,10 +3,178 @@ url = "/account/dashboard"
 layout = "default"
 is_hidden = 0
 
+[Countries]
+
 [session]
 security = "user"
 redirect = "account/login"
 ==
 <div class="ui container">
-<h1 class="ui center aligned header">Dashboard</h1>
+    <h1 class="ui left aligned header"><i class="compass outline red icon"></i>Dashboard</h1>
+    <div class="ui hidden divider"></div>
+    <div class="ui hidden divider"></div>
+    <div class="ui stackable two column grid">
+        <div class="column">
+            <div class="ui stacked segment">
+                <h2 class="ui header"><i class="newspaper red icon"></i>Recent Updates</h2>
+                <p>No updates</p>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui stacked segment">
+                <h2 class="ui header"> <i class="user red icon"></i>Membership Status</h2>
+                <p>Not a current member</p>
+            </div>
+        </div>
+    </div>
+    <div class="ui stackable two column grid">
+        <div class="column">
+            <div class="ui stacked segment">
+                <h2 class="ui header"><i class="file alternate outline red icon"></i>Application Status</h2>
+                <p>No current applications</p>
+                <a href="{{'account/application'|page}}">Continue with current application <i
+                        class="right angle arrow icon"></i></a>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui stacked segment">
+                <h2 class="ui header"><i class="archive red icon"></i>Previous Applications</h2>
+                <p>No submitted applications</p>
+                <div class="ui feed">
+                    <div class="event">
+                        <div class="label">
+                            <i class="circle outline inverted circular pink icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a class="user">
+                                    Elliot Fu
+                                </a> added you as a friend
+                                <div class="date">
+                                    1 Hour Ago
+                                </div>
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 4 Likes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <i class="circle outline inverted circular pink icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a>Helen Troy</a> added <a>2 new illustrations</a>
+                                <div class="date">
+                                    4 days ago
+                                </div>
+                            </div>
+                            <div class="extra images">
+                                <a><img src="/images/wireframe/image.png"></a>
+                                <a><img src="/images/wireframe/image.png"></a>
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 1 Like
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <i class="circle outline inverted circular pink icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a class="user">
+                                    Jenny Hess
+                                </a> added you as a friend
+                                <div class="date">
+                                    2 Days Ago
+                                </div>
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 8 Likes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <i class="circle outline inverted circular pink icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a>Joe Henderson</a> posted on his page
+                                <div class="date">
+                                    3 days ago
+                                </div>
+                            </div>
+                            <div class="extra text">
+                                Ours is a life of constant reruns. We're always circling back to where we'd we started,
+                                then starting all over again. Even if we don't run extra laps that day, we surely will
+                                come back for more of the same another day soon.
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 5 Likes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <i class="circle outline inverted circular pink icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a>Justen Kitsune</a> added <a>2 new photos</a> of you
+                                <div class="date">
+                                    4 days ago
+                                </div>
+                            </div>
+                            <div class="extra images">
+                                <a><img src="/images/wireframe/image.png"></a>
+                                <a><img src="/images/wireframe/image.png"></a>
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 41 Likes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="ui form">
+        <div class="field">
+            <label for="entity_phone_country_code">Country Code</label>
+            <div class="ui fluid search selection dropdown">
+                <i class="dropdown icon"></i>
+                <div class="default text">Select Country</div>
+                <div class="menu">
+                    {% for country in countries %}
+                    <div class="item" data-value="{{country[2]}}"><i class="{{country[1]}} flag"></i>{{country[0]}}
+                        (+{{country[2]}})
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label for="entity_phone">Phone Number</label>
+            <input type="text" name="entity_phone" placeholder="e.g. 15444444499" maxlength="15" value="">
+        </div>-->
+        </div>
+    </div>
 </div>
+{% put scripts %}
+<script>
+    $('.ui.dropdown').dropdown();
+</script>
+{% endput %}

@@ -1,0 +1,72 @@
+title = "Application"
+url = "/account/application"
+layout = "default"
+is_hidden = 0
+
+[Countries]
+
+[session]
+security = "user"
+redirect = "account/login"
+==
+use Hmones\Membership\Models\Submission;
+use Hmones\Membership\Models\Theme;
+use Hmones\Membership\Models\Round;
+use Hmones\Membership\Models\Response;
+use Hmones\Membership\Models\Question;
+use Hmones\Membership\Models\Option;
+
+public function onStart(){
+$this['sections'] = Theme::with([
+'questions' => function ($query) {
+$query->orderBy('order', 'asc');
+}
+])->get();
+}
+==
+<div class="ui stackable grid">
+    <div class="five wide column">
+        <div class="ui fluid vertical right attached steps">
+            {% for section in sections %}
+            <a class="{{loop.index == 1? 'active':''}} step" id="section_btn_{{section.id}}"
+                style="border-bottom:4px solid rgba(253,210,186,.15);" onclick="activateSection({{section.id}});">
+                <i class="{{section.icon}} red icon" style="font-size:17px;"></i>
+                <div class="content">
+                    <div class="title">{{str_limit(section.theme,30)}}</div>
+                    <div class="description">{{str_limit(section.description,30)}}</div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="eleven wide column">
+        <form action="" method="POST" enctype="multipart/form-data" class="ui form"></form>
+        {% for section in sections %}
+        <div class="ui attached {{loop.index == 1? 'active':''}} segment" id="section_content_{{section.id}}"
+            style="{{loop.index == 1? '':'display:none;'}} border:none;">
+            <div class="ui header">{{section.theme}}</div>
+            <div class="ui divider"></div>
+            <div class="ui form">
+                {% for question in section.questions %}
+                {% partial 'account/renderQuestions' question=question countries=countries %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        </form>
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+    $('.ui.dropdown').dropdown();
+    function activateSection(section) {
+        var section_btn = '#section_btn_' + section;
+        var section_content = '#section_content_' + section;
+        $('a.active.step').removeClass('active');
+        $(section_btn).addClass('active');
+        $('div.ui.attached.active.segment').removeClass('active').hide();
+        $(section_content).addClass('active').fadeIn();
+    }
+</script>
+{% endput %}

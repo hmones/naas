@@ -1,0 +1,62 @@
+{% if question.published %}
+{% if question.header %}
+<div class="ui header">
+    <div class="content">
+        {{question.header}}
+        {% if question.subheader %}
+        <div class="sub header">{{question.subheader}}</div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+<div class="{{question.required ? 'required':''}} field" id="field_{{question.id}}"
+    data-condition="{{question.cond_option_id}}" style="{{question.cond_option_id?'display:none;':''}}">
+    <label for="q_{{question.id}}">
+        {{question.order}} - {{question.question}} &nbsp;
+        {% if question.description %}
+        <div class="ui icon circular grey mini basic button" data-tooltip="{{question.description}}" data-inverted="">
+            <i class="question black icon"></i>
+        </div>
+        {% endif %}
+    </label>
+    <!-- Text box -->
+    {% if question.type == 0 or question.type == 6 %}
+    <input type="text" name="q_{{question.id}}" id="q_{{question.id}}" value="" {{question.required?'required':''}} />
+    <!-- Text area -->
+    {% elseif question.type == 1 %}
+    <textarea name="q_{{question.id}}" id="q_{{question.id}}" cols="30" rows="3"
+        {{question.required?'required':''}}></textarea>
+    <!-- Checkbox -->
+    {% elseif question.type == 2 %}
+    {% partial 'account/questions/checkbox' %}
+    <!-- Radio -->
+    {% elseif question.type == 3 %}
+    {% partial 'account/questions/radio' %}
+    <!-- Dropdown -->
+    {% elseif question.type == 4 %}
+    {% partial 'account/questions/dropdown' %}
+    <!-- Attachment -->
+    {% elseif question.type == 5 %}
+    <input type="file" name="q_{{question.id}}" id="q_{{question.id}}" value="" {{question.required?'required':''}} />
+    <!-- Country -->
+    {% elseif question.type == 7 %}
+    {% partial 'account/questions/country' %}
+    <!-- Phone -->
+    {% elseif question.type == 8 %}
+    {% partial 'account/questions/phone' %}
+    <!-- Language Percentage -->
+    {% elseif question.type == 9 %}
+    {% partial 'account/questions/languagePercentage' %}
+    {% endif %}
+</div>
+{% endif %}
+
+{% put scripts %}
+<script>
+    $('input[type=radio]').change(function () {
+        var option_id = this.attributes.dataoption.value;
+        var selector = 'div[data-condition=' + option_id + ']';
+        $(selector).fadeIn();
+    });
+</script>
+{% endput %}

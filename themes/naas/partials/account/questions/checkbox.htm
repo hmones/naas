@@ -1,0 +1,17 @@
+{% for option in question.options %}
+<div class="field">
+    <div class="ui checkbox">
+        <input type="checkbox" name="q_{{question.id}}[]">
+        <label>{{option.option}}</label>
+    </div>
+</div>
+{% endfor %}
+{% if question.other_active %}
+<div class="field">
+    <div class="ui checkbox">
+        <input type="checkbox" name="q_{{question.id}}[]">
+        <label>{{question.other_text}}</label>
+        <input type="text" name="q_{{question.id}}['other_text']">
+    </div>
+</div>
+{% endif %}
