@@ -51,7 +51,7 @@
 
 /* Default font size */
 .ui.message .header:not(.ui) {
-  font-size: 1.14285714em;
+  font-size: 1.125em;
 }
 
 /* Paragraph */
@@ -468,28 +468,28 @@
 ---------------*/
 
 .ui.mini.message {
-  font-size: 0.78571429em;
+  font-size: 0.8125em;
 }
 .ui.tiny.message {
-  font-size: 0.85714286em;
+  font-size: 0.875em;
 }
 .ui.small.message {
-  font-size: 0.92857143em;
+  font-size: 0.9375em;
 }
 .ui.message {
   font-size: 1em;
 }
 .ui.large.message {
-  font-size: 1.14285714em;
+  font-size: 1.125em;
 }
 .ui.big.message {
-  font-size: 1.28571429em;
+  font-size: 1.3125em;
 }
 .ui.huge.message {
-  font-size: 1.42857143em;
+  font-size: 1.4375em;
 }
 .ui.massive.message {
-  font-size: 1.71428571em;
+  font-size: 1.6875em;
 }
 
 

@@ -87,7 +87,7 @@
   border-bottom: 1px solid rgba(253, 210, 186, 0.15);
 }
 .ui.modal > .header:not(.ui) {
-  font-size: 1.42857143rem;
+  font-size: 1.4375rem;
   line-height: 1.28571429em;
   font-weight: bold;
 }

@@ -50,13 +50,3 @@
     {% endif %}
 </div>
 {% endif %}
-
-{% put scripts %}
-<script>
-    $('input[type=radio]').change(function () {
-        var option_id = this.attributes.dataoption.value;
-        var selector = 'div[data-condition=' + option_id + ']';
-        $(selector).fadeIn();
-    });
-</script>
-{% endput %}

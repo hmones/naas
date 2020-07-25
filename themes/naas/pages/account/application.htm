@@ -24,6 +24,20 @@ $query->orderBy('order', 'asc');
 ])->get();
 }
 ==
+{% put scripts %}
+<script>
+    $('input[type=radio][dataoption]').change(function () {
+        var selector = 'div[data-condition=' + this.attributes.dataoption.value + ']';
+        $(selector).fadeIn();
+        $(this).addClass("active");
+        $('input[type=radio]:not(:checked).active').map(function (index, option) {
+            $(option).removeClass("active");
+            var selector = 'div[data-condition=' + option.attributes.dataoption.value + ']';
+            $(selector).fadeOut();
+        });
+    });
+</script>
+{% endput %}
 <div class="ui stackable grid">
     <div class="five wide column">
         <div class="ui fluid vertical right attached steps">
@@ -32,7 +46,7 @@ $query->orderBy('order', 'asc');
                 style="border-bottom:4px solid rgba(253,210,186,.15);" onclick="activateSection({{section.id}});">
                 <i class="{{section.icon}} red icon" style="font-size:17px;"></i>
                 <div class="content">
-                    <div class="title">{{str_limit(section.theme,30)}}</div>
+                    <div class="title">{{str_limit(section.theme,24)}}</div>
                     <div class="description">{{str_limit(section.description,30)}}</div>
                 </div>
             </a>

@@ -54,9 +54,9 @@
 
 .ui.form .field > label {
   display: block;
-  margin: 0em 0em 0.28571429rem 0em;
+  margin: 0em 0em 0.25rem 0em;
   color: rgba(0, 0, 0, 0.8);
-  font-size: 0.78571429em;
+  font-size: 0.6875em;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -105,7 +105,7 @@
   -webkit-appearance: none;
   tap-highlight-color: rgba(255, 255, 255, 0);
   line-height: 1.21428571em;
-  padding: 0.67857143em 0.5em;
+  padding: 0.58035714em 0.5em;
   font-size: 1em;
   background: transparent;
   border: none;
@@ -754,9 +754,9 @@
   margin-bottom: 0em;
 }
 .ui.form .grouped.fields > label {
-  margin: 0em 0em 0.28571429rem 0em;
+  margin: 0em 0em 0.25rem 0em;
   color: rgba(0, 0, 0, 0.8);
-  font-size: 0.78571429em;
+  font-size: 0.6875em;
   font-weight: bold;
   text-transform: none;
 }
@@ -990,7 +990,7 @@
   margin-top: 0em;
   margin-bottom: 0em;
   vertical-align: baseline;
-  font-size: 0.78571429em;
+  font-size: 0.6875em;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.8);
   text-transform: uppercase;
@@ -1017,7 +1017,7 @@
 /* Label */
 .ui.form .inline.fields .field > :first-child,
 .ui.form .inline.field > :first-child {
-  margin: 0em 0em 0em 0.85714286em;
+  margin: 0em 0em 0em 0.875em;
 }
 .ui.form .inline.fields .field > :only-child,
 .ui.form .inline.field > :only-child {
@@ -1043,28 +1043,28 @@
 ---------------------*/
 
 .ui.mini.form {
-  font-size: 0.78571429rem;
+  font-size: 0.8125rem;
 }
 .ui.tiny.form {
-  font-size: 0.85714286rem;
+  font-size: 0.875rem;
 }
 .ui.small.form {
-  font-size: 0.92857143rem;
+  font-size: 0.9375rem;
 }
 .ui.form {
   font-size: 1rem;
 }
 .ui.large.form {
-  font-size: 1.14285714rem;
+  font-size: 1.125rem;
 }
 .ui.big.form {
-  font-size: 1.28571429rem;
+  font-size: 1.3125rem;
 }
 .ui.huge.form {
-  font-size: 1.42857143rem;
+  font-size: 1.4375rem;
 }
 .ui.massive.form {
-  font-size: 1.71428571rem;
+  font-size: 1.6875rem;
 }
 
 
