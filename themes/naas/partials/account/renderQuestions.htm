@@ -1,16 +1,7 @@
 {% if question.published %}
-{% if question.header %}
-<div class="ui header">
-    <div class="content">
-        {{question.header}}
-        {% if question.subheader %}
-        <div class="sub header">{{question.subheader}}</div>
-        {% endif %}
-    </div>
-</div>
-{% endif %}
 <div class="{{question.required ? 'required':''}} field" id="field_{{question.id}}"
     data-condition="{{question.cond_option_id}}" style="{{question.cond_option_id?'display:none;':''}}">
+    {% partial 'account/questions/header'%}
     <label for="q_{{question.id}}">
         {{question.order}} - {{question.question}} &nbsp;
         {% if question.description %}

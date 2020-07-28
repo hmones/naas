@@ -1,0 +1,21 @@
+<div class="two fields">
+    <div class="field">
+        <label>Country Code</label>
+        <div class="ui fluid search selection dropdown">
+            <input type="hidden" name="q_{{question.id}}_code">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Country</div>
+            <div class="menu">
+                {% for country in countries %}
+                <div class="item" data-value="{{country[2]}}"><i class="{{country[1]}} flag"></i>{{country[0]}}
+                    (+{{country[2]}})
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label for="q_{{question.id}}_phone">Phone Number</label>
+        <input type="text" name="q_{{question.id}}_phone" placeholder="e.g. 15444444499" maxlength="15" value="">
+    </div>
+</div>

@@ -24,20 +24,6 @@ $query->orderBy('order', 'asc');
 ])->get();
 }
 ==
-{% put scripts %}
-<script>
-    $('input[type=radio][dataoption]').change(function () {
-        var selector = 'div[data-condition=' + this.attributes.dataoption.value + ']';
-        $(selector).fadeIn();
-        $(this).addClass("active");
-        $('input[type=radio]:not(:checked).active').map(function (index, option) {
-            $(option).removeClass("active");
-            var selector = 'div[data-condition=' + option.attributes.dataoption.value + ']';
-            $(selector).fadeOut();
-        });
-    });
-</script>
-{% endput %}
 <div class="ui stackable grid">
     <div class="five wide column">
         <div class="ui fluid vertical right attached steps">
@@ -82,5 +68,15 @@ $query->orderBy('order', 'asc');
         $('div.ui.attached.active.segment').removeClass('active').hide();
         $(section_content).addClass('active').fadeIn();
     }
+    $('input[type=radio][dataoption]').change(function () {
+        var selector = 'div[data-condition=' + this.attributes.dataoption.value + ']';
+        $(selector).fadeIn();
+        $(this).addClass("active");
+        $('input[type=radio]:not(:checked).active').map(function (index, option) {
+            $(option).removeClass("active");
+            var selector = 'div[data-condition=' + option.attributes.dataoption.value + ']';
+            $(selector).fadeOut();
+        });
+    });
 </script>
 {% endput %}

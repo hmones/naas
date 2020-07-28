@@ -1,0 +1,10 @@
+<div class="ui fluid search selection dropdown">
+    <input type="hidden" name="q_{{question.id}}">
+    <i class="dropdown icon"></i>
+    <div class="default text">Select Country</div>
+    <div class="menu">
+        {% for country in countries %}
+        <div class="item" data-value="{{country[1]}}"><i class="{{country[1]}} flag"></i>{{country[0]}}</div>
+        {% endfor %}
+    </div>
+</div>

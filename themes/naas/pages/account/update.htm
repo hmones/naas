@@ -1,0 +1,124 @@
+title = "Update Profile"
+url = "/account/profile"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "account/login"
+==
+<?php
+public function onStart(){
+    $this['user'] = Auth::user();
+}
+public function onHandleUpdate(){
+    $user = Auth::user();
+    if($user){
+        $data = Input::post();
+        $rules = [
+        'name' => 'required',
+        'email' => 'required|email'
+        ];
+        $validator = Validator::make($data, $rules);
+        if ($validator->fails()) {
+            Flash::error('Name or email can not be empty!');
+            return Redirect::to('account/profile');
+        }
+        $user->email_org=post('email_org');
+        $user->website=post('website');
+        $user->facebook=post('facebook');
+        $user->twitter=post('twitter');
+        $user->youtube=post('youtube');
+        $user->instagram=post('instagram');
+        $user->name=post('name');
+        $user->email=post('email');
+        $user->save();
+        Flash::success('Profile updated successfully!');
+        return Redirect::to('account/profile');
+    }else{
+        return Redirect::to('/');
+    }
+}
+public function onEnd(){
+    if($this->param('code')){
+        return Redirect::to('login/');
+    }
+}
+?>
+==
+<div class="ui container">
+    <div class="ui header">Member Profile</div>
+    {{message}}
+    <div class="ui divider"></div>
+    <div class="ui hidden divider"></div>
+    {{ form_ajax('onHandleUpdate', { class: 'ui form'}) }}
+    <div class="two fields">
+        <div class="field">
+            <label>Full Name</label>
+            <input name="name" type="text" placeholder="Enter your full name" value="{{user.name}}" />
+        </div>
+        <div class="field">
+            <label>Email</label>
+            <input name="email" type="email" placeholder="Enter your email" value="{{user.email}}" required />
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Organization Email</label>
+            <input name="email_org" type="email" placeholder="Enter your organization official email"
+                value="{{user.email_org}}" />
+        </div>
+        <div class="field">
+            <label>Website</label>
+            <div class="ui left icon input">
+                <input name="website" type="text" placeholder="Enter your organization's website"
+                    value="{{user.website}}" />
+                <i class="globe icon"></i>
+            </div>
+
+        </div>
+    </div>
+    <div class="two fields">
+
+        <div class="field">
+            <label>Twitter</label>
+            <div class="ui left icon input">
+                <input name="twitter" type="text" placeholder="Enter your organization's twitter"
+                    value="{{user.twitter}}" />
+                <i class="twitter icon"></i>
+            </div>
+        </div>
+        <div class="field">
+            <label>Instagram</label>
+            <div class="ui left icon input">
+                <input name="instagram" type="text" placeholder="Enter your organization's instagram"
+                    value="{{user.instagram}}" />
+                <i class="instagram icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Facebook</label>
+            <div class="ui left icon input">
+                <input name="facebook" type="text" placeholder="Enter your organization's facebook"
+                    value="{{user.facebook}}" />
+                <i class="facebook icon"></i>
+            </div>
+        </div>
+        <div class="field">
+            <label>YouTube</label>
+            <div class="ui left icon input">
+                <input name="youtube" type="text" placeholder="Enter your organization's YouTube"
+                    value="{{user.youtube}}" />
+                <i class="youtube icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="ui hidden divider"></div>
+    <div class="field">
+        <a href="{{'account/dashboard'|page}}" class="ui red basic button">Back</a>
+        <button type="submit" class="ui red button">Update</button>
+    </div>
+    {{ form_close() }}
+</div>
