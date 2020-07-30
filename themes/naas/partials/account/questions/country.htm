@@ -1,5 +1,5 @@
 <div class="ui fluid search selection dropdown">
-    <input type="hidden" name="q_{{question.id}}">
+    <input type="hidden" name="q_{{question.id}}{{question.repeat_active?'[]':''}}">
     <i class="dropdown icon"></i>
     <div class="default text">Select Country</div>
     <div class="menu">

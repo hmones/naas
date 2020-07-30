@@ -1,6 +1,7 @@
 {% if question.published %}
 <div class="{{question.required ? 'required':''}} field" id="field_{{question.id}}"
-    data-condition="{{question.cond_option_id}}" style="{{question.cond_option_id?'display:none;':''}}">
+    data-condition="{{question.cond_option_id}}" style="{{question.cond_option_id?'display:none;':''}}"
+    {% if question.repeat_active and question.group %}group={{question.group}}{% endif %}>
     {% partial 'account/questions/header'%}
     <label for="q_{{question.id}}">
         {{question.order}} - {{question.question}} &nbsp;
@@ -12,10 +13,11 @@
     </label>
     <!-- Text box -->
     {% if question.type == 0 or question.type == 6 %}
-    <input type="text" name="q_{{question.id}}" id="q_{{question.id}}" value="" {{question.required?'required':''}} />
+    <input type="text" name="q_{{question.id}}{{question.repeat_active?'[]':''}}" id="q_{{question.id}}" value=""
+        {{question.required?'required':''}} />
     <!-- Text area -->
     {% elseif question.type == 1 %}
-    <textarea name="q_{{question.id}}" id="q_{{question.id}}" cols="30" rows="3"
+    <textarea name="q_{{question.id}}{{question.repeat_active?'[]':''}}" id="q_{{question.id}}" cols="30" rows="3"
         {{question.required?'required':''}}></textarea>
     <!-- Checkbox -->
     {% elseif question.type == 2 %}
@@ -28,7 +30,8 @@
     {% partial 'account/questions/dropdown' %}
     <!-- Attachment -->
     {% elseif question.type == 5 %}
-    <input type="file" name="q_{{question.id}}" id="q_{{question.id}}" value="" {{question.required?'required':''}} />
+    <input type="file" name="q_{{question.id}}{{question.repeat_active?'[]':''}}" id="q_{{question.id}}" value=""
+        {{question.required?'required':''}} />
     <!-- Country -->
     {% elseif question.type == 7 %}
     {% partial 'account/questions/country' %}

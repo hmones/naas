@@ -1,7 +1,7 @@
 {% for option in question.options %}
 <div class="field">
     <div class="ui radio checkbox">
-        <input type="radio" name="q_{{question.id}}" dataoption="{{option.id}}">
+        <input type="radio" name="q_{{question.id}}{{question.repeat_active?'[]':''}}" dataoption="{{option.id}}">
         <label>{{option.option}}</label>
     </div>
 </div>
@@ -9,7 +9,7 @@
 {% if question.other_active %}
 <div class="field">
     <div class="ui radio checkbox">
-        <input type="radio" name="q_{{question.id}}['other_text']">
+        <input type="radio" name="q_{{question.id}}{{question.repeat_active?'[]':''}}['other_text']">
         <label>{{question.other_text}}</label>
     </div>
 </div>

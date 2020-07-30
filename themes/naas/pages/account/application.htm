@@ -22,6 +22,8 @@ $this['sections'] = Theme::with([
 $query->orderBy('order', 'asc');
 }
 ])->get();
+$this['repeat_groups'] =
+Question::select('group','repeat_text')->where('published','1')->whereNotNull('group')->distinct('group')->get()->toJson();
 }
 ==
 <div class="ui stackable grid">
@@ -70,6 +72,7 @@ $query->orderBy('order', 'asc');
     }
     $('input[type=radio][dataoption]').change(function () {
         var selector = 'div[data-condition=' + this.attributes.dataoption.value + ']';
+        $(selector).parent().show();
         $(selector).fadeIn();
         $(this).addClass("active");
         $('input[type=radio]:not(:checked).active').map(function (index, option) {
@@ -78,5 +81,36 @@ $query->orderBy('order', 'asc');
             $(selector).fadeOut();
         });
     });
+    $(function () {
+        var repeat_groups = $.parseJSON('{{ repeat_groups | raw }}');
+        repeat_groups.forEach(group => {
+            $('div[group=' + group.group + ']').wrapAll('<div id="q_group_' + group.group + '" class="ui repeating pink segment"/>');
+            $('#q_group_' + group.group)
+                .append(
+                    '<div class="repeat group addons"><div id="repeat_group_'
+                    + group.group +
+                    '_container"></div><a href="javascript:void(0)" onclick="handleRepeat('
+                    + group.group +
+                    ')" class="ui basic red right floated button repeater"><i class="plus icon"></i>'
+                    + group.repeat_text +
+                    '</a><div><br></br>'
+                );
+            if ($('#q_group_' + group.group).children().css("display") == "none") {
+                $('#q_group_' + group.group).hide();
+            }
+        });
+
+    });
+    function handleRepeat(group) {
+        var data_prev = $('#q_group_' + group).html();
+        var data_current = '<div><a href="javascript:void(0)" class="ui right floated basic segment" onclick="$(this).parent().empty();"><i class="close red icon"></i></a>'
+            + data_prev +
+            '</div>';
+        $('#repeat_group_' + group + '_container')
+            .append(data_current);
+        $('#repeat_group_' + group + '_container > div > div.repeat.group.addons').remove();
+        $('#repeat_group_' + group + '_container > div > div > div.ui.header.question').remove();
+        $('.ui.dropdown').dropdown();
+    }
 </script>
 {% endput %}

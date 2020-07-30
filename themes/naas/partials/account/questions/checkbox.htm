@@ -1,7 +1,7 @@
 {% for option in question.options %}
 <div class="field">
     <div class="ui checkbox">
-        <input type="checkbox" name="q_{{question.id}}[]">
+        <input type="checkbox" name="q_{{question.id}}{{question.repeat_active?'[]':''}}['options_id'][]">
         <label>{{option.option}}</label>
     </div>
 </div>
@@ -9,9 +9,9 @@
 {% if question.other_active %}
 <div class="field">
     <div class="ui checkbox">
-        <input type="checkbox" name="q_{{question.id}}[]">
+        <input type="checkbox" />
         <label>{{question.other_text}}</label>
-        <input type="text" name="q_{{question.id}}['other_text']">
+        <input type="text" name="q_{{question.id}}{{question.repeat_active?'[]':''}}['other_text']" />
     </div>
 </div>
 {% endif %}

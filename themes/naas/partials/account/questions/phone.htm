@@ -2,7 +2,7 @@
     <div class="field">
         <label>Country Code</label>
         <div class="ui fluid search selection dropdown">
-            <input type="hidden" name="q_{{question.id}}_code">
+            <input type="hidden" id="q_{{question.id}}_code" />
             <i class="dropdown icon"></i>
             <div class="default text">Select Country</div>
             <div class="menu">
@@ -16,6 +16,20 @@
     </div>
     <div class="field">
         <label for="q_{{question.id}}_phone">Phone Number</label>
-        <input type="text" name="q_{{question.id}}_phone" placeholder="e.g. 15444444499" maxlength="15" value="">
+        <input type="text" id="q_{{question.id}}_phone" placeholder="e.g. 15444444499" maxlength="15" />
     </div>
 </div>
+<div class="hidden field">
+    <input type="hidden" name="q_{{question.id}}{{question.repeat_active?'[]':''}}" id="q_{{question.id}}" />
+</div>
+{% put scripts %}
+<script>
+    $('#q_{{question.id}}_code, #q_{{question.id}}_phone').change(function () {
+        var data = {
+            "code": $('#q_{{question.id}}_code').val(),
+            "phone": $('#q_{{question.id}}_phone').val()
+        };
+        $('#q_{{question.id}}').val(data);
+    });
+</script>
+{% endput %}

@@ -7,12 +7,13 @@
         <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'">Français</a>
         <div class="socialMediaIcons">
             {% partial 'socialMediaLinks' %}
-        </div>    
+        </div>
         <div class="right menu">
             {% partial 'navSearch' %}
-            <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> MEMBER SPACE</a> &nbsp;&nbsp;&nbsp;
+            <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> MEMBER SPACE</a>
+            &nbsp;&nbsp;&nbsp;
             {% if user %}
-                <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i></a>
+            <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i></a>
             {% endif %}
         </div>
     </div>
@@ -26,7 +27,7 @@
             {% partial 'menu-items' items=items %}
         </div>
     </div>
-    
+
 </div>
 
 <div class="ui top menu mobileMenu">
@@ -59,44 +60,43 @@
     <div class="item">
         <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> MEMBER SPACE</a>
     </div>
-    
+
     {% if user %}
-        <div class="item">
-            <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i> LOGOUT</a>
-        </div>
+    <div class="item">
+        <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i>
+            LOGOUT</a>
+    </div>
     {% endif %}
-    
+
     <div class="item">
         {% partial 'socialMediaLinks' %}
-    </div>    
+    </div>
     <br><br>
 </div>
 
 {% put scripts %}
 <script>
-    $(function(){
+    $(function () {
         $('.ui.top.menu')
-        .visibility({
-            onBottomVisible: function() {
-                console.log('On Screen');
-                $('.ui.top.fixed.menu').css('top','27px');
-            },
-            onBottomPassed: function() {
-                console.log('Off Screen');
-                $('.ui.top.fixed.menu').css('top', '0px');
-            },
-            continuous: true
-        })
-        ;
+            .visibility({
+                onBottomVisible: function () {
+                    $('.ui.top.fixed.menu').css('top', '27px');
+                },
+                onBottomPassed: function () {
+                    $('.ui.top.fixed.menu').css('top', '0px');
+                },
+                continuous: true
+            })
+            ;
     });
     function onToggleMenu() {
         $('.ui.left.sidebar')
-        .sidebar({
-            dimPage: true,
-            transition: 'overlay'
-        })
-        .sidebar('toggle')
-        ;
+            .sidebar({
+                dimPage: true,
+                transition: 'overlay'
+            })
+            .sidebar('toggle')
+            ;
     };
 </script>
 {% endput %}

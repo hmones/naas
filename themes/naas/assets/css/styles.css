@@ -105,3 +105,11 @@ div.pusher{
 .linkAnimation:hover{
     right:-10px;
 }
+
+/*--------------------
+|   Questions       
+----------------------*/
+div.ui.repeating.pink.segment{
+    border: 2px pink dashed;
+    background:#f8f9f9;
+}

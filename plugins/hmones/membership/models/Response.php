@@ -11,10 +11,12 @@ class Response extends Model
     
     use \October\Rain\Database\Traits\SoftDelete;
 
-    protected $dates = ['deleted_at'];
-    protected $jsonable = ['options_id'];
+    use \October\Rain\Database\Traits\Encryptable;
 
-    /**
+    protected $dates = ['deleted_at'];
+    protected $jsonable = ['options_id', 'text'];
+
+    /** 
      * @var string The database table used by the model.
      */
     public $table = 'hmones_membership_responses';
@@ -24,6 +26,8 @@ class Response extends Model
      */
     public $rules = [
     ];
+
+    protected $encryptable = ['text', 'option_id', 'options_id', 'text_other'];
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
