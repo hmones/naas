@@ -57,3 +57,6 @@
 1.0.20:
     - 'Drop table hmones_membership_profiles'
     - builder_table_delete_hmones_membership_profiles.php
+1.0.21:
+    - 'Updated table hmones_membership_responses'
+    - builder_table_update_hmones_membership_responses.php

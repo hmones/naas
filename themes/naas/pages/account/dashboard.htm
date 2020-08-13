@@ -33,7 +33,7 @@ redirect = "account/login"
             <div class="ui stacked segment">
                 <h2 class="ui header"><i class="file alternate outline red icon"></i>Application Status</h2>
                 <p>No current applications</p>
-                <a href="{{'account/application'|page}}">Continue with current application <i
+                <a href="{{'account/application'|page({id:1})}}">Continue with current application <i
                         class="right angle arrow icon"></i></a>
             </div>
         </div>
@@ -151,26 +151,6 @@ redirect = "account/login"
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="ui form">
-        <div class="field">
-            <label for="entity_phone_country_code">Country Code</label>
-            <div class="ui fluid search selection dropdown">
-                <i class="dropdown icon"></i>
-                <div class="default text">Select Country</div>
-                <div class="menu">
-                    {% for country in countries %}
-                    <div class="item" data-value="{{country[2]}}"><i class="{{country[1]}} flag"></i>{{country[0]}}
-                        (+{{country[2]}})
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="field">
-            <label for="entity_phone">Phone Number</label>
-            <input type="text" name="entity_phone" placeholder="e.g. 15444444499" maxlength="15" value="">
-        </div>-->
         </div>
     </div>
 </div>

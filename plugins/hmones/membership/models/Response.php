@@ -8,13 +8,11 @@ use Model;
 class Response extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    
-    use \October\Rain\Database\Traits\SoftDelete;
 
-    use \October\Rain\Database\Traits\Encryptable;
+    //use \October\Rain\Database\Traits\Encryptable;
 
-    protected $dates = ['deleted_at'];
-    protected $jsonable = ['options_id', 'text'];
+    protected $jsonable = ['text'];
+    protected $fillable = ['created_at', 'updated_at', 'question_id', 'text', 'submission_id'];
 
     /** 
      * @var string The database table used by the model.
@@ -27,20 +25,16 @@ class Response extends Model
     public $rules = [
     ];
 
-    protected $encryptable = ['text', 'option_id', 'options_id', 'text_other'];
+    //protected $encryptable = ['text'];
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
-    public $translatable = ['text', 'text_other'];
+    public $translatable = ['text'];
 
     public $belongsTo = [
         'submission' => 'Hmones\Membership\Models\Submission',
-        'theme' => 'Hmones\Membership\Models\Theme',
         'question' => 'Hmones\Membership\Models\Question',
         'option' => 'Hmones\Membership\Models\Option'
     ];
 
-    public $attachMany = [
-        'attachments' => 'System\Models\File'
-    ];
 }

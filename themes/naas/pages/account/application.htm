@@ -1,5 +1,5 @@
 title = "Application"
-url = "/account/application"
+url = "/account/application/round/:id"
 layout = "default"
 is_hidden = 0
 
@@ -14,16 +14,108 @@ use Hmones\Membership\Models\Theme;
 use Hmones\Membership\Models\Round;
 use Hmones\Membership\Models\Response;
 use Hmones\Membership\Models\Question;
-use Hmones\Membership\Models\Option;
+use Hmones\Membership\Classes\Utilities;
+use Carbon\Carbon;
+use October\Rain\Support\Collection;
 
 public function onStart(){
-$this['sections'] = Theme::with([
-'questions' => function ($query) {
-$query->orderBy('order', 'asc');
+    $this['round'] = Round::find($this->param('id'));
+    if(!$this['round']){
+        return Redirect::to('account/dashboard');
+    }    
+    $this['sections'] = Theme::with([
+        'questions' => function ($query) {
+            $query->orderBy('order', 'asc');
+        }])->get();
+    $this['repeat_groups'] = Question::select('group','repeat_text')->where('published','1')->whereNotNull('group')->distinct('group')->get()->toJson();
+    $this['submission'] = Submission::where('round_id',$this->param('id'))->where('user_id',Auth::user()->id)->first();
+    $this['responses'] = $this['submission']->responses()->get()->groupBy('question_id');
+    $this['group_responses'] = $this['submission']->responses()->where('text','regexp','\"group\"\:')->with('question')->get()->toJson();
 }
-])->get();
-$this['repeat_groups'] =
-Question::select('group','repeat_text')->where('published','1')->whereNotNull('group')->distinct('group')->get()->toJson();
+
+public function onSubmit(){
+    if(Input::post('applicationStatus') == "draft"){
+        $files = Input::file();
+        $inputs = Input::except(array_keys($files));
+        unset($inputs['_session_key'],$inputs['_token'],$inputs['applicationStatus']);
+        foreach($inputs as $key => $record){
+            if(Utilities::is_array_empty($record)){
+                unset($inputs[$key]);
+            }
+        }
+        $user = Auth::getUser();
+        $round = Round::find($this->param('id'));
+
+        // Check if a user has a submissions
+        $submission = Submission::where('user_id',$user->id)->first();
+        if($submission){
+            // If yes: delete all responses except files;
+            $submission->status = 0;
+            $submission->updated_at = Carbon::now();
+            $submission->lang = Lang::getLocale();
+            $submission->responses()->where('text','regexp','^((?!\"file\"\:\"uploads).)*$')->delete();
+            $submission->save();
+        }else{
+            // If no: create a new submission with a status draft & link to round
+            $submission = new Submission();
+            $submission->status = 0;
+            $submission->round = $round;
+            $submission->user = $user;
+            $submission->created_at = Carbon::now();
+            $submission->updated_at = Carbon::now();
+            $submission->lang = Lang::getLocale();
+            $submission->save();
+            $round->submissions()->add($submission);
+            $round->save();
+        }
+        // Loop through all inputs
+        $submissionDirectory = "uploads/{$submission->id}"; 
+        foreach($files as $key => $file){
+            $question_id = intval(preg_replace("/q_/","",$key));
+            Storage::deleteDirectory("{$submissionDirectory}/{$key}");
+            $path = "{$submissionDirectory}/{$key}/{$file->getClientOriginalName()}";
+            Storage::put($path, $file);
+            $submission->responses()->where('question_id',$question_id)->delete();
+            Response::create([
+                "question_id" => $question_id,
+                "submission_id" => $submission->id,
+                "text" => ["file" => $path],
+                "created_at" => Carbon::now(),
+                "updated_at" => Carbon::now()
+            ]);
+        }
+        foreach($inputs as $key => $input){
+            // If input is not empty create a record and add it to a general collection
+            $record = Response::create([
+                "question_id" => intval(preg_replace("/q_/","",$key)),
+                "submission_id" => $submission->id,
+                "text" => $input,
+                "created_at" => Carbon::now(),
+                "updated_at" => Carbon::now()
+            ]);
+        }
+
+        // Return to application page
+        Flash::success('Application Saved Successfully!');
+        return Redirect::refresh();
+    }
+    if(Input::post('applicationStatus') == "final"){
+        $questions = Question::where('published', '1')->get();
+        $rules = [];
+        $messages = [];
+
+        foreach ($questions as $question) {
+            $rules['q_' . $question->id] = 'required';
+            $messages['q_' . $question->id . '.required'] = 'Question is not answered: ' . $question->question;
+        }
+
+        $validator = Validator::make($input, $rules, $messages);
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+    }
+    
 }
 ==
 <div class="ui stackable grid">
@@ -31,7 +123,7 @@ Question::select('group','repeat_text')->where('published','1')->whereNotNull('g
         <div class="ui fluid vertical right attached steps">
             {% for section in sections %}
             <a class="{{loop.index == 1? 'active':''}} step" id="section_btn_{{section.id}}"
-                style="border-bottom:4px solid rgba(253,210,186,.15);" onclick="activateSection({{section.id}});">
+                style="border-bottom:4px solid rgba(253,210,186,.15);" onclick="activateSection({{section.id}});" section="{{section.id}}">
                 <i class="{{section.icon}} red icon" style="font-size:17px;"></i>
                 <div class="content">
                     <div class="title">{{str_limit(section.theme,24)}}</div>
@@ -42,7 +134,8 @@ Question::select('group','repeat_text')->where('published','1')->whereNotNull('g
         </div>
     </div>
     <div class="eleven wide column">
-        <form action="" method="POST" enctype="multipart/form-data" class="ui form"></form>
+        {{form_ajax({request:'onSubmit'}, {files:true , class:'ui form submit', id:'main_form'})}}
+        <input type="hidden" value="draft" name="applicationStatus"/>
         {% for section in sections %}
         <div class="ui attached {{loop.index == 1? 'active':''}} segment" id="section_content_{{section.id}}"
             style="{{loop.index == 1? '':'display:none;'}} border:none;">
@@ -55,7 +148,13 @@ Question::select('group','repeat_text')->where('published','1')->whereNotNull('g
             </div>
         </div>
         {% endfor %}
-        </form>
+        <div class="ui segment">
+            <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button"> <i class="left arrow icon"></i>Back</a>
+            <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button"><i class="right arrow icon"></i> Next</a>
+            <a href="javascript:void(0);" id="saveDraft" class="ui red button"><i class="save icon"></i> Save draft</a>
+            <a href="javascript:void(0);" id="submitForm" class="ui green button"><i class="check icon"></i> Submit</a>
+        </div>
+        {{form_close()}}
     </div>
 </div>
 
@@ -70,19 +169,49 @@ Question::select('group','repeat_text')->where('published','1')->whereNotNull('g
         $('div.ui.attached.active.segment').removeClass('active').hide();
         $(section_content).addClass('active').fadeIn();
     }
-    $('input[type=radio][dataoption]').change(function () {
-        var selector = 'div[data-condition=' + this.attributes.dataoption.value + ']';
+    function prevSection(){
+        var currSection = parseInt($('a.active.step').attr("section"));
+        var nextSection = currSection - 1;
+        if($('a[section='+nextSection+']').length){
+            activateSection(nextSection);
+        }
+    }
+    function nextSection(){
+        var currSection = parseInt($('a.active.step').attr("section"));
+        var nextSection = currSection + 1;
+        if($('a[section='+nextSection+']').length){
+            activateSection(nextSection);
+        }
+    }
+    $('#saveDraft').click(function(){
+        $('input[name="applicationStatus"]').val('draft');
+        $(this).addClass('loading');
+        $('#main_form').submit();
+    })
+    $('#submitForm').click(function(){
+        $('input[name="applicationStatus"]').val('final');
+        $(this).addClass('loading');
+        $('#main_form').submit();
+    });
+
+    function toogleCondQuestions(elem){
+        var selector = 'div[data-condition=' + elem.attributes.dataoption.value + ']';
         $(selector).parent().show();
         $(selector).fadeIn();
-        $(this).addClass("active");
+        $(elem).addClass("active");
         $('input[type=radio]:not(:checked).active').map(function (index, option) {
             $(option).removeClass("active");
             var selector = 'div[data-condition=' + option.attributes.dataoption.value + ']';
             $(selector).fadeOut();
         });
+    }
+    $('input[type=radio][dataoption]').change(function () {
+        toogleCondQuestions(this);
     });
+    var repeatGroupsCounter = [];
+    var repeat_groups = $.parseJSON('{{ repeat_groups | raw }}');
+    var group_responses = Object.values($.parseJSON('{{ group_responses | raw }}'));
     $(function () {
-        var repeat_groups = $.parseJSON('{{ repeat_groups | raw }}');
         repeat_groups.forEach(group => {
             $('div[group=' + group.group + ']').wrapAll('<div id="q_group_' + group.group + '" class="ui repeating pink segment"/>');
             $('#q_group_' + group.group)
@@ -98,19 +227,139 @@ Question::select('group','repeat_text')->where('published','1')->whereNotNull('g
             if ($('#q_group_' + group.group).children().css("display") == "none") {
                 $('#q_group_' + group.group).hide();
             }
+            repeatGroupsCounter[group.group] = 1;
+        });
+        $.each($('input[type=radio][dataoption][checked]'), function(key,elem){
+            toogleCondQuestions(elem);
+        });
+        group_responses.forEach(function(value){
+            var length = Object.keys(value.text.group).length;
+            if(length>repeatGroupsCounter[value.question.group]){
+                var repetitions = length - repeatGroupsCounter[value.question.group];
+                for (i = 0; i < repetitions; i++) {
+                    handleRepeat(value.question.group);
+                }
+            }
+            Object.values(value.text.group).forEach(function(array,key){
+                var type = value.question.type;
+                //Text & Text Area & Dropdown & Country
+                if(type === 0 || type === 1 || type === 4 || type === 7){
+                    if(array.hasOwnProperty('content')){
+                        $('[name="q_'+value.question.id+'[group]['+(key+1)+'][content]"]').val(array.content);
+                    }
+                }
+                //Checkboxes & Radio
+                if(type === 2 || type === 3){
+                    if(array.hasOwnProperty('options')){
+                        array.options.forEach(function(optionID){
+                            $('[name="q_'+value.question.id+'[group]['+(key+1)+'][options][]"][value='+optionID+']').attr('checked','');
+                        });
+                    }
+                    if(array.hasOwnProperty('other')){
+                        $('[name="q_'+value.question.id+'[group]['+(key+1)+'][other]"]').val(array.other).siblings('.valueOther').attr('checked','');
+                    }
+                }
+                //Phone
+                if(type === 8){
+                    if (array.hasOwnProperty("phone")){
+                        if (array.phone.hasOwnProperty("number")){
+                            $('[name="q_'+value.question.id+'[group]['+(key+1)+'][phone][number]"]').val(array.phone.number);
+                         }
+                         if (array.phone.hasOwnProperty("code")){
+                            $('[name="q_'+value.question.id+'[group]['+(key+1)+'][phone][code]"]').val(array.phone.code);
+                        }
+                    }
+                }
+                //Language Percentage
+                if(type === 9){
+                    if (array.hasOwnProperty("language")){
+                        if (array.language.hasOwnProperty("name")){
+                            $('[name="q_'+value.question.id+'[group]['+(key+1)+'][language][name]"]').val(array.language.name);
+                            $('.ui.dropdown').dropdown();
+                         }
+                         if (array.language.hasOwnProperty("percentage")){
+                            $('[name="q_'+value.question.id+'[group]['+(key+1)+'][language][percentage]"]').val(array.language.percentage);
+                        }
+                    }
+                }
+                //File Upload
+                if(type === 5){
+                    if(array.hasOwnProperty('file')){
+                        var message = '<div class="ui basic message"><strong>Uploaded file:</strong> '+array.file+'</div>';
+                        $(message).insertBefore('[name="q_'+value.question.id+'[group]['+(key+1)+']"]');
+                    }
+                }
+            });
+            
         });
 
     });
+    
     function handleRepeat(group) {
         var data_prev = $('#q_group_' + group).html();
+        var currentGroup = "[group][1]";
+        repeatGroupsCounter[group]++;
+        var nextGroup = "[group]["+repeatGroupsCounter[group]+"]";
         var data_current = '<div><a href="javascript:void(0)" class="ui right floated basic segment" onclick="$(this).parent().empty();"><i class="close red icon"></i></a>'
-            + data_prev +
+            + data_prev.replaceAll(currentGroup,nextGroup) +
             '</div>';
         $('#repeat_group_' + group + '_container')
             .append(data_current);
         $('#repeat_group_' + group + '_container > div > div.repeat.group.addons').remove();
         $('#repeat_group_' + group + '_container > div > div > div.ui.header.question').remove();
         $('.ui.dropdown').dropdown();
+    }
+    $('input[type=text], textarea').change(function () {
+        function isInputValid(regexValidation, inputValue) {
+            var pattern = new RegExp(regexValidation);
+            return pattern.test(inputValue);
+        };
+        if (!isInputValid($(this).attr('validation'), $(this).val())) {
+            $(this).val('').attr('placeholder', 'Error in user input, Enter again');
+            $(this).parent().addClass("error");
+        } else {
+            $(this).parent().removeClass("error");
+        }
+    });
+    $('body').delegate('input.q_percentage', 'change' , function () {
+        var percentage = $(this).val();
+        var language = $(this).parent().parent().siblings(".field").children("div.dropdown").children("input[type=hidden]").val();
+        var largeTotal = false;
+        $('div.ui.repeating.pink.segment>div[group][type=9]').each(function(){
+            var total = 0;
+            var elements = $(this).children('input.q_percentage');
+            elements.each(function(){
+                total = IntegerValue($(this).val()) + total;
+            });
+            if(total>100){
+                largeTotal = true;
+            }
+        })
+        if (isNaN(percentage) || percentage.length > 3 || parseInt(percentage) > 100 || parseInt(percentage) < 0 || language == "" || largeTotal) {
+            $(this).val('').parent().addClass("error");
+        }else{
+            $(this).parent().removeClass("error")
+            var data = {
+                language: language,
+                percentage: percentage
+            };
+            $(this).parent().parent().parent().siblings("div.hidden.field").children("input").val(JSON.stringify(data));
+        };
+    });
+    $('body').delegate('input.inputOther', 'change', function(){
+        var data = '["other" => '+$(this).val()+']';
+        $(this).siblings('.valueOther').val(data);
+    });
+    $('body').delegate('input[type=text],textarea','change',function(){
+        var data = $(this).val();
+        $(this).val(data.replace("'","`"));
+    });
+    function IntegerValue(field){
+        var number = parseInt(field);
+        if(isNaN(number)){
+            return 0;
+        }
+        return number;
     }
 </script>
 {% endput %}

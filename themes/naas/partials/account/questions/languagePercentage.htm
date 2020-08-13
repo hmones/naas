@@ -2,7 +2,7 @@
     <div class="field">
         <label>Language</label>
         <div class="ui fluid search selection dropdown">
-            <input type="hidden" id="q_{{question.id}}_language">
+            <input type="hidden" class="q_language" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[language][name]">
             <i class="dropdown icon"></i>
             <div class="default text">Select Language</div>
             <div class="menu">
@@ -154,24 +154,10 @@
         </div>
     </div>
     <div class="field">
-        <label for="q_{{question.id}}_percentage">Percentage</label>
+        <label>Percentage</label>
         <div class="ui icon input">
-            <input type="text" id="q_{{question.id}}_percentage" placeholder="e.g. 99" maxlength="3">
+            <input type="text" class="q_percentage" placeholder="e.g. 99" maxlength="3" value="" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[language][percentage]">
             <i>%</i>
         </div>
     </div>
 </div>
-<div class="hidden field">
-    <input type="hidden" name="q_{{question.id}}{{question.repeat_active?'[]':''}}" id="q_{{question.id}}">
-</div>
-{% put scripts %}
-<script>
-    $('#q_{{question.id}}_language, #q_{{question.id}}_percentage').change(function () {
-        var data = {
-            "language": $('#q_{{question.id}}_language').val(),
-            "percentage": $('#q_{{question.id}}_percentage').val()
-        };
-        $('#q_{{question.id}}').val(data);
-    });
-</script>
-{% endput %}
