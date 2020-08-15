@@ -1,0 +1,10 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+export:
+    title: Export responses
+    modelClass: Hmones\Membership\Models\Response
+    list: $/hmones/membership/models/response/columns.yaml
+    fileName: 'responses.csv'
+    useList: true

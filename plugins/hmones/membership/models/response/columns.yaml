@@ -1,11 +1,17 @@
 columns:
-    theme:
-        label: Section
-        type: text
+    order:
+        label: Order
+        type: number
         searchable: true
         sortable: true
-        select: theme
-        relation: theme
+        select: display_order
+        relation: question
+    Theme:
+        label: Theme
+        type: number
+        searchable: true
+        sortable: true
+        valueFrom: display_theme
     question:
         label: Question
         type: text
@@ -13,15 +19,14 @@ columns:
         sortable: true
         select: question
         relation: question
-    question_type:
-        label: "Qyestion Type"
+    answer:
+        label: 'Answer'
         type: text
         searchable: true
         sortable: true
-        select: type
-        relation: question
+        valueFrom: answer
     created_at:
-        label: "Created at"
+        label: 'Created at'
         type: datetime
         searchable: true
         sortable: true

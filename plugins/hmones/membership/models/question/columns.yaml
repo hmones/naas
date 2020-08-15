@@ -12,16 +12,15 @@ columns:
         searchable: true
         sortable: true
     type:
-        label: "Question Type"
+        label: 'Question Type'
         type: number
         sortable: true
-    order:
-        label: "Display Order"
+    display_order:
+        label: 'Display Order'
         type: number
-        searchable: false
         sortable: true
     updated_at:
-        label: "Last Updated"
+        label: 'Last Updated'
         type: datetime
         searchable: true
         sortable: true

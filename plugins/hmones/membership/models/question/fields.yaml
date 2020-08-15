@@ -47,7 +47,7 @@ tabs:
             span: auto
             type: switch
             tab: 'Basic Settings'
-        order:
+        display_order:
             label: 'Question''s Order'
             span: auto
             type: number
@@ -115,11 +115,6 @@ tabs:
             type: number
             comment: 'A number (ID) of the group of questions to which this question belong'
             tab: 'Advanced Settings'
-        validation:
-            label: 'Validation rule that is applied to the field'
-            span: auto
-            type: text
-            tab: 'Advanced Settings'
         repeat_active:
             label: 'Is this question/group repeatable?'
             span: auto
@@ -141,4 +136,16 @@ tabs:
             size: small
             span: auto
             type: textarea
+            tab: 'Advanced Settings'
+        validation:
+            label: Validation
+            options:
+                '^(100|[0-9]?[0-9])$': Percentage
+                '^[0-9]{0,25}$': 'Number (max size 25)'
+                '^(19|20)\d{2}$': Year
+                '^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,8})$': Email
+            showSearch: true
+            span: auto
+            emptyOption: 'No Validation'
+            type: dropdown
             tab: 'Advanced Settings'

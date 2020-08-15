@@ -1,65 +1,56 @@
 fields:
     question:
-        label: "Question Type"
-        nameFrom: question
+        label: 'Question Type'
+        nameFrom: type
         descriptionFrom: description
-        select: type
+        span: auto
+        type: relation
+    text[content]:
+        label: Content
         span: auto
         hidden: 0
-        type: relation
-    text:
-        label: Answer
-        size: small
-        span: auto
-        trigger:
-            action: show
-            field: question
-            condition: "value[0], value[1]"
-        type: textarea
-    text_other:
-        label: "Other: Answer"
-        span: auto
-        trigger:
-            action: show
-            field: question
-            condition: "value[2],value[3]"
         type: text
-    attachments:
-        label: Attachments
-        mode: file
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
+    text[other]:
+        label: 'Other Text'
+        span: auto
+        type: text
+    text[phone][code]:
+        label: 'Country code'
         span: auto
         readOnly: 1
-        trigger:
-            action: show
-            field: question
-            condition: "value[5]"
-        type: fileupload
-    option:
-        label: "Selected option"
-        nameFrom: option
+        type: text
+    text[phone][number]:
+        label: 'Phone Number'
         span: auto
-        trigger:
-            action: show
-            field: question
-            condition: "value[3],value[4]"
-        type: relation
-    options_id:
-        label: Repeater
-        prompt: "Add new item"
+        type: text
+    text[group]:
+        label: 'Repeated Field'
+        prompt: 'Add new item'
         span: auto
-        trigger:
-            action: show
-            field: question
-            condition: "value[3],value[4]"
         type: repeater
         form:
             fields:
-                option:
-                    label: Option
-                    nameFrom: option
+                content:
+                    label: Content
                     span: auto
-                    type: relation
+                    type: text
+                other:
+                    label: Other
+                    span: auto
+                    type: text
+                phone[code]:
+                    label: Phone
+                    span: left
+                    type: text
+                phone[number]:
+                    label: Number
+                    span: right
+                    type: text
+                language[name]:
+                    label: language
+                    span: left
+                    type: text
+                language[percentage]:
+                    label: Percentage
+                    span: right
+                    type: text

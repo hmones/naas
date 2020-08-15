@@ -5,10 +5,15 @@ use BackendMenu;
 
 class Response extends Controller
 {
-    public $implement = [        'Backend\Behaviors\ListController',        'Backend\Behaviors\FormController'    ];
+    public $implement = [
+        'Backend.Behaviors.ImportExportController',
+        'Backend\Behaviors\ListController',
+        'Backend\Behaviors\FormController'
+    ];
     
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
+    public $importExportConfig = 'config_export.yaml';
 
     public function __construct()
     {

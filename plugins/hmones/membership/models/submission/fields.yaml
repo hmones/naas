@@ -1,8 +1,4 @@
 fields:
-    responses:
-        span: full
-        path: field_response
-        type: partial
     status:
         label: 'Status of Application'
         options:
@@ -14,3 +10,10 @@ fields:
         showSearch: true
         span: auto
         type: dropdown
+    responses:
+        span: full
+        path: field_response
+        context:
+            - update
+            - preview
+        type: partial

@@ -60,3 +60,6 @@
 1.0.21:
     - 'Updated table hmones_membership_responses'
     - builder_table_update_hmones_membership_responses.php
+1.0.22:
+    - 'Updated table hmones_membership_questions'
+    - builder_table_update_hmones_membership_questions_6.php

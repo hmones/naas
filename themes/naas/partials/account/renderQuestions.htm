@@ -1,10 +1,16 @@
 {% if question.published %}
-<div class="{{question.required ? 'required':''}} {{question.add_css}} field" id="field_{{question.id}}" type="{{question.type}}"
-    data-condition="{{question.cond_option_id}}" style="{{question.cond_option_id?'display:none;':''}}"
+<div class="{{(question.required) and (not question.cond_option_id) ? 'required':''}} {{question.add_css}} field" 
+    id="field_{{question.id}}" 
+    type="{{question.type}}"
+    data-condition="{{question.cond_option_id}}" 
+    style="{{question.cond_option_id?'display:none;':''}}"
+    data-required="{{question.required ? 'yes':'no'}}"
+    data-theme="{{question.theme_id}}"
+    data-title="{{question.order}}"
     {% if question.repeat_active and question.group %}group={{question.group}}{% endif %}>
     {% partial 'account/questions/header'%}
     <label for="q_{{question.id}}">
-        {{question.order}} - {{question.question}} &nbsp;
+        {{question.display_order}} - {{question.question}} &nbsp;
         {% if question.description %}
         <div class="ui icon circular grey mini basic button" data-tooltip="{{question.description}}" data-inverted="">
             <i class="question black icon"></i>
@@ -14,7 +20,7 @@
     <!-- Text box -->
     {% if question.type == 0 or question.type == 6 %}
     <input type="text" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[content]" id="q_{{question.id}}" value="{{responses[question.id][0].text.content}}"
-         {% if question.validation|length > 2%} validation={{question.validation}} {% endif %} />
+         {% if question.validation|length > 2%} validation={{question.validation}} {% endif %}  />
     <!-- Text area -->
     {% elseif question.type == 1 %}
     <textarea name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[content]" id="q_{{question.id}}" cols="30" rows="3"
@@ -33,7 +39,7 @@
     {%if responses[question.id][0].text.file %}
         <div class="ui basic message"><strong>Uploaded file:</strong> {{responses[question.id][0].text.file}}</div>
     {% endif %}
-    <input type="file" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}"/>
+    <input type="file" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}" />
     <!-- Country -->
     {% elseif question.type == 7 %}
     {% partial 'account/questions/country' %}

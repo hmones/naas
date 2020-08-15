@@ -2,7 +2,7 @@ items:
     -
         title: ABOUT
         type: url
-        url: /
+        url: 'https://naasnetwork.org/content/naas-network-arab-alternative-screens'
         code: ''
         viewBag:
             isHidden: '0'
@@ -12,7 +12,7 @@ items:
             -
                 title: NAAS
                 type: url
-                url: /
+                url: 'https://naasnetwork.org/content/naas-network-arab-alternative-screens'
                 code: ''
                 viewBag:
                     isHidden: '0'
@@ -21,7 +21,7 @@ items:
             -
                 title: SUPPORTERS
                 type: url
-                url: /
+                url: 'https://naasnetwork.org/content/naas-supporters-2018'
                 code: ''
                 viewBag:
                     isHidden: '0'
@@ -30,7 +30,7 @@ items:
             -
                 title: 'ADMINISTRATIVE BOARD'
                 type: url
-                url: /
+                url: 'https://naasnetwork.org/naas-board'
                 code: ''
                 viewBag:
                     isHidden: '0'
@@ -39,7 +39,7 @@ items:
             -
                 title: 'STEERING COMMITTEE'
                 type: url
-                url: /
+                url: 'https://naasnetwork.org/steering-committee'
                 code: ''
                 viewBag:
                     isHidden: '0'
@@ -48,7 +48,7 @@ items:
             -
                 title: TEAM
                 type: url
-                url: /
+                url: 'https://naasnetwork.org/team'
                 code: ''
                 viewBag:
                     isHidden: '0'
@@ -57,7 +57,7 @@ items:
             -
                 title: 'WORK WITH US'
                 type: url
-                url: /
+                url: 'https://naasnetwork.org/content/work-us'
                 code: ''
                 viewBag:
                     isHidden: '0'
@@ -66,7 +66,7 @@ items:
     -
         title: NEWS
         type: url
-        url: /
+        url: 'https://naasnetwork.org/all-news'
         code: ''
         viewBag:
             isHidden: '0'
@@ -75,7 +75,7 @@ items:
     -
         title: NETWORK
         type: url
-        url: /
+        url: 'https://naasnetwork.org/members'
         code: ''
         viewBag:
             isHidden: '0'
@@ -85,7 +85,7 @@ items:
             -
                 title: MEMBERS
                 type: url
-                url: /
+                url: 'https://naasnetwork.org/members'
                 code: ''
                 viewBag:
                     isHidden: '0'
@@ -94,7 +94,7 @@ items:
             -
                 title: AFFILIATES
                 type: url
-                url: /
+                url: 'https://naasnetwork.org/affiliates'
                 code: ''
                 viewBag:
                     isHidden: '0'
@@ -103,7 +103,7 @@ items:
             -
                 title: 'BECOME A MEMBER'
                 type: url
-                url: /
+                url: 'https://naasnetwork.org/become-member'
                 code: ''
                 viewBag:
                     isHidden: '0'
@@ -112,7 +112,7 @@ items:
     -
         title: PROGRAMS
         type: url
-        url: /
+        url: 'https://naasnetwork.org/programs'
         code: ''
         viewBag:
             isHidden: '0'
@@ -121,7 +121,7 @@ items:
     -
         title: RESEARCH
         type: url
-        url: /
+        url: 'https://naasnetwork.org/research'
         code: ''
         viewBag:
             isHidden: '0'
@@ -130,7 +130,7 @@ items:
     -
         title: 'SUPPORT NAAS'
         type: url
-        url: /
+        url: 'https://naasnetwork.org/support-naas'
         code: ''
         viewBag:
             isHidden: '0'

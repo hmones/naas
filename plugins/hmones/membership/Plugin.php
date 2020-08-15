@@ -14,6 +14,7 @@ class Plugin extends PluginBase
     {
         return [
             'Hmones\Membership\Components\Countries' => 'Countries',
+            'Hmones\Membership\Components\Application' => 'Application'
         ];
     }
 

@@ -4,119 +4,11 @@ layout = "default"
 is_hidden = 0
 
 [Countries]
+[Application]
 
 [session]
 security = "user"
 redirect = "account/login"
-==
-use Hmones\Membership\Models\Submission;
-use Hmones\Membership\Models\Theme;
-use Hmones\Membership\Models\Round;
-use Hmones\Membership\Models\Response;
-use Hmones\Membership\Models\Question;
-use Hmones\Membership\Classes\Utilities;
-use Carbon\Carbon;
-use October\Rain\Support\Collection;
-
-public function onStart(){
-    $this['round'] = Round::find($this->param('id'));
-    if(!$this['round']){
-        return Redirect::to('account/dashboard');
-    }    
-    $this['sections'] = Theme::with([
-        'questions' => function ($query) {
-            $query->orderBy('order', 'asc');
-        }])->get();
-    $this['repeat_groups'] = Question::select('group','repeat_text')->where('published','1')->whereNotNull('group')->distinct('group')->get()->toJson();
-    $this['submission'] = Submission::where('round_id',$this->param('id'))->where('user_id',Auth::user()->id)->first();
-    $this['responses'] = $this['submission']->responses()->get()->groupBy('question_id');
-    $this['group_responses'] = $this['submission']->responses()->where('text','regexp','\"group\"\:')->with('question')->get()->toJson();
-}
-
-public function onSubmit(){
-    if(Input::post('applicationStatus') == "draft"){
-        $files = Input::file();
-        $inputs = Input::except(array_keys($files));
-        unset($inputs['_session_key'],$inputs['_token'],$inputs['applicationStatus']);
-        foreach($inputs as $key => $record){
-            if(Utilities::is_array_empty($record)){
-                unset($inputs[$key]);
-            }
-        }
-        $user = Auth::getUser();
-        $round = Round::find($this->param('id'));
-
-        // Check if a user has a submissions
-        $submission = Submission::where('user_id',$user->id)->first();
-        if($submission){
-            // If yes: delete all responses except files;
-            $submission->status = 0;
-            $submission->updated_at = Carbon::now();
-            $submission->lang = Lang::getLocale();
-            $submission->responses()->where('text','regexp','^((?!\"file\"\:\"uploads).)*$')->delete();
-            $submission->save();
-        }else{
-            // If no: create a new submission with a status draft & link to round
-            $submission = new Submission();
-            $submission->status = 0;
-            $submission->round = $round;
-            $submission->user = $user;
-            $submission->created_at = Carbon::now();
-            $submission->updated_at = Carbon::now();
-            $submission->lang = Lang::getLocale();
-            $submission->save();
-            $round->submissions()->add($submission);
-            $round->save();
-        }
-        // Loop through all inputs
-        $submissionDirectory = "uploads/{$submission->id}"; 
-        foreach($files as $key => $file){
-            $question_id = intval(preg_replace("/q_/","",$key));
-            Storage::deleteDirectory("{$submissionDirectory}/{$key}");
-            $path = "{$submissionDirectory}/{$key}/{$file->getClientOriginalName()}";
-            Storage::put($path, $file);
-            $submission->responses()->where('question_id',$question_id)->delete();
-            Response::create([
-                "question_id" => $question_id,
-                "submission_id" => $submission->id,
-                "text" => ["file" => $path],
-                "created_at" => Carbon::now(),
-                "updated_at" => Carbon::now()
-            ]);
-        }
-        foreach($inputs as $key => $input){
-            // If input is not empty create a record and add it to a general collection
-            $record = Response::create([
-                "question_id" => intval(preg_replace("/q_/","",$key)),
-                "submission_id" => $submission->id,
-                "text" => $input,
-                "created_at" => Carbon::now(),
-                "updated_at" => Carbon::now()
-            ]);
-        }
-
-        // Return to application page
-        Flash::success('Application Saved Successfully!');
-        return Redirect::refresh();
-    }
-    if(Input::post('applicationStatus') == "final"){
-        $questions = Question::where('published', '1')->get();
-        $rules = [];
-        $messages = [];
-
-        foreach ($questions as $question) {
-            $rules['q_' . $question->id] = 'required';
-            $messages['q_' . $question->id . '.required'] = 'Question is not answered: ' . $question->question;
-        }
-
-        $validator = Validator::make($input, $rules, $messages);
-
-        if ($validator->fails()) {
-            throw new ValidationException($validator);
-        }
-    }
-    
-}
 ==
 <div class="ui stackable grid">
     <div class="five wide column">
@@ -160,7 +52,19 @@ public function onSubmit(){
 
 {% put scripts %}
 <script>
-    $('.ui.dropdown').dropdown();
+    var repeatGroupsCounter = [];
+    var repeat_groups = $.parseJSON('{{ repeat_groups | raw }}');
+    var responses_json = '{{ group_responses | raw }}';
+    var group_responses = []
+    if(responses_json != ''){
+        group_responses = Object.values($.parseJSON());
+    }
+     
+    
+    
+    var validationMessage = "Error in user input, Enter again";
+    var validationEmptyMessage = "There are missing input fields!";
+    
     function activateSection(section) {
         var section_btn = '#section_btn_' + section;
         var section_content = '#section_content_' + section;
@@ -183,34 +87,126 @@ public function onSubmit(){
             activateSection(nextSection);
         }
     }
+    function toogleCondQuestions(elem){
+        var selector = 'div[data-condition=' + elem.attributes.dataoption.value + ']';
+        $(selector).parent().show();
+        $(selector).fadeIn();
+        $(selector+'[data-required="yes"]').addClass('required');
+        $(elem).addClass("active");
+        $('input[type=radio]:not(:checked).active').map(function (index, option) {
+            $(option).removeClass("active");
+            var selector = 'div[data-condition=' + option.attributes.dataoption.value + ']';
+            $(selector).fadeOut().removeClass('required');
+        });
+    }
+    function displayErrorField(elem, msg){
+        $(elem).val('').attr('placeholder', msg);
+        $(elem).parent().addClass("error");
+    }
+    function removeErrorField(elem){
+        $(elem).parent().removeClass("error");
+    }
+    function validateEmptyFields(){
+        var isFormValid = true;
+        var validationResults = [];
+        $('a[id^="section_btn_"]>div.floating.label').remove();
+        $('div[id^="field_"]').removeClass('error');
+        $('div[id^="field_"].required').each(function(index, elem){
+            var type = IntegerValue($(elem).attr('type'));
+            var theme = IntegerValue($(elem).attr('data-theme'));
+            $(elem).find('input[name^="q_"],textarea[name^="q_"]').each(function(inputIndex, inputElem){
+                function validationProcedure(element){
+                    //Count the appearance of the validation issue
+                    validationResults[theme] = IntegerValue(validationResults[theme]) + 1;
+                    //Display an error on the field
+                    displayErrorField(element,"");
+                }
+                switch(type){
+                    //Checkbox & Radio Inputs
+                    case 2:
+                    case 3:
+                        var name = $(inputElem).attr('name'); 
+                        if(!$('[name="'+name+'"]:checked').length && !name.includes("other")){
+                            validationProcedure($(inputElem).parent().parent());
+                        }
+                        break;
+                    //Attachments
+                    case 5:
+                        if($(inputElem).siblings('div.ui.basic.message').length === 0){
+                            validationProcedure(inputElem);
+                        }
+                        break;
+                    //All other types of input
+                    default:
+                        if($(inputElem).val()===""){
+                            validationProcedure(inputElem);
+                        }
+                        break;
+                }
+            });
+        });
+        validationResults.forEach(function(value, index){
+            $('#section_btn_'+index+'').append('<div class="floating ui red circular label">'+value+'</div>')
+        });
+        if(validationResults.length != 0){
+            $('#FlashMessage').html('<div class="ui negative message">'+validationEmptyMessage+'</div>');
+            window.scrollTo(0,0);
+            return isFormValid = false;
+        }
+        return isFormValid;
+    }
+    function IntegerValue(field){
+        var number = parseInt(field);
+        if(isNaN(number)){
+            return 0;
+        }
+        return number;
+    }
+    function handleRepeat(group) {
+        var data_prev = $('#q_group_' + group).html();
+        var currentGroup = "[group][1]";
+        repeatGroupsCounter[group]++;
+        var nextGroup = "[group]["+repeatGroupsCounter[group]+"]";
+        var data_current = '<div><a href="javascript:void(0)" class="ui right floated basic segment" onclick="$(this).parent().empty();"><i class="close red icon"></i></a>'
+            + data_prev.replaceAll(currentGroup,nextGroup) +
+            '</div>';
+        $('#repeat_group_' + group + '_container')
+            .append(data_current);
+        $('#repeat_group_' + group + '_container > div > div.repeat.group.addons').remove();
+        $('#repeat_group_' + group + '_container > div > div > div.ui.header.question').remove();
+        $('.ui.dropdown').dropdown();
+    }
+    function totalPercentageLimit(changedQuestion, questions, totalField=""){
+        var totalPercent = 0;
+        questions.forEach(function(question){
+            totalPercent = totalPercent + IntegerValue($('#q_'+question+'').val());
+        });
+        if(totalPercent > 100){
+                displayErrorField(changedQuestion, validationMessage);
+            }else{
+                removeErrorField(changedQuestion);
+            if(totalField != ""){
+                $('#q_'+totalField+'').val(totalPercent);
+            }
+        }   
+    }
     $('#saveDraft').click(function(){
         $('input[name="applicationStatus"]').val('draft');
         $(this).addClass('loading');
         $('#main_form').submit();
     })
     $('#submitForm').click(function(){
-        $('input[name="applicationStatus"]').val('final');
-        $(this).addClass('loading');
-        $('#main_form').submit();
+        var isFormValid = validateEmptyFields();
+        if(isFormValid){
+            $('input[name="applicationStatus"]').val('final');
+            $(this).addClass('loading');
+            $('#main_form').submit();
+        }
     });
-
-    function toogleCondQuestions(elem){
-        var selector = 'div[data-condition=' + elem.attributes.dataoption.value + ']';
-        $(selector).parent().show();
-        $(selector).fadeIn();
-        $(elem).addClass("active");
-        $('input[type=radio]:not(:checked).active').map(function (index, option) {
-            $(option).removeClass("active");
-            var selector = 'div[data-condition=' + option.attributes.dataoption.value + ']';
-            $(selector).fadeOut();
-        });
-    }
     $('input[type=radio][dataoption]').change(function () {
         toogleCondQuestions(this);
     });
-    var repeatGroupsCounter = [];
-    var repeat_groups = $.parseJSON('{{ repeat_groups | raw }}');
-    var group_responses = Object.values($.parseJSON('{{ group_responses | raw }}'));
+    
     $(function () {
         repeat_groups.forEach(group => {
             $('div[group=' + group.group + ']').wrapAll('<div id="q_group_' + group.group + '" class="ui repeating pink segment"/>');
@@ -229,9 +225,11 @@ public function onSubmit(){
             }
             repeatGroupsCounter[group.group] = 1;
         });
+        //Toogle conditional questions as saved before
         $.each($('input[type=radio][dataoption][checked]'), function(key,elem){
             toogleCondQuestions(elem);
         });
+        // Load previously saved inputs in groups
         group_responses.forEach(function(value){
             var length = Object.keys(value.text.group).length;
             if(length>repeatGroupsCounter[value.question.group]){
@@ -293,58 +291,30 @@ public function onSubmit(){
             
         });
 
-    });
-    
-    function handleRepeat(group) {
-        var data_prev = $('#q_group_' + group).html();
-        var currentGroup = "[group][1]";
-        repeatGroupsCounter[group]++;
-        var nextGroup = "[group]["+repeatGroupsCounter[group]+"]";
-        var data_current = '<div><a href="javascript:void(0)" class="ui right floated basic segment" onclick="$(this).parent().empty();"><i class="close red icon"></i></a>'
-            + data_prev.replaceAll(currentGroup,nextGroup) +
-            '</div>';
-        $('#repeat_group_' + group + '_container')
-            .append(data_current);
-        $('#repeat_group_' + group + '_container > div > div.repeat.group.addons').remove();
-        $('#repeat_group_' + group + '_container > div > div > div.ui.header.question').remove();
-        $('.ui.dropdown').dropdown();
-    }
+    });   
     $('input[type=text], textarea').change(function () {
         function isInputValid(regexValidation, inputValue) {
             var pattern = new RegExp(regexValidation);
             return pattern.test(inputValue);
         };
         if (!isInputValid($(this).attr('validation'), $(this).val())) {
-            $(this).val('').attr('placeholder', 'Error in user input, Enter again');
-            $(this).parent().addClass("error");
+            displayErrorField(this, validationMessage);
         } else {
-            $(this).parent().removeClass("error");
+            removeErrorField(this);
         }
     });
     $('body').delegate('input.q_percentage', 'change' , function () {
-        var percentage = $(this).val();
-        var language = $(this).parent().parent().siblings(".field").children("div.dropdown").children("input[type=hidden]").val();
-        var largeTotal = false;
-        $('div.ui.repeating.pink.segment>div[group][type=9]').each(function(){
-            var total = 0;
-            var elements = $(this).children('input.q_percentage');
-            elements.each(function(){
-                total = IntegerValue($(this).val()) + total;
-            });
-            if(total>100){
-                largeTotal = true;
-            }
-        })
-        if (isNaN(percentage) || percentage.length > 3 || parseInt(percentage) > 100 || parseInt(percentage) < 0 || language == "" || largeTotal) {
-            $(this).val('').parent().addClass("error");
+        var questionSelector = $(this).attr('name').replace(/\[.*\]/gi, "");
+        var totalPercent = 0;
+        $('[name^="'+questionSelector+'"].q_percentage').each(function(index, elem){
+            totalPercent = totalPercent + IntegerValue($(elem).val());
+        });
+        if(totalPercent > 100){
+            displayErrorField(this, validationMessage);
         }else{
-            $(this).parent().removeClass("error")
-            var data = {
-                language: language,
-                percentage: percentage
-            };
-            $(this).parent().parent().parent().siblings("div.hidden.field").children("input").val(JSON.stringify(data));
-        };
+            removeErrorField(this);
+        }   
+        
     });
     $('body').delegate('input.inputOther', 'change', function(){
         var data = '["other" => '+$(this).val()+']';
@@ -354,12 +324,7 @@ public function onSubmit(){
         var data = $(this).val();
         $(this).val(data.replace("'","`"));
     });
-    function IntegerValue(field){
-        var number = parseInt(field);
-        if(isNaN(number)){
-            return 0;
-        }
-        return number;
-    }
+    
+    $('.ui.dropdown').dropdown();
 </script>
 {% endput %}
