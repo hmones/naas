@@ -57,7 +57,7 @@ redirect = "account/login"
     var responses_json = '{{ group_responses | raw }}';
     var group_responses = []
     if(responses_json != ''){
-        group_responses = Object.values($.parseJSON());
+        group_responses = Object.values($.parseJSON(responses_json));
     }
      
     

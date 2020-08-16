@@ -26,7 +26,17 @@ class Application extends \Cms\Classes\ComponentBase
 
     public function onRun(){
         $this->page['round'] = Round::find($this->param('id'));
+        $this->page['submission'] = Submission::where('round_id',$this->param('id'))->where('user_id',Auth::user()->id)->first();
         if(!$this->page['round']){
+            Flash::error('This application round does not exist!');
+            return Redirect::to('account/dashboard');
+        }
+        if(!$this->page['round']->active || ($this->page['round']->start > Carbon::now()) || ($this->page['round']->end < Carbon::now())){
+            Flash::error('The application round is not currently active');
+            return Redirect::to('account/dashboard');
+        }
+        if($this->page['submission']->status != 0){
+            Flash::error('We received your application for this round, it can not be modified');
             return Redirect::to('account/dashboard');
         }    
         $this->page['sections'] = Theme::with([
@@ -34,10 +44,9 @@ class Application extends \Cms\Classes\ComponentBase
                 $query->orderBy('display_order', 'asc');
             }])->get();
         $this->page['repeat_groups'] = Question::select('group','repeat_text')->where('published','1')->whereNotNull('group')->distinct('group')->get()->toJson();
-        $this->page['submission'] = Submission::where('round_id',$this->param('id'))->where('user_id',Auth::user()->id)->first();
         if($this->page['submission']){
             $this->page['responses'] = $this->page['submission']->responses()->get()->groupBy('question_id');
-        $this->page['group_responses'] = $this->page['submission']->responses()->select('text','question_id')->with('question:id,type,group')->where('text','regexp','\"group\"\:')->get()->toJson();
+            $this->page['group_responses'] = $this->page['submission']->responses()->select('text','question_id')->with('question:id,type,group')->where('text','regexp','\"group\"\:')->get()->toJson();
         }
     }
     public function onSubmit(){
@@ -61,7 +70,7 @@ class Application extends \Cms\Classes\ComponentBase
         // Check if a user has a submissions
         $submission = Submission::where('user_id',$user->id)->first();
         if($submission){
-            // If yes: delete all responses except files;
+            // If yes: Delete all responses except files;
             $submission->status = $submissionStatus;
             $submission->updated_at = Carbon::now();
             $submission->lang = Lang::getLocale();

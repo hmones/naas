@@ -5,6 +5,11 @@ fields:
         default: '2000'
         required: 1
         type: number
+    active:
+        label: Published
+        span: auto
+        required: 0
+        type: switch
     start:
         label: 'Start Date'
         mode: datetime
@@ -19,39 +24,7 @@ fields:
         span: auto
         required: 1
         type: datepicker
-    active:
-        label: Published
-        span: auto
-        required: 0
-        type: switch
     comment:
         label: 'Remarks for the application round'
         span: auto
-        type: text
-    total_draft:
-        label: 'Draft Applications'
-        span: auto
-        disabled: 1
-        readOnly: 1
-        hidden: 0
-        type: text
-    total_submit:
-        label: 'Submitted Applications'
-        span: auto
-        disabled: 1
-        readOnly: 1
-        type: text
-    total_accept:
-        label: 'Accepted Applications'
-        span: auto
-        disabled: 1
-        readOnly: 1
-        hidden: 0
-        type: text
-    total_reject:
-        label: 'Rejected Applications'
-        span: auto
-        disabled: 1
-        readOnly: 1
-        hidden: 0
         type: text

@@ -14,7 +14,8 @@ class Plugin extends PluginBase
     {
         return [
             'Hmones\Membership\Components\Countries' => 'Countries',
-            'Hmones\Membership\Components\Application' => 'Application'
+            'Hmones\Membership\Components\Application' => 'Application',
+            'Hmones\Membership\Components\Dashboard' => 'Dashboard'
         ];
     }
 
@@ -72,10 +73,23 @@ class Plugin extends PluginBase
             
             $form->addTabFields([
                 'old_member' => [
-                    'label' => 'Is the member a former member?',
+                    'label' => 'Is the user a current member?',
                     'tab' => 'Profile',
                     'span' => 'auto',
                     'type'=> 'switch'
+                ],
+
+                'membership_type' => [
+                    'label' => 'Membership type',
+                    'tab' => 'Profile',
+                    'span' => 'auto',
+                    'type' => 'dropdown',
+                    'options' => [
+                        0 => 'None',
+                        1 => 'Core',
+                        2 =>'Affiliate'
+                    ],
+                    'required' => 1
                 ],
                 
                 'email_org' => [

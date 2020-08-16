@@ -63,3 +63,6 @@
 1.0.22:
     - 'Updated table hmones_membership_questions'
     - builder_table_update_hmones_membership_questions_6.php
+1.0.23:
+    - 'Updated membership type field in user profile fields'
+    - update_profile_fields_in_users_table.php

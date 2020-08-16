@@ -1,6 +1,8 @@
 <?php namespace Hmones\Membership\Models;
 
 use Model;
+use Carbon\Carbon;
+use Hmones\Membership\Models\Submission;
 
 /**
  * Model
@@ -32,4 +34,34 @@ class Round extends Model
     public $hasMany = [
         'submissions' => 'Hmones\Membership\Models\Submission'
     ];
+
+    public function scopeActive($query){
+        $today = Carbon::now();
+        return $query->where('start','<=',$today)->where('end','>=',$today);
+    }
+
+    public function scopeInactive($query){
+        $today = Carbon::now();
+        return $query->where('start','>=',$today)->orWhere('end','<=',$today);
+    }
+
+    public function scopePublished($query){
+        return $query->where('active',1);
+    }
+
+    public function getDraftAttribute(){
+        return Submission::where('round_id', $this->id)->where('status','0')->count();
+    }
+
+    public function getSubmittedAttribute(){
+        return Submission::where('round_id', $this->id)->where('status','1')->count();
+    }
+
+    public function getAcceptedAttribute(){
+        return Submission::where('round_id', $this->id)->where('status','3')->count();
+    }
+
+    public function getRejectedAttribute(){
+        return Submission::where('round_id', $this->id)->where('status','4')->count();
+    }
 }
