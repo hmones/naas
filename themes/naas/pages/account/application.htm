@@ -4,12 +4,30 @@ layout = "default"
 is_hidden = 0
 
 [Countries]
+
 [Application]
+
+[Prefill]
 
 [session]
 security = "user"
 redirect = "account/login"
 ==
+{% if userLatestSubmission %}
+<div class="ui message">
+    <div class="ui stackable grid">
+        <div class="one wide column"> <i class="info red circular icon"></i> </div>
+        <div class="fifteen wide column">
+            We detected that you have submitted an application last year, would you like to fill this application with the same data?
+            &nbsp;
+            <a href="javascript:void(0)" onclick="$('#prefill_form').submit();" class="ui red basic tiny button"> Yes</a>
+            {{form_ajax({request: 'onPrefill'},{'id':'prefill_form'})}}
+                <input type="hidden" name="submission_id" value="{{userLatestSubmission.id}}"/>
+            {{form_close()}}
+        </div>
+    </div>
+</div>
+{% endif %}
 <div class="ui stackable grid">
     <div class="five wide column">
         <div class="ui fluid vertical right attached steps">
@@ -35,16 +53,18 @@ redirect = "account/login"
             <div class="ui divider"></div>
             <div class="ui form">
                 {% for question in section.questions %}
-                {% partial 'account/renderQuestions' question=question countries=countries %}
+                    {% partial 'account/renderQuestions' question=question countries=countries %}
+                {% else %}
+                    No Questions to display in this section
                 {% endfor %}
             </div>
         </div>
         {% endfor %}
         <div class="ui segment">
             <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button"> <i class="left arrow icon"></i>Back</a>
-            <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button"><i class="right arrow icon"></i> Next</a>
+            <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button"> Next <i class="right arrow icon"></i></a>
             <a href="javascript:void(0);" id="saveDraft" class="ui red button"><i class="save icon"></i> Save draft</a>
-            <a href="javascript:void(0);" id="submitForm" class="ui green button"><i class="check icon"></i> Submit</a>
+            <a href="javascript:void(0);" id="submitForm" class="ui red button"><i class="check icon"></i> Submit</a>
         </div>
         {{form_close()}}
     </div>
@@ -168,7 +188,7 @@ redirect = "account/login"
         repeatGroupsCounter[group]++;
         var nextGroup = "[group]["+repeatGroupsCounter[group]+"]";
         var data_current = '<div><a href="javascript:void(0)" class="ui right floated basic segment" onclick="$(this).parent().empty();"><i class="close red icon"></i></a>'
-            + data_prev.replaceAll(currentGroup,nextGroup) +
+            + data_prev.replace(currentGroup,nextGroup) +
             '</div>';
         $('#repeat_group_' + group + '_container')
             .append(data_current);

@@ -35,14 +35,22 @@ class Application extends \Cms\Classes\ComponentBase
             Flash::error('The application round is not currently active');
             return Redirect::to('account/dashboard');
         }
-        if($this->page['submission']->status != 0){
-            Flash::error('We received your application for this round, it can not be modified');
-            return Redirect::to('account/dashboard');
+        if($this->page['submission']){
+            if($this->page['submission']->status != 0){
+                Flash::error('We received your application for this round, it can not be modified');
+                return Redirect::to('account/dashboard');
+            }
+        }
+        $isMember = Auth::user()->old_member;
+        $selectColumn = 'old_member'; // Default selection
+        if($isMember == 0){ // In case the member is a new member
+            $selectColumn = 'new_member';
         }    
         $this->page['sections'] = Theme::with([
-            'questions' => function ($query) {
-                $query->orderBy('display_order', 'asc');
+            'questions' => function ($query) use ($selectColumn){
+                $query->where($selectColumn, 1)->where('published',1)->orderBy('display_order', 'asc');
             }])->get();
+        
         $this->page['repeat_groups'] = Question::select('group','repeat_text')->where('published','1')->whereNotNull('group')->distinct('group')->get()->toJson();
         if($this->page['submission']){
             $this->page['responses'] = $this->page['submission']->responses()->get()->groupBy('question_id');

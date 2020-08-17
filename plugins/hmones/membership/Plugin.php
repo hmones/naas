@@ -15,7 +15,8 @@ class Plugin extends PluginBase
         return [
             'Hmones\Membership\Components\Countries' => 'Countries',
             'Hmones\Membership\Components\Application' => 'Application',
-            'Hmones\Membership\Components\Dashboard' => 'Dashboard'
+            'Hmones\Membership\Components\Dashboard' => 'Dashboard',
+            'Hmones\Membership\Components\Prefill' => 'Prefill'
         ];
     }
 

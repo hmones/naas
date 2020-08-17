@@ -19,9 +19,11 @@ class Dashboard extends \Cms\Classes\ComponentBase
             return Redirect::to('login');
         }
         $this->page['active_round'] = Round::active()->published()->first();
-        $this->page['other_rounds'] = Round::inactive()->published()->orderBy('year','asc')->get();
+        if($this->page['active_round']){
+            $this->page['user_active_submission'] = Submission::where('user_id',Auth::user()->id)->where('round_id',$this->page['active_round']->id)->first();
+        }
         $this->page['user_submissions'] = Submission::where('user_id',Auth::user()->id)->get();
-        $this->page['user_active_submission'] = Submission::where('user_id',Auth::user()->id)->where('round_id',$this->page['active_round']->id)->first();
+        
     }
 }
 
