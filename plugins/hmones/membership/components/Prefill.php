@@ -22,7 +22,10 @@ class Prefill extends \Cms\Classes\ComponentBase
 
     public function onRun(){
         if(Auth::user()){
-            $this->page['userLatestSubmission'] = Submission::where('user_id',Auth::user()->id)->where('round_id','!=',$this->param('id'))->orderBy('created_at', 'desc')->first()->toArray();
+            $userLatestSubmission = Submission::where('user_id',Auth::user()->id)->where('round_id','!=',$this->param('id'))->orderBy('created_at', 'desc')->first();
+            if($userLatestSubmission){
+                $this->page['userLatestSubmission'] = $userLatestSubmission->toArray();
+            }
         }
         
     }
