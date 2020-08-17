@@ -82,10 +82,14 @@ class Response extends Model
                 $result = Constants::COUNTRIES_EN[$jsonArray['content']];
                 break;
             case 8:
-                $result = "+( {$jsonArray['phone']['code']} ) - {$jsonArray['phone']['number']}";
+                if(isset($jsonArray['phone']['code']) && isset($jsonArray['phone']['number'])){
+                    $result = "+( {$jsonArray['phone']['code']} ) - {$jsonArray['phone']['number']}";
+                }
                 break;
             case 9:
-                $result = "{$jsonArray['language']['name']} : {$jsonArray['language']['percentage']}%";
+                if(isset($jsonArray['language']['name']) && isset($jsonArray['language']['percentage'])) {
+                    $result = "{$jsonArray['language']['name']} : {$jsonArray['language']['percentage']}%";
+                }
                 break;
             default:
                 $result = $jsonArray['content'];
@@ -95,20 +99,22 @@ class Response extends Model
     }
     public function getAnswerAttribute(){
         $result = "";
-        $questionType = Question::find($this->question_id)->type;
-        if (array_key_exists("group",$this->text)){
-            foreach ($this->text['group'] as $answer) {
-                if($result == ""){
-                    $result = $this->FormattedQuestion($answer,$questionType);
-                }else{
-                    $result = "{$result} , {$this->FormattedQuestion($answer,$questionType)}";
+        $questionType = Question::find($this->question_id);
+        if ($questionType) {
+            $questionType = $questionType->type;
+            if (array_key_exists("group",$this->text)){
+                foreach ($this->text['group'] as $answer) {
+                    if($result == ""){
+                        $result = $this->FormattedQuestion($answer,$questionType);
+                    }else{
+                        $result = "{$result} , {$this->FormattedQuestion($answer,$questionType)}";
+                    }
+                    
                 }
-                
+            }else{
+                $result = $this->FormattedQuestion($this->text, $questionType);
             }
-        }else{
-            $result = $this->FormattedQuestion($this->text, $questionType);
         }
-        
         return $result;
     }
 

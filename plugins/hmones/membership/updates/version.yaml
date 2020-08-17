@@ -66,3 +66,9 @@
 1.0.23:
     - 'Updated membership type field in user profile fields'
     - update_profile_fields_in_users_table.php
+1.0.24:
+    - 'Updated table hmones_membership_responses'
+    - builder_table_update_hmones_membership_responses_2.php
+1.0.25:
+    - 'Updated table hmones_membership_rounds'
+    - builder_table_update_hmones_membership_rounds.php
