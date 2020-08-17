@@ -21,7 +21,7 @@ public function onHandleUpdate(){
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
-            Flash::error('Name or email can not be empty!');
+            Flash::error('hmones.membership::lang.messages.emptyNameEmail');
             return Redirect::to('account/profile');
         }
         $user->email_org=post('email_org');
@@ -33,7 +33,7 @@ public function onHandleUpdate(){
         $user->name=post('name');
         $user->email=post('email');
         $user->save();
-        Flash::success('Profile updated successfully!');
+        Flash::success('hmones.membership::lang.messages.profileUpdated');
         return Redirect::to('account/profile');
     }else{
         return Redirect::to('/');
@@ -47,31 +47,30 @@ public function onEnd(){
 ?>
 ==
 <div class="ui container">
-    <div class="ui header">Member Profile</div>
-    {{message}}
+    <div class="ui header">{{'Pages.Account.Update.Header'|_}}</div>
     <div class="ui divider"></div>
     <div class="ui hidden divider"></div>
     {{ form_ajax('onHandleUpdate', { class: 'ui form'}) }}
     <div class="two fields">
         <div class="field">
-            <label>Full Name</label>
-            <input name="name" type="text" placeholder="Enter your full name" value="{{user.name}}" />
+            <label>{{'Pages.Account.Register.NameField'|_}}</label>
+            <input name="name" type="text" placeholder="{{'Pages.Account.Register.NamePlaceholder'|_}}" value="{{user.name}}" />
         </div>
         <div class="field">
-            <label>Email</label>
-            <input name="email" type="email" placeholder="Enter your email" value="{{user.email}}" required />
+            <label>{{'Pages.Account.Register.EmailField'|_}}Email</label>
+            <input name="email" type="email" placeholder="{{'Pages.Account.Register.EmailPlaceholder'|_}}" value="{{user.email}}" required />
         </div>
     </div>
     <div class="two fields">
         <div class="field">
-            <label>Organization Email</label>
-            <input name="email_org" type="email" placeholder="Enter your organization official email"
+            <label>{{'Pages.Account.Register.OrgEmailField'|_}}</label>
+            <input name="email_org" type="email" placeholder="{{'Pages.Account.Register.OrgEmailPlaceholder'|_}}"
                 value="{{user.email_org}}" />
         </div>
         <div class="field">
-            <label>Website</label>
+            <label>{{'Pages.Account.Register.WebsiteField'|_}}</label>
             <div class="ui left icon input">
-                <input name="website" type="text" placeholder="Enter your organization's website"
+                <input name="website" type="text" placeholder="{{'Pages.Account.Register.WebsitePlaceholder'|_}}"
                     value="{{user.website}}" />
                 <i class="globe icon"></i>
             </div>
@@ -81,17 +80,17 @@ public function onEnd(){
     <div class="two fields">
 
         <div class="field">
-            <label>Twitter</label>
+            <label>{{'Pages.Account.Register.TwitterField'|_}}</label>
             <div class="ui left icon input">
-                <input name="twitter" type="text" placeholder="Enter your organization's twitter"
+                <input name="twitter" type="text" placeholder="{{'Pages.Account.Register.TwitterPlaceholder'|_}}"
                     value="{{user.twitter}}" />
                 <i class="twitter icon"></i>
             </div>
         </div>
         <div class="field">
-            <label>Instagram</label>
+            <label>{{'Pages.Account.Register.InstagramField'|_}}</label>
             <div class="ui left icon input">
-                <input name="instagram" type="text" placeholder="Enter your organization's instagram"
+                <input name="instagram" type="text" placeholder="{{'Pages.Account.Register.InstagramPlaceholder'|_}}"
                     value="{{user.instagram}}" />
                 <i class="instagram icon"></i>
             </div>
@@ -99,17 +98,17 @@ public function onEnd(){
     </div>
     <div class="two fields">
         <div class="field">
-            <label>Facebook</label>
+            <label>{{'Pages.Account.Register.FacebookField'|_}}</label>
             <div class="ui left icon input">
-                <input name="facebook" type="text" placeholder="Enter your organization's facebook"
+                <input name="facebook" type="text" placeholder="{{'Pages.Account.Register.FacebookPlaceholder'|_}}"
                     value="{{user.facebook}}" />
                 <i class="facebook icon"></i>
             </div>
         </div>
         <div class="field">
-            <label>YouTube</label>
+            <label>{{'Pages.Account.Register.YoutubeField'|_}}</label>
             <div class="ui left icon input">
-                <input name="youtube" type="text" placeholder="Enter your organization's YouTube"
+                <input name="youtube" type="text" placeholder="{{'Pages.Account.Register.YoutubePlaceholder'|_}}"
                     value="{{user.youtube}}" />
                 <i class="youtube icon"></i>
             </div>
@@ -117,8 +116,8 @@ public function onEnd(){
     </div>
     <div class="ui hidden divider"></div>
     <div class="field">
-        <a href="{{'account/dashboard'|page}}" class="ui red basic button">Back</a>
-        <button type="submit" class="ui red button">Update</button>
+        <a href="{{'account/dashboard'|page}}" class="ui red basic button">{{'Keywords.back'|_}}</a>
+        <button type="submit" class="ui red button">{{'Keywords.update'|_}}</button>
     </div>
     {{ form_close() }}
 </div>

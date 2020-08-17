@@ -1,4 +1,4 @@
-<div class="ui top menu topAdditionalMenu">
+<div class="ui top menu topAdditionalMenu" style="direction:ltr;">
     <div class="ui container">
         <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'ar'">العربية</a>
         &nbsp;|&nbsp;
@@ -8,9 +8,9 @@
         <div class="socialMediaIcons">
             {% partial 'socialMediaLinks' %}
         </div>
-        <div class="right menu">
+        <div class="{{activeLocale=="ar"?'left':'right'}} menu">
             {% partial 'navSearch' %}
-            <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> MEMBER SPACE</a>
+            <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> {{'TopMenu.MemberSpace'|_}}</a>
             &nbsp;&nbsp;&nbsp;
             {% if user %}
             <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i></a>
@@ -58,13 +58,13 @@
         <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'">Français</a>
     </div>
     <div class="item">
-        <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> MEMBER SPACE</a>
+        <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> {{'TopMenu.MemberSpace'|_}}</a>
     </div>
 
     {% if user %}
     <div class="item">
         <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i>
-            LOGOUT</a>
+            {{'TopMenu.Logout'|_}}</a>
     </div>
     {% endif %}
 

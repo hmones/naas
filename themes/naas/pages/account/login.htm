@@ -12,17 +12,17 @@ requirePassword = 0
 <div class="ui container">
     <div class="ui stackable grid">
         <div class="centered four wide column">
-            <h3 class="ui small left aligned header"><i class="user red mini icon"></i> MEMBER LOGIN</h3>
+            <h3 class="ui small left aligned header"><i class="user red mini icon"></i> {{'Pages.Account.Login.Header'|_}}</h3>
             {{ form_ajax('onSignin', { class: 'ui form'}) }}
-                <input name="email" type="email" placeholder="Enter your email" />
-                <input name="password" type="password" placeholder="Enter your password" />
+                <input name="email" type="email" placeholder="{{'Pages.Account.Login.EmailPlaceholder'|_}}" />
+                <input name="password" type="password" placeholder="{{'Pages.Account.Login.PasswordPlaceholder'|_}}" />
                 <div class="ui hidden divider"></div>
-                <button type="submit" class="fluid ui red button">Login</button>
+                <button type="submit" class="fluid ui red button">{{'Pages.Account.Login.Login'|_}}</button>
             {{ form_close() }}
             
-            <a href="{{ 'account/register'| page }}" class="fluid ui red basic button">Register</a>
+            <a href="{{ 'account/register'| page }}" class="fluid ui red basic button">{{'Pages.Account.Login.Register'|_}}</a>
             <br/>
-            <a href="{{ 'account/reset' | page }}" class="fluid ui pink button">Forgot password</a> 
+            <a href="{{ 'account/reset' | page }}" class="fluid ui pink button">{{'Pages.Account.Login.ForgotPassword'|_}}</a> 
         </div>
     </div>
 </div>

@@ -35,74 +35,74 @@ public function onEnd(){
 ?>
 ==
 <div class="ui container">
-    <div class="ui header"><i class="pencil red icon"></i>Membership Registration</div>
+    <div class="ui header"><i class="pencil red icon"></i>{{'Pages.Account.Register.Header'|_}}</div>
     <div class="ui divider"></div>
     <div class="ui hidden divider"></div>
     {{ form_ajax('onRegistration', { class: 'ui form'}) }}
         <div class="two fields">
             <div class="field">
-                <label>Email</label>
-                <input name="email" type="email" placeholder="Enter your email" />
+                <label>{{'Pages.Account.Register.EmailField'|_}}</label>
+                <input name="email" type="email" placeholder="{{'Pages.Account.Register.EmailPlaceholder'|_}}" />
                 
             </div>
             <div class="field">
-                <label>Password</label>
-                <input name="password" type="password" placeholder="Choose a password" />
+                <label>{{'Pages.Account.Register.PasswordField'|_}}</label>
+                <input name="password" type="password" placeholder="{{'Pages.Account.Register.PasswordPlaceholder'|_}}" />
             </div>
         </div>
         <div class="two fields">
             <div class="field">
-                <label>Full Name</label>
-                <input name="name" type="text" placeholder="Enter your full name" />
+                <label>{{'Pages.Account.Register.NameField'|_}}</label>
+                <input name="name" type="text" placeholder="{{'Pages.Account.Register.NamePlaceholder'|_}}" />
                 
             </div>
             <div class="field">
-                <label>Organization Email</label>
-                <input name="email_org" type="email" placeholder="Enter your organization official email" />
+                <label>{{'Pages.Account.Register.OrgEmailField'|_}}</label>
+                <input name="email_org" type="email" placeholder="{{'Pages.Account.Register.OrgEmailPlaceholder'|_}}" />
             </div>
         </div>
         <div class="three fields">
             <div class="field">
-                <label>Website</label>
+                <label>{{'Pages.Account.Register.WebsiteField'|_}}</label>
                 <div class="ui left icon input">
-                    <input name="website" type="text" placeholder="Enter your organization's website" />
+                    <input name="website" type="text" placeholder="{{'Pages.Account.Register.WebsitePlaceholder'|_}}" />
                     <i class="globe icon"></i>
                 </div>
                 
             </div>
             <div class="field">
-                <label>Twitter</label>
+                <label>{{'Pages.Account.Register.TwitterField'|_}}</label>
                 <div class="ui left icon input">
-                    <input name="twitter" type="text" placeholder="Enter your organization's twitter" />
+                    <input name="twitter" type="text" placeholder="{{'Pages.Account.Register.TwitterPlaceholder'|_}}" />
                     <i class="twitter icon"></i>
                 </div>
             </div>
             <div class="field">
-                <label>Instagram</label>
+                <label>{{'Pages.Account.Register.InstagramField'|_}}</label>
                 <div class="ui left icon input">
-                    <input name="instagram" type="text" placeholder="Enter your organization's instagram" />
+                    <input name="instagram" type="text" placeholder="{{'Pages.Account.Register.InstagramPlaceholder'|_}}" />
                     <i class="instagram icon"></i>
                 </div>
             </div>
         </div>
         <div class="two fields">
             <div class="field">
-                <label>Facebook</label><div class="ui left icon input">
-                    <input name="facebook" type="text" placeholder="Enter your organization's facebook" />
+                <label>{{'Pages.Account.Register.FacebookField'|_}}</label><div class="ui left icon input">
+                    <input name="facebook" type="text" placeholder="{{'Pages.Account.Register.FacebookPlaceholder'|_}}" />
                     <i class="facebook icon"></i>
                 </div>
             </div>
             <div class="field">
-                <label>YouTube</label>
+                <label>{{'Pages.Account.Register.YoutubeField'|_}}</label>
                 <div class="ui left icon input">
-                    <input name="youtube" type="text" placeholder="Enter your organization's YouTube" />
+                    <input name="youtube" type="text" placeholder="{{'Pages.Account.Register.YoutubePlaceholder'|_}}" />
                     <i class="youtube icon"></i>
                 </div>
             </div>
         </div>
         <div class="ui hidden divider"></div>
         <div class="field">
-            <button type="submit" class="ui red button">Register</button>
+            <button type="submit" class="ui red button">{{'Pages.Account.Register.RegisterButton'|_}}</button>
         </div>
     {{ form_close() }}
 </div>

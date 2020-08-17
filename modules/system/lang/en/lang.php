@@ -2,8 +2,8 @@
 
 return [
     'app' => [
-        'name' => 'OctoberCMS',
-        'tagline' => 'Getting back to basics',
+        'name' => 'NAAS Backend',
+        'tagline' => 'Login to the backend',
     ],
     'locale' => [
         'ar' => 'العربية',

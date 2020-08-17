@@ -10,29 +10,29 @@ security = "user"
 redirect = "account/login"
 ==
 <div class="ui container">
-    <h1 class="ui left aligned header"><i class="compass outline red icon"></i>Welcome, {{user.name}}</h1>
+    <h1 class="ui left aligned header"><i class="compass outline red icon"></i>{{'Pages.Account.Dashboard.Welcome'|_}}{{user.name}}</h1>
     <div class="ui divider"></div>
     <div class="ui hidden divider"></div>
     <div class="ui stackable two column grid">
         <div class="column">
             <div class="ui stacked segment">
-                <h2 class="ui header"> <i class="user red icon"></i>Your Profile</h2>
+                <h2 class="ui header"> <i class="user red icon"></i>{{'Pages.Account.Dashboard.YourProfile'|_}}</h2>
                 <div class="ui basic segment">
                     <div class="ui stackable grid">
                         <div class="two wide column"> <i class="info red circular small icon"></i> </div>
                         <div class="fourteen wide column">
-                            Membership Status 
+                            {{'Pages.Account.Dashboard.MembershipStatus'|_}} 
                                 <div class="ui red basic label">
                                     {% if user.membership_type == 1 %}
-                                        Core
+                                        {{'Keywords.Core'|_}}
                                     {% elseif user.membership_type == 2 %}
-                                        Affiliate
+                                        {{'Keywords.Affiliate'|_}}
                                     {% else %}
-                                        None
+                                        {{'Keywords.None'|_}}
                                     {% endif %}
                                 </div>
                             <div class="ui right aligned basic segment" style="margin-top:0px;">
-                                <a href="{{'account/update'|page}}" class="ui basic red button">Edit Profile</a>
+                                <a href="{{'account/update'|page}}" class="ui basic red button">{{'Pages.Account.Dashboard.EditProfile'|_}}</a>
                             </div>
                         </div>
                     </div>
@@ -41,20 +41,20 @@ redirect = "account/login"
         </div>
         <div class="column">
             <div class="ui stacked segment">
-                <h2 class="ui header"><i class="archive red icon"></i>Application Rounds</h2>
+                <h2 class="ui header"><i class="archive red icon"></i>{{'Pages.Account.Dashboard.ApplicationRounds'|_}}</h2>
                 <div class="ui basic segment">
                     <div class="ui stackable grid">
                         <div class="two wide column"><i class="info circular red small icon"></i></div>
                         <div class="fourteen wide column">
                             {% if active_round %}
-                                Application for {{active_round.year}} is now open until {{active_round.end | date('d, F h:i')}}
+                                {{'Pages.Account.Dashboard.ApplicationRounds.Message1'|_}} {{active_round.year}} {{'Pages.Account.Dashboard.ApplicationRounds.Message2'|_}} {{active_round.end | date('d, F h:i')}}
                                 <div class="ui right aligned basic segment">
                                     <a class="ui red basic {{user_active_submission.status != 0? 'disabled':''}} button" href="{{'account/application'|page({id:active_round.id})}}">
-                                        {{user_active_submission.status != 0 ? 'Application Submitted':'Apply Now'}}
+                                        {{user_active_submission.status != 0 ? 'Pages.Account.Dashboard.ApplicationSubmitted':'Pages.Account.Dashboard.ApplyNow' | _ }}
                                     </a>
                                 </div>
                             {% else %}
-                                No current application round is open
+                                {{'Pages.Account.Dashboard.ApplicationRounds.Message3'|_}}
                             {% endif %}
                         </div>
                     </div> 
@@ -65,24 +65,24 @@ redirect = "account/login"
     <div class="ui stackable two column grid">
         <div class="column">
             <div class="ui stacked segment">
-                <h2 class="ui header"><i class="file alternate outline red icon"></i>Current Application</h2>
+                <h2 class="ui header"><i class="file alternate outline red icon"></i>{{'Pages.Account.Dashboard.CurrentApplication'|_}}</h2>
                 <div class="ui basic segment">
                     <div class="ui stackable grid">
                         <div class="two wide column"><i class="info circular red small icon"></i></div>
                         <div class="fourteen wide column">
                             {% if user_active_submission %}
                                 {% if user_active_submission.status != 0 %}
-                                    Your application is currently {{('Application.Status.' ~ user_active_submission.status) | _}}
+                                    {{'Pages.Account.Dashboard.CurrentApplication.Message1'|_}} {{('Application.Status.' ~ user_active_submission.status) | _}}
                                 {% else %}
-                                    You started the application process
+                                    {{'Pages.Account.Dashboard.CurrentApplication.Message2'|_}}
                                     <div class="ui right aligned basic segment">
                                         <a class="ui red basic button" href="{{'account/application'|page({id:user_active_submission.round_id})}}">
-                                            Edit Application
+                                            {{'Pages.Account.Dashboard.EditApplication'|_}}
                                         </a>
                                     </div>
                                 {% endif %}
                             {% else %}
-                                No current applications
+                                {{'Pages.Account.Dashboard.CurrentApplication.Message3'|_}}    
                             {% endif %}
                         </div>
                     </div> 
@@ -91,14 +91,14 @@ redirect = "account/login"
         </div>
         <div class="column">
             <div class="ui stacked segment">
-                <h2 class="ui header"><i class="newspaper red icon"></i>Application Updates</h2>
+                <h2 class="ui header"><i class="newspaper red icon"></i>{{'Pages.Account.Dashboard.ApplicationUpdates'|_}}</h2>
                 <div class="ui basic segment">
                     <div class="ui stackable grid">
                         {% if user_submissions %}
                             {% for submission in user_submissions %}
                                 <div class="two wide column"><i class="info red circular small icon"></i></div>
                                 <div class="fourteen wide column">
-                                    Application for {{submission.round.year}} is {{('Application.Status.' ~ submission.status) | _}}
+                                    {{'Pages.Account.Dashboard.ApplicationUpdates.Message1'|_}} {{submission.round.year}} {{'Keywords.is'|_}} {{('Application.Status.' ~ submission.status) | _}}
                                     <div>
                                         <small style="color:rgba(0,0,0,.5);"><i class="clock outline icon"></i> {{submission.updated_at.diffForHumans()}}</small>
                                     </div>
@@ -107,7 +107,7 @@ redirect = "account/login"
                         {% else %}
                         <div class="two wide column"><i class="play inverted circular pink small icon"></i></div>
                             <div class="fourteen wide column">    
-                                No submitted applications
+                                {{'Pages.Account.Dashboard.ApplicationUpdates.Message2'|_}}
                             </div>
                         {% endif %}
                     </div> 

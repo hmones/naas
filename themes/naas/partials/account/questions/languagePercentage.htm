@@ -1,10 +1,10 @@
 <div class="two fields">
     <div class="field">
-        <label>Language</label>
+        <label>{{'Pages.Account.Application.Language'|_}}</label>
         <div class="ui fluid search selection dropdown">
             <input type="hidden" class="q_language" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[language][name]">
             <i class="dropdown icon"></i>
-            <div class="default text">Select Language</div>
+            <div class="default text">{{'Pages.Account.Application.LanguageSelect'|_}}</div>
             <div class="menu">
                 <div class="item" data-value="English">English</div>
                 <div class="item" data-value="Abkhaz">Abkhaz</div>
@@ -154,7 +154,7 @@
         </div>
     </div>
     <div class="field">
-        <label>Percentage</label>
+        <label>{{'Pages.Account.Application.Percentage'|_}}</label>
         <div class="ui icon input">
             <input type="text" class="q_percentage" placeholder="e.g. 99" maxlength="3" value="" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[language][percentage]">
             <i>%</i>

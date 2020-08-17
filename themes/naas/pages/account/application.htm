@@ -18,9 +18,9 @@ redirect = "account/login"
     <div class="ui stackable grid">
         <div class="one wide column"> <i class="info red circular icon"></i> </div>
         <div class="fifteen wide column">
-            We detected that you have submitted an application last year, would you like to fill this application with the same data?
+            {{'Pages.Account.Application.PrefillMessage'|_}}
             &nbsp;
-            <a href="javascript:void(0)" onclick="$('#prefill_form').submit();" class="ui red basic tiny button"> Yes</a>
+            <a href="javascript:void(0)" onclick="$('#prefill_form').submit();" class="ui red basic tiny button"> {{'Keywords.Yes'|_}}</a>
             {{form_ajax({request: 'onPrefill'},{'id':'prefill_form'})}}
                 <input type="hidden" name="submission_id" value="{{userLatestSubmission.id}}"/>
             {{form_close()}}
@@ -55,16 +55,16 @@ redirect = "account/login"
                 {% for question in section.questions %}
                     {% partial 'account/renderQuestions' question=question countries=countries %}
                 {% else %}
-                    No Questions to display in this section
+                    {{'Pages.Account.Application.NoQuestions'|_}}
                 {% endfor %}
             </div>
         </div>
         {% endfor %}
         <div class="ui segment">
-            <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button"> <i class="left arrow icon"></i>Back</a>
-            <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button"> Next <i class="right arrow icon"></i></a>
-            <a href="javascript:void(0);" id="saveDraft" class="ui red button"><i class="save icon"></i> Save draft</a>
-            <a href="javascript:void(0);" id="submitForm" class="ui red button"><i class="check icon"></i> Submit</a>
+            <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button"> <i class="left arrow icon"></i>{{'Keywords.back'|_}}</a>
+            <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button"> {{'Keywords.Next'|_}} <i class="right arrow icon"></i></a>
+            <a href="javascript:void(0);" id="saveDraft" class="ui red button"><i class="save icon"></i> {{'Keywords.SaveDraft'|_}}</a>
+            <a href="javascript:void(0);" id="submitForm" class="ui red button"><i class="check icon"></i> {{'Keywords.Submit'|_}}</a>
         </div>
         {{form_close()}}
     </div>
@@ -79,11 +79,8 @@ redirect = "account/login"
     if(responses_json != ''){
         group_responses = Object.values($.parseJSON(responses_json));
     }
-     
-    
-    
-    var validationMessage = "Error in user input, Enter again";
-    var validationEmptyMessage = "There are missing input fields!";
+    var validationMessage = "{{'Pages.Account.Application.ErrorMessageInput'|_}}";
+    var validationEmptyMessage = "{{'Pages.Account.Application.ErrorMessageEmpty'|_}}";
     
     function activateSection(section) {
         var section_btn = '#section_btn_' + section;
