@@ -103,9 +103,14 @@ redirect = "account/login"
                                         <small style="color:rgba(0,0,0,.5);"><i class="clock outline icon"></i> {{submission.updated_at.diffForHumans()}}</small>
                                     </div>
                                 </div>
+                            {% else %}
+                                <div class="two wide column"><i class="info red circular small icon"></i></div>
+                                <div class="fourteen wide column">
+                                    {{'Pages.Account.Dashboard.ApplicationUpdates.Message2'|_}}
+                                </div>
                             {% endfor %}
                         {% else %}
-                        <div class="two wide column"><i class="play inverted circular pink small icon"></i></div>
+                            <div class="two wide column"><i class="info red circular small icon"></i></div>
                             <div class="fourteen wide column">    
                                 {{'Pages.Account.Dashboard.ApplicationUpdates.Message2'|_}}
                             </div>
