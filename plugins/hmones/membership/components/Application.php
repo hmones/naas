@@ -74,9 +74,13 @@ class Application extends \Cms\Classes\ComponentBase
         }
         $user = Auth::getUser();
         $round = Round::find($this->param('id'));
+        if(!$round || !$user){
+            Flash::error('This application round is not active anymore!');
+            return Redirect::to('account\dashboard');
+        }
 
         // Check if a user has a submissions
-        $submission = Submission::where('user_id',$user->id)->first();
+        $submission = Submission::where('user_id',$user->id)->where('round_id',$round->id)->first();
         if($submission){
             // If yes: Delete all responses except files;
             $submission->status = $submissionStatus;
@@ -115,7 +119,7 @@ class Application extends \Cms\Classes\ComponentBase
         }
         foreach($inputs as $key => $input){
             // If input is not empty create a record and add it to a general collection
-            $record = Response::create([
+            Response::create([
                 "question_id" => intval(preg_replace("/q_/","",$key)),
                 "submission_id" => $submission->id,
                 "text" => $input,
