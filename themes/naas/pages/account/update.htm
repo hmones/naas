@@ -21,7 +21,7 @@ public function onHandleUpdate(){
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
-            Flash::error('hmones.membership::lang.messages.emptyNameEmail');
+            Flash::error(Lang::get('hmones.membership::lang.messages.emptyNameEmail',[],$this['activeLocale']));
             return Redirect::to('account/profile');
         }
         $user->email_org=post('email_org');
@@ -33,7 +33,7 @@ public function onHandleUpdate(){
         $user->name=post('name');
         $user->email=post('email');
         $user->save();
-        Flash::success('hmones.membership::lang.messages.profileUpdated');
+        Flash::success(Lang::get('hmones.membership::lang.messages.profileUpdated',[],$this['activeLocale']));
         return Redirect::to('account/profile');
     }else{
         return Redirect::to('/');

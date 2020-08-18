@@ -9,14 +9,14 @@ paramCode = "code"
 public function onResetPassword(){
     try {
         $this->resetPassword->onResetPassword();
-        Flash::success('hmones.membership::lang.messages.resetSuccess');
+        Flash::success(Lang::get('hmones.membership::lang.messages.resetSuccess',[],$this['activeLocale']));
         return Redirect::to('login/');
     }catch(Exception $e){}
 }
 public function onRestorePassword(){
     try {
         $this->resetPassword->onRestorePassword();
-        Flash::success('hmones.membership::lang.messages.emailSent');
+        Flash::success(Lang::get('hmones.membership::lang.messages.emailSent',[],$this['activeLocale']));
         return Redirect::to('account/dashboard/');
     }catch(Exception $e){}
 }

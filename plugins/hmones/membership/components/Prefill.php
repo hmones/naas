@@ -84,7 +84,7 @@ class Prefill extends \Cms\Classes\ComponentBase
         
 
         // Return to the dashboard
-        Flash::success('Application is currently prefilled with previous responses and saved!');
+        Flash::success(Lang::get('hmones.membership::lang.messages.applicationPrefilled',[],$this->page['activeLocale']));
         return Redirect::refresh();
     }
 }

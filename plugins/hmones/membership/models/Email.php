@@ -24,4 +24,8 @@ class Email extends Model
      */
     public $rules = [
     ];
+
+    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+
+    public $translatable = ['email_txt', 'subject'];
 }

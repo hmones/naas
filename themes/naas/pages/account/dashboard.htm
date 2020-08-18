@@ -50,7 +50,7 @@ redirect = "account/login"
                                 {{'Pages.Account.Dashboard.ApplicationRounds.Message1'|_}} {{active_round.year}} {{'Pages.Account.Dashboard.ApplicationRounds.Message2'|_}} {{active_round.end | date('d, F h:i')}}
                                 <div class="ui right aligned basic segment">
                                     <a class="ui red basic {{user_active_submission.status != 0? 'disabled':''}} button" href="{{'account/application'|page({id:active_round.id})}}">
-                                        {{user_active_submission.status != 0 ? 'Pages.Account.Dashboard.ApplicationSubmitted':'Pages.Account.Dashboard.ApplyNow' | _ }}
+                                        {{user_active_submission.status != 0 ? 'Pages.Account.Dashboard.ApplicationSubmitted'|_:'Pages.Account.Dashboard.ApplyNow' | _ }}
                                     </a>
                                 </div>
                             {% else %}

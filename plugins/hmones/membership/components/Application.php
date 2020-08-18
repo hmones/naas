@@ -28,16 +28,22 @@ class Application extends \Cms\Classes\ComponentBase
         $this->page['round'] = Round::find($this->param('id'));
         $this->page['submission'] = Submission::where('round_id',$this->param('id'))->where('user_id',Auth::user()->id)->first();
         if(!$this->page['round']){
-            Flash::error('This application round does not exist!');
+            Flash::error(
+                Lang::get('hmones.membership::lang.messages.roundNotExist',[],$this->page['activeLocale'])
+            );
             return Redirect::to('account/dashboard');
         }
         if(!$this->page['round']->active || ($this->page['round']->start > Carbon::now()) || ($this->page['round']->end < Carbon::now())){
-            Flash::error('The application round is not currently active');
+            Flash::error(
+                Lang::get('hmones.membership::lang.messages.roundNotActive',[],$this->page['activeLocale'])
+            );
             return Redirect::to('account/dashboard');
         }
         if($this->page['submission']){
             if($this->page['submission']->status != 0){
-                Flash::error('We received your application for this round, it can not be modified');
+                Flash::error(
+                    Lang::get('hmones.membership::lang.messages.applicationAlreadySubmitted',[],$this->page['activeLocale'])
+                );
                 return Redirect::to('account/dashboard');
             }
         }
@@ -75,7 +81,9 @@ class Application extends \Cms\Classes\ComponentBase
         $user = Auth::getUser();
         $round = Round::find($this->param('id'));
         if(!$round || !$user){
-            Flash::error('This application round is not active anymore!');
+            Flash::error(
+                Lang::get('hmones.membership::lang.messages.roundNotActive',[],$this->page['activeLocale'])
+            );
             return Redirect::to('account\dashboard');
         }
 
@@ -131,11 +139,11 @@ class Application extends \Cms\Classes\ComponentBase
         //Condition to determine where the user should be redirected after filling the application
         if($submissionStatus == 1){
             // Return to the dashboard
-            Flash::success('Application has been submitted successfully!');
+            Flash::success(Lang::get('hmones.membership::lang.messages.applicationSubmitted',[],$this->page['activeLocale']));
             return Redirect::to('account/dashboard');
         }else{
             // Return to application page
-            Flash::success('Application Saved Successfully!');
+            Flash::success(Lang::get('hmones.membership::lang.messages.applicationSaved',[],$this->page['activeLocale']));
             return Redirect::refresh();
         }
         

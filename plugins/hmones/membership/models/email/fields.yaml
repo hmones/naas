@@ -4,9 +4,15 @@ fields:
         span: auto
         required: 1
         type: text
+        comment: 'no spaces or special charachters allowed'
+    subject:
+        label: 'Email Subject'
+        span: full
+        required: 1
+        type: text
     email_txt:
         label: 'Content of the email'
-        size: ''
+        size: giant
         span: auto
         required: 1
         type: richeditor
