@@ -59,8 +59,19 @@ class Application extends \Cms\Classes\ComponentBase
         
         $this->page['repeat_groups'] = Question::select('group','repeat_text')->where('published','1')->whereNotNull('group')->distinct('group')->get()->toJson();
         if($this->page['submission']){
-            $this->page['responses'] = $this->page['submission']->responses()->get()->groupBy('question_id');
-            $this->page['group_responses'] = $this->page['submission']->responses()->select('text','question_id')->with('question:id,type,group')->where('text','regexp','\"group\"\:')->get()->toJson();
+            $responses = $this->page['submission']->responses()->with('question:id,type,group')->get();
+            $this->page['responses'] = $responses->groupBy('question_id');
+            $group_responses = collect($responses->toArray())->filter(
+                function($item){ 
+                    return array_key_exists('group',$item['text']); 
+                });
+            $this->page['group_responses'] = collect();
+            foreach ($group_responses as $value) {
+                $this->page['group_responses']->push($value);
+            }
+            $this->page['group_responses'] = $this->page['group_responses']->toJson();
+            //dd($this->page['group_responses']);
+            //dd($this->page['submission']->responses()->select('text','question_id')->with('question:id,type,group')->get()->toJson());
         }
     }
     public function onSubmit(){

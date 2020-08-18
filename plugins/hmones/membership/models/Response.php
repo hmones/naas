@@ -10,7 +10,7 @@ class Response extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
-    //use \October\Rain\Database\Traits\Encryptable;
+    use \October\Rain\Database\Traits\Encryptable;
 
     protected $jsonable = ['text'];
     protected $fillable = ['created_at', 'updated_at', 'question_id', 'text', 'submission_id'];
@@ -26,7 +26,7 @@ class Response extends Model
     public $rules = [
     ];
 
-    //protected $encryptable = ['text'];
+    protected $encryptable = ['text'];
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
