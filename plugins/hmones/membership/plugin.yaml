@@ -15,7 +15,7 @@ navigation:
                 url: hmones/membership/round
                 icon: icon-refresh
             submissions:
-                label: Submissions
+                label: Applications
                 url: hmones/membership/submission
                 icon: icon-edit
             q:
@@ -30,7 +30,3 @@ navigation:
                 label: 'Email Templates'
                 url: hmones/membership/email
                 icon: icon-envelope
-            resposes:
-                label: Responses
-                url: hmones/membership/response
-                icon: icon-pencil

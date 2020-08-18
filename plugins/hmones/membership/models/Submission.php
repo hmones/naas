@@ -34,4 +34,9 @@ class Submission extends Model
         'user' => 'Rainlab\User\Models\User'
     ];
 
+    public function scopeYear($query,$year)
+    {   $rounds = Round::where('year',$year)->lists('id');
+        return $query->whereIn('round_id',$rounds);
+    }
+
 }

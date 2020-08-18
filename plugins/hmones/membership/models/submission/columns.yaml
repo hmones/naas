@@ -33,7 +33,12 @@ columns:
     created_at:
         label: 'Created at'
         type: timesince
-        searchable: true
+        searchable: false
+        sortable: true
+    updated_at:
+        label: 'Updated at'
+        type: timesince
+        searchable: false
         sortable: true
     lang:
         label: 'Submission Language'
