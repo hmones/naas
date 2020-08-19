@@ -24,6 +24,7 @@ function prevSection(){
     if($('a[section='+nextSection+']').length){
         activateSection(nextSection);
     }
+    window.scrollTo(0,0);
 }
 function nextSection(){
     var currSection = parseInt($('a.active.step').attr("section"));
@@ -31,6 +32,7 @@ function nextSection(){
     if($('a[section='+nextSection+']').length){
         activateSection(nextSection);
     }
+    window.scrollTo(0,0);
 }
 function toogleCondQuestions(elem){
     var selector = 'div[data-condition=' + elem.attributes.dataoption.value + ']';
