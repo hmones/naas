@@ -75,3 +75,12 @@
 1.0.26:
     - 'Updated table hmones_membership_emails'
     - builder_table_update_hmones_membership_emails_2.php
+1.0.27:
+    - 'Updated table hmones_membership_responses'
+    - builder_table_update_hmones_membership_responses_3.php
+1.0.28:
+    - 'Updated table hmones_membership_responses'
+    - builder_table_update_hmones_membership_responses_4.php
+1.0.29:
+    - 'Updated table hmones_membership_responses'
+    - builder_table_update_hmones_membership_responses_5.php

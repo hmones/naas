@@ -61,34 +61,11 @@ class Application extends \Cms\Classes\ComponentBase
         if($this->page['submission']){
             $responses = $this->page['submission']->responses()->with('question:id,type,group')->get();
             $this->page['responses'] = $responses->groupBy('question_id');
-            $group_responses = collect($responses->toArray())->filter(
-                function($item){ 
-                    return array_key_exists('group',$item['text']); 
-                });
-            $this->page['group_responses'] = collect();
-            foreach ($group_responses as $value) {
-                $this->page['group_responses']->push($value);
-            }
-            $this->page['group_responses'] = $this->page['group_responses']->toJson();
-            //dd($this->page['group_responses']);
-            //dd($this->page['submission']->responses()->select('text','question_id')->with('question:id,type,group')->get()->toJson());
+            $this->page['group_responses'] = $this->page['submission']->responses()->select('text','group','question_id')->with('question:id,type,group')->where('group',1)->get()->toJson();
         }
     }
     public function onSubmit(){
-        $submissionStatus = 0;
-        if(Input::post('applicationStatus') == "final"){
-            $submissionStatus = 1;
-        }
-        $files = Input::file();
-        $inputs = Input::except(array_keys($files));
-        //Remove Inputs that are used for verification
-        unset($inputs['_session_key'],$inputs['_token'],$inputs['applicationStatus']);
-        //Remove empty inputs that are submitted with the application
-        foreach($inputs as $key => $record){
-            if(Utilities::is_array_empty($record)){
-                unset($inputs[$key]);
-            }
-        }
+        // Check if the user is signed in and the round exists in the database
         $user = Auth::getUser();
         $round = Round::find($this->param('id'));
         if(!$round || !$user){
@@ -98,6 +75,22 @@ class Application extends \Cms\Classes\ComponentBase
             return Redirect::to('account\dashboard');
         }
 
+        $submissionStatus = 0;
+        if(Input::post('applicationStatus') == "final"){
+            $submissionStatus = 1;
+        }
+        $files = Input::file();
+        $inputs = Input::except(array_keys($files));
+        //Remove Inputs that are used for verification
+        unset($inputs['_session_key'],$inputs['_token'],$inputs['applicationStatus']);
+        
+        //Remove empty inputs that are submitted with the application
+        foreach($inputs as $key => $record){
+            if(Utilities::is_array_empty($record)){
+                unset($inputs[$key]);
+            }
+        }
+        
         // Check if a user has a submissions
         $submission = Submission::where('user_id',$user->id)->where('round_id',$round->id)->first();
         if($submission){
@@ -105,7 +98,7 @@ class Application extends \Cms\Classes\ComponentBase
             $submission->status = $submissionStatus;
             $submission->updated_at = Carbon::now();
             $submission->lang = Lang::getLocale();
-            $submission->responses()->where('text','regexp','^((?!\"file\"\:\"uploads).)*$')->delete();
+            $submission->responses()->where('file',0)->delete();
             $submission->save();
         }else{
             // If no: create a new submission with a status draft & link to round
@@ -123,6 +116,8 @@ class Application extends \Cms\Classes\ComponentBase
         // Loop through all files received in input
         $submissionDirectory = "uploads/{$submission->id}"; 
         foreach($files as $key => $file){
+            $group = 0;
+            if(is_array($file)){$group=1;}
             $question_id = intval(preg_replace("/q_/","",$key));
             Storage::deleteDirectory("{$submissionDirectory}/{$key}");
             $path = "{$submissionDirectory}/{$key}/{$file->getClientOriginalName()}";
@@ -131,17 +126,23 @@ class Application extends \Cms\Classes\ComponentBase
             Response::create([
                 "question_id" => $question_id,
                 "submission_id" => $submission->id,
+                "file" => 1,
                 "text" => ["file" => $path],
+                "group" => $group,
                 "created_at" => Carbon::now(),
                 "updated_at" => Carbon::now()
             ]);
         }
         foreach($inputs as $key => $input){
             // If input is not empty create a record and add it to a general collection
+            $group = 0;
+            if(isset($input['group'])){$group=1;}
             Response::create([
                 "question_id" => intval(preg_replace("/q_/","",$key)),
                 "submission_id" => $submission->id,
                 "text" => $input,
+                "file" => 0,
+                "group" => $group,
                 "created_at" => Carbon::now(),
                 "updated_at" => Carbon::now()
             ]);

@@ -5,6 +5,7 @@
 // validationEmptyMessage (Validation Message if inputs were empty for submit validation)
 
 var group_responses = []
+responses_json
 if(responses_json != ''){
     group_responses = Object.values($.parseJSON(responses_json));
 }
@@ -107,15 +108,16 @@ function IntegerValue(field){
     return number;
 }
 function handleRepeat(group) {
-    var data_prev = $('#q_group_' + group).html();
     var currentGroup = "[group][1]";
     repeatGroupsCounter[group]++;
     var nextGroup = "[group]["+repeatGroupsCounter[group]+"]";
-    var data_current = '<div><a href="javascript:void(0)" class="ui right floated basic segment" onclick="$(this).parent().empty();"><i class="close red icon"></i></a>'
-        + data_prev.replace(currentGroup,nextGroup) +
+    var data_prev = $('#q_group_' + group).html();
+    var data_curr = data_prev.replaceAll(currentGroup,nextGroup);
+    var html_current = '<div><a href="javascript:void(0)" class="ui right floated basic segment" onclick="$(this).parent().remove();repeatGroupsCounter['+group+']--;"><i class="close red icon"></i></a>'
+        + data_curr +
         '</div>';
     $('#repeat_group_' + group + '_container')
-        .append(data_current);
+        .append(html_current);
     $('#repeat_group_' + group + '_container > div > div.repeat.group.addons').remove();
     $('#repeat_group_' + group + '_container > div > div > div.ui.header.question').remove();
     $('.ui.dropdown').dropdown();
@@ -198,7 +200,7 @@ $(function () {
                     });
                 }
                 if(array.hasOwnProperty('other')){
-                    $('[name="q_'+value.question.id+'[group]['+(key+1)+'][other]"]').val(array.other).siblings('.valueOther').attr('checked','');
+                    $('[name="q_'+value.question.id+'[group]['+(key+1)+'][other]"]').val(array.other);
                 }
             }
             //Phone
@@ -259,10 +261,6 @@ $('body').delegate('input.q_percentage', 'change' , function () {
         removeErrorField(this);
     }   
     
-});
-$('body').delegate('input.inputOther', 'change', function(){
-    var data = '["other" => '+$(this).val()+']';
-    $(this).siblings('.valueOther').val(data);
 });
 $('body').delegate('input[type=text],textarea','change',function(){
     var data = $(this).val();
