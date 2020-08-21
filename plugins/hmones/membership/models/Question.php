@@ -1,6 +1,7 @@
 <?php namespace Hmones\Membership\Models;
 
 use Model;
+use DB;
 
 /**
  * Model
@@ -72,5 +73,35 @@ class Question extends Model
                 break;
         }
         return $display_type;
+    }
+
+    public function beforeCreate()
+    {
+        Question::where('display_order','>=',$this->display_order)->update(
+            ['display_order' => DB::raw('display_order + 1')]
+        );
+    }
+    public function beforeDelete()
+    {
+        Question::where('display_order','>=',$this->display_order)->update(
+            ['display_order' => DB::raw('display_order - 1')]
+        );
+    }
+    public function beforeUpdate()
+    {   
+        $oldOrder = intval($this->original['display_order']);
+        $newOrder = intval($this->display_order);
+
+        if($newOrder > $oldOrder){
+            Question::whereBetween('display_order',[$oldOrder,$newOrder])->update(
+                ['display_order' => DB::raw('display_order - 1')]
+        );
+        }
+        if($newOrder < $oldOrder)
+        {
+            Question::whereBetween('display_order',[$newOrder,$oldOrder])->update(
+                    ['display_order' => DB::raw('display_order + 1')]
+            );
+        }
     }
 }

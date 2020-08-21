@@ -8,9 +8,10 @@ tabs:
             tab: 'Basic Settings'
         theme:
             label: Theme
-            span: auto
             nameFrom: theme
             descriptionFrom: Theme
+            span: auto
+            required: 1
             type: relation
             tab: 'Basic Settings'
         type:
@@ -34,6 +35,7 @@ tabs:
         display_order:
             label: 'Question''s Order'
             span: auto
+            required: 1
             type: number
             comment: '0 appears first'
             tab: 'Basic Settings'
@@ -61,26 +63,31 @@ tabs:
         required:
             label: 'Required?'
             span: auto
+            required: 1
             type: switch
             tab: 'Basic Settings'
         published:
             label: 'Published?'
             span: auto
+            required: 1
             type: switch
             tab: 'Basic Settings'
         new_member:
             label: 'Show for new members?'
             span: auto
+            required: 1
             type: switch
             tab: 'Basic Settings'
         old_member:
             label: 'Show for old members?'
             span: auto
+            required: 1
             type: switch
             tab: 'Basic Settings'
         prefill:
             label: 'Prefill in new applications?'
             span: full
+            required: 1
             type: switch
             tab: 'Basic Settings'
         options:
