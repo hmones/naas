@@ -14,13 +14,13 @@ security = "user"
 redirect = "account/login"
 ==
 {% if userLatestSubmission %}
-<div class="ui message">
+<div class="ui message" style="border:solid #2185d0 1px;">
     <div class="ui stackable grid">
-        <div class="one wide column"> <i class="info red circular icon"></i> </div>
+        <div class="one wide column"> <i class="info blue circular icon"></i> </div>
         <div class="fifteen wide column">
             {{'Pages.Account.Application.PrefillMessage'|_}}
             &nbsp;
-            <a href="javascript:void(0)" onclick="$('#prefill_form').submit();" class="ui red basic tiny button"> {{'Keywords.Yes'|_}}</a>
+            <a href="javascript:void(0)" onclick="$('#prefill_form').submit();" class="ui blue basic tiny button"> {{'Keywords.Yes'|_}}</a>
             {{form_ajax({request: 'onPrefill'},{'id':'prefill_form'})}}
                 <input type="hidden" name="submission_id" value="{{userLatestSubmission.id}}"/>
             {{form_close()}}
