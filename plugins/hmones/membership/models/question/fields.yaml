@@ -31,27 +31,17 @@ tabs:
             required: 1
             type: dropdown
             tab: 'Basic Settings'
-        description:
-            label: Description
-            size: small
-            span: auto
-            type: textarea
-            tab: 'Basic Settings'
-        required:
-            label: 'Required?'
-            span: auto
-            type: switch
-            tab: 'Basic Settings'
-        published:
-            label: 'Published?'
-            span: auto
-            type: switch
-            tab: 'Basic Settings'
         display_order:
             label: 'Question''s Order'
             span: auto
             type: number
             comment: '0 appears first'
+            tab: 'Basic Settings'
+        description:
+            label: Description
+            size: small
+            span: auto
+            type: textarea
             tab: 'Basic Settings'
         section1:
             label: Options
@@ -67,6 +57,31 @@ tabs:
             label: 'Question subheader'
             span: auto
             type: text
+            tab: 'Basic Settings'
+        required:
+            label: 'Required?'
+            span: auto
+            type: switch
+            tab: 'Basic Settings'
+        published:
+            label: 'Published?'
+            span: auto
+            type: switch
+            tab: 'Basic Settings'
+        new_member:
+            label: 'Show for new members?'
+            span: auto
+            type: switch
+            tab: 'Basic Settings'
+        old_member:
+            label: 'Show for old members?'
+            span: auto
+            type: switch
+            tab: 'Basic Settings'
+        prefill:
+            label: 'Prefill in new applications?'
+            span: full
+            type: switch
             tab: 'Basic Settings'
         options:
             span: full
