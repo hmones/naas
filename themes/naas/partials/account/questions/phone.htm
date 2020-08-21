@@ -16,6 +16,14 @@
     </div>
     <div class="field">
         <label for="q_{{question.id}}_phone">{{'Pages.Account.Application.PhoneNumber'|_}}</label>
-        <input type="text" id="q_{{question.id}}_phone" placeholder="e.g. 15444444499" maxlength="15" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[phone][number]" value="{{responses[question.id][0].text.phone.number}}" />
+        <input 
+            type="text" 
+            id="q_{{question.id}}_phone" 
+            placeholder="e.g. 15444444499" 
+            maxlength="15" 
+            name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[phone][number]" 
+            value="{{responses[question.id][0].text.phone.number}}" 
+            validation="^[0-9]{0,25}$"
+        />
     </div>
 </div>
