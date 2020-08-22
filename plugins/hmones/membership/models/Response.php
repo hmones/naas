@@ -101,18 +101,21 @@ class Response extends Model
         $result = "";
         $questionType = Question::find($this->question_id);
         if ($questionType) {
-            $questionType = $questionType->type;
-            if (array_key_exists("group",$this->text)){
-                foreach ($this->text['group'] as $answer) {
-                    if($result == ""){
-                        $result = $this->FormattedQuestion($answer,$questionType);
-                    }else{
-                        $result = "{$result} , {$this->FormattedQuestion($answer,$questionType)}";
+            try {
+                $questionType = $questionType->type;
+                if (array_key_exists("group",$this->text)){
+                    foreach ($this->text['group'] as $answer) {
+                        if($result == ""){
+                            $result = $this->FormattedQuestion($answer,$questionType);
+                        }else{
+                            $result = "{$result} , {$this->FormattedQuestion($answer,$questionType)}";
+                        }
                     }
-                    
+                }else{
+                    $result = $this->FormattedQuestion($this->text, $questionType);
                 }
-            }else{
-                $result = $this->FormattedQuestion($this->text, $questionType);
+            } catch (\Throwable $th) {
+                $result = "Empty Answer!";
             }
         }
         return $result;

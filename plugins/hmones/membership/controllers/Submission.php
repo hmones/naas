@@ -31,6 +31,7 @@ class Submission extends Controller
     public function onExport(){
         $checked = Input::post('checked'); 
         $filename = 'submissions.xls'; // The file name you want any resulting file to be called.
+        $key = "uploads/public/{$filename}";
         if($checked){
             $submissions = SubmissionModel::whereIn('id',$checked)->with('responses')->get();
             #create an instance of the class
@@ -71,9 +72,9 @@ class Submission extends Controller
                 #
                 # You can send the sheet directly to the browser as a file 
                 #
-                Storage::delete('submissions.xls');
-                Storage::put('submissions.xls', $xls->sendFile());
-                return Redirect::to('storage/app/submissions.xls');
+                Storage::delete($key);
+                Storage::put($key, $xls->sendFile());
+                return Redirect::to("storage/app/{$key}");
         }
     }
 }
