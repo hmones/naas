@@ -70,7 +70,7 @@ class Submission extends Model
                 $this->lang,
                 'submission-submitted'
             );
-        }else{
+        }elseif($this->status != $this->original['status']){
             $this->sendEmail(
                 $this->user_id, 
                 $this->round_id,
