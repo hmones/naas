@@ -38,7 +38,7 @@
     {%if responses[question.id][0].text.file %}
         <div class="ui basic message"><strong>{{'Pages.Account.Application.UploadedFile'|_}}:</strong> {{responses[question.id][0].text.file}}</div>
     {% endif %}
-    <input type="file" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}" />
+    <input type="file" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}" accept="{{question.file_type}}" {{question.file_multiple? 'multiple':''}} />
     <!-- Country -->
     {% elseif question.type == 7 %}
     {% partial 'account/questions/country' %}

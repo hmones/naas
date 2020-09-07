@@ -168,7 +168,6 @@ $(function () {
     let prevLocation = window.location.hash.substr(1);
     if(prevLocation){
         activateSection(prevLocation);
-        console.log(window.location.hash.substr(1));
     }
     repeat_groups.forEach(group => {
         $('div[group=' + group.group + ']').wrapAll('<div id="q_group_' + group.group + '" class="ui repeating pink segment"/>');
@@ -262,6 +261,17 @@ $('input[type=text], textarea').change(function () {
         displayErrorField(this, validationMessage);
     } else {
         removeErrorField(this);
+    }
+});
+$('input[type=file]').change(function () {
+    if(this.files[0].size>2000000){
+        $("<div class='ui error message'>"+validationMessage+"</div>").insertBefore(this);
+        $(this).parent().addClass('error');
+        $(this).siblings().show();
+        $(this).val('');
+    }else{
+        $(this).siblings('div.ui.error.message').remove();
+        $(this).parent().removeClass('error');
     }
 });
 $('body').delegate('input.q_percentage', 'change' , function () {
