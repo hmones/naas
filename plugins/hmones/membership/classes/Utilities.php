@@ -1,11 +1,10 @@
 <?php namespace Hmones\Membership\Classes;
-
+use Log;
 class Utilities {
 
     public static function is_array_empty($InputVariable)
     {
        $Result = true;
-    
        if (is_array($InputVariable) && count($InputVariable) > 0)
        {
           foreach ($InputVariable as $Value)
@@ -15,7 +14,9 @@ class Utilities {
        }
        else
        {
-          $Result = empty($InputVariable);
+         if(strlen($InputVariable) != 0){
+            $Result = false;
+         }           
        }
     
        return $Result;
