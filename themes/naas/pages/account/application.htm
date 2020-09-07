@@ -46,6 +46,7 @@ redirect = "account/login"
     <div class="eleven wide column">
         {{form_ajax({request:'onSubmit'}, {files:true , class:'ui form submit', id:'main_form'})}}
         <input type="hidden" value="draft" name="applicationStatus"/>
+        <input type="hidden" value"" name="applicationLocation"/>
         {% for section in sections %}
         <div class="ui attached {{loop.index == 1? 'active':''}} segment" id="section_content_{{section.id}}"
             style="{{loop.index == 1? '':'display:none;'}} border:none;">

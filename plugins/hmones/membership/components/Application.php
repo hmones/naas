@@ -6,6 +6,7 @@ use Hmones\Membership\Models\Round;
 use Hmones\Membership\Models\Response;
 use Hmones\Membership\Models\Question;
 use Hmones\Membership\Classes\Utilities;
+use Illuminate\Support\Facades\URL;
 use Carbon\Carbon;
 use Auth;
 use Redirect;
@@ -81,8 +82,10 @@ class Application extends \Cms\Classes\ComponentBase
         }
         $files = Input::file();
         $inputs = Input::except(array_keys($files));
+        $prevLocation = $inputs['applicationLocation'];
+
         //Remove Inputs that are used for verification
-        unset($inputs['_session_key'],$inputs['_token'],$inputs['applicationStatus']);
+        unset($inputs['_session_key'],$inputs['_token'],$inputs['applicationStatus'],$inputs['applicationLocation']);
         
         //Remove empty inputs that are submitted with the application
         foreach($inputs as $key => $record){
@@ -156,7 +159,7 @@ class Application extends \Cms\Classes\ComponentBase
         }else{
             // Return to application page
             Flash::success(Lang::get('hmones.membership::lang.messages.applicationSaved',[],$this->page['activeLocale']));
-            return Redirect::refresh();
+            return Redirect::to(URL::previous() . "&t=1" . $prevLocation);
         }
         
     }

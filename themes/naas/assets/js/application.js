@@ -17,6 +17,8 @@ function activateSection(section) {
     $(section_btn).addClass('active');
     $('div.ui.attached.active.segment').removeClass('active').hide();
     $(section_content).addClass('active').fadeIn();
+    window.location.hash = section;
+
 }
 function prevSection(){
     var currSection = parseInt($('a.active.step').attr("section"));
@@ -146,6 +148,7 @@ function totalPercentageLimit(changedQuestion, questions, totalField=""){
 }
 $('#saveDraft').click(function(){
     $('input[name="applicationStatus"]').val('draft');
+    $('input[name="applicationLocation"]').val(window.location.hash);
     $(this).addClass('loading');
     $('#main_form').submit();
 })
@@ -162,6 +165,11 @@ $('input[type=radio][dataoption]').change(function () {
 });
 
 $(function () {
+    let prevLocation = window.location.hash.substr(1);
+    if(prevLocation){
+        activateSection(prevLocation);
+        console.log(window.location.hash.substr(1));
+    }
     repeat_groups.forEach(group => {
         $('div[group=' + group.group + ']').wrapAll('<div id="q_group_' + group.group + '" class="ui repeating pink segment"/>');
         $('#q_group_' + group.group)
@@ -244,7 +252,6 @@ $(function () {
         });
         
     });
-
 });   
 $('input[type=text], textarea').change(function () {
     function isInputValid(regexValidation, inputValue) {
