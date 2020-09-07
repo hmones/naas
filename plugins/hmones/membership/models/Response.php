@@ -68,6 +68,7 @@ class Response extends Model
     }
     public function FormattedQuestion($jsonArray, $questionType){
         $result = "";
+        $url = url('/');
         switch ($questionType) {
             case 2:
                 $result = $this->ResolveOption($jsonArray);
@@ -76,7 +77,7 @@ class Response extends Model
                 $result = $this->ResolveOption($jsonArray);
                 break;
             case 5:
-                $result = "http://localhost:8000/storage/app/ {$jsonArray['file']}";
+                $result = "{$url}/storage/app/{$jsonArray['file']}";
                 break;
             case 7:
                 $result = Constants::COUNTRIES_EN[$jsonArray['content']];

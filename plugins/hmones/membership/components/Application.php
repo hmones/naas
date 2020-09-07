@@ -120,14 +120,14 @@ class Application extends \Cms\Classes\ComponentBase
             if(is_array($file)){$group=1;}
             $question_id = intval(preg_replace("/q_/","",$key));
             Storage::deleteDirectory("{$submissionDirectory}/{$key}");
-            $path = "{$submissionDirectory}/{$key}/{$file->getClientOriginalName()}";
-            Storage::put($path, $file);
+            $path = "{$submissionDirectory}/{$key}";
+            $location = Storage::putFileAs($path, $file, $file->getClientOriginalName());
             $submission->responses()->where('question_id',$question_id)->delete();
             Response::create([
                 "question_id" => $question_id,
                 "submission_id" => $submission->id,
                 "file" => 1,
-                "text" => ["file" => $path],
+                "text" => ["file" => $location],
                 "group" => $group,
                 "created_at" => Carbon::now(),
                 "updated_at" => Carbon::now()
