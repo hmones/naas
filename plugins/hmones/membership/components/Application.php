@@ -114,7 +114,7 @@ class Application extends \Cms\Classes\ComponentBase
             $round->save();
         }
         // Loop through all files received in input
-        $submissionDirectory = "uploads/{$submission->id}"; 
+        $submissionDirectory = "uploads/public/{$submission->id}"; 
         foreach($files as $key => $file){
             $group = 0;
             if(is_array($file)){$group=1;}
