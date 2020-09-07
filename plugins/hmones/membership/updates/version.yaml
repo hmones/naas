@@ -90,3 +90,6 @@
 1.0.31:
     - 'Updated table hmones_membership_questions'
     - builder_table_update_hmones_membership_questions_8.php
+1.0.32:
+    - 'Updated table hmones_membership_questions'
+    - builder_table_update_hmones_membership_questions_9.php
