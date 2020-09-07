@@ -43,7 +43,13 @@ function toogleCondQuestions(elem){
     $('input[type=radio]:not(:checked).active').map(function (index, option) {
         $(option).removeClass("active");
         var selector = 'div[data-condition=' + option.attributes.dataoption.value + ']';
-        $(selector).fadeOut().removeClass('required');
+        $(selector).map(function(index, element){
+            if(typeof $(element).attr('group') !== typeof undefined){
+                $(element).parent().fadeOut().removeClass('required');
+            }else{
+                $(element).fadeOut().removeClass('required');
+            }
+        });
     });
 }
 function displayErrorField(elem, msg){
