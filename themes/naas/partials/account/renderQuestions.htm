@@ -11,7 +11,7 @@
     <label for="q_{{question.id}}">
         {{question.display_order}} - {{question.question}} &nbsp;
         {% if question.description %}
-        <div class="ui icon circular grey mini basic button" data-tooltip="{{question.description}}" data-inverted="">
+        <div class="ui icon circular grey mini basic button questionTooltip" data-html="<p>{{question.description}}</p>" data-inverted="" data-variation="wide">
             <i class="question black icon"></i>
         </div>
         {% endif %}

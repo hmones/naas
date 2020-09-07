@@ -276,3 +276,6 @@ $('body').delegate('input[type=text],textarea','change',function(){
 });
 
 $('.ui.dropdown').dropdown();
+$('.questionTooltip')
+  .popup()
+;
