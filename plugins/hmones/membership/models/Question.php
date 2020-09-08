@@ -28,7 +28,7 @@ class Question extends Model
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
-    public $translatable = ['question', 'other_text', 'repeat_text'];
+    public $translatable = ['question', 'other_text', 'repeat_text', 'description', 'header', 'subheader'];
 
     public $hasMany = [
         'options' => 'Hmones\Membership\Models\Option'
