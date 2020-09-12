@@ -251,6 +251,7 @@ $(function () {
         });
         
     });
+    $('.tiny.modal').modal();   
 });   
 $('input[type=text], textarea').change(function () {
     function isInputValid(regexValidation, inputValue) {

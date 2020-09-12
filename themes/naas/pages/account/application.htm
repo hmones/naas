@@ -14,17 +14,26 @@ security = "user"
 redirect = "account/login"
 ==
 {% if userLatestSubmission %}
+{{form_ajax({request: 'onPrefill'},{'id':'prefill_form'})}}
+    <input type="hidden" name="submission_id" value="{{userLatestSubmission.id}}"/>
+{{form_close()}}
 <div class="ui message" style="border:solid #2185d0 1px;">
     <div class="ui stackable grid">
         <div class="one wide column"> <i class="info blue circular icon"></i> </div>
         <div class="fifteen wide column">
             {{'Pages.Account.Application.PrefillMessage'|_}}
             &nbsp;
-            <a href="javascript:void(0)" onclick="$('#prefill_form').submit();" class="ui blue basic tiny button"> {{'Keywords.Yes'|_}}</a>
-            {{form_ajax({request: 'onPrefill'},{'id':'prefill_form'})}}
-                <input type="hidden" name="submission_id" value="{{userLatestSubmission.id}}"/>
-            {{form_close()}}
+            <a href="javascript:void(0)" onclick="$('.tiny.modal').modal('show');" class="ui blue basic tiny button"> {{'Keywords.Yes'|_}}</a>
         </div>
+    </div>
+</div>
+<div class="ui tiny modal">
+    <div class="content">
+        {{'Pages.Account.Application.PrefillConfirmation'|_}}
+    </div>
+    <div class="actions">
+        <a href="javascript:void(0)" onclick="$('#prefill_form').submit();" class="ui approve button">{{'Keywords.Yes'|_}}</a>
+        <div class="ui cancel button">{{'Keywords.No'|_}}</div>
     </div>
 </div>
 {% endif %}
