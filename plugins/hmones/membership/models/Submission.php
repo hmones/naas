@@ -7,6 +7,7 @@ use Config;
 use Mail;
 use Log;
 use Rainlab\User\Models\User;
+use Hmones\Membership\Models\Response;
 
 /**
  * Model
@@ -64,6 +65,7 @@ class Submission extends Model
     {
         if($this->status == 1 && $this->original['status'] == 0){
             $this->sendEmail(
+                $this->id,
                 $this->user_id, 
                 $this->round_id,
                 $this->status,
@@ -72,6 +74,7 @@ class Submission extends Model
             );
         }elseif($this->status != $this->original['status']){
             $this->sendEmail(
+                $this->id,
                 $this->user_id, 
                 $this->round_id,
                 $this->status,
@@ -82,11 +85,15 @@ class Submission extends Model
         
     }
 
-    public function sendEmail($userID, $roundID, $appStatus, $lang, $emailTemplate)
+    public function sendEmail($submissionID, $userID, $roundID, $appStatus, $lang, $emailTemplate)
     {   
         $key = "hmones.membership::lang.ApplicationStatus.status_{$appStatus}";
         $status = Lang::get($key,[],$lang);
         $email = Email::where('name',$emailTemplate)->first();
+        $responses = Response::with('question')->where('submission_id',$submissionID)->get();
+        $responses_sorted = $responses->sortBy(function($response, $key){
+            return $response['question']['display_order'];
+        });
         $user = User::find($userID);
         $baseURL = Config::get('app.url');
         $applicationLink = "{$baseURL}/account/application/round/{$roundID}";
@@ -97,6 +104,7 @@ class Submission extends Model
                 'subject' => $email->lang($lang)->subject,
                 'ApplicationLink' => $applicationLink,
                 'ApplicationStatus' => $status,
+                'responses' => $responses_sorted
             ];
             Mail::queue(['raw' => $email->lang($lang)->email_txt], $vars, function($message) use($vars) {
                 $message->to($vars['email'], $vars['name']);

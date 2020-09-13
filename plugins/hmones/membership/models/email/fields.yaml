@@ -2,6 +2,7 @@ fields:
     name:
         label: 'Name of Email template'
         span: auto
+        disabled: 1
         required: 1
         type: text
         comment: 'no spaces or special charachters allowed'
@@ -12,7 +13,8 @@ fields:
         type: text
     email_txt:
         label: 'Content of the email'
-        size: giant
-        span: auto
-        required: 1
-        type: richeditor
+        size: large
+        mode: tab
+        span: full
+        stretch: 0
+        type: markdown
