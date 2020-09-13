@@ -93,3 +93,6 @@
 1.0.32:
     - 'Updated table hmones_membership_questions'
     - builder_table_update_hmones_membership_questions_9.php
+1.0.33:
+    - 'Updated table hmones_membership_responses'
+    - builder_table_update_hmones_membership_responses_6.php

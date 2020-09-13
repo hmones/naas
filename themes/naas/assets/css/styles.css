@@ -117,3 +117,7 @@ div.ui.repeating.pink.segment{
     border: 2px pink dashed;
     background:#f8f9f9;
 }
+.field.prefilled label, .field.prefilled textarea, .field.prefilled input {
+    color: #2c662d !important;
+    border-color: #2c662d !important;
+}

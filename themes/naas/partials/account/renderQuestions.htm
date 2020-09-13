@@ -1,4 +1,4 @@
-<div class="{{(question.required) and (not question.cond_option_id) ? 'required':''}} {{question.add_css}} field" 
+<div class="{{(question.required) and (not question.cond_option_id) ? 'required':''}} {{question.add_css}} {{responses[question.id][0].prefilled ? 'prefilled':''}} field" 
     id="field_{{question.id}}" 
     type="{{question.type}}"
     data-condition="{{question.cond_option_id}}" 

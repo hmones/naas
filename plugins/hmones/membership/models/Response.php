@@ -13,7 +13,7 @@ class Response extends Model
     use \October\Rain\Database\Traits\Encryptable;
 
     protected $jsonable = ['text'];
-    protected $fillable = ['created_at', 'updated_at', 'question_id', 'text', 'submission_id', 'group', 'file'];
+    protected $fillable = ['created_at', 'updated_at', 'question_id', 'text', 'submission_id', 'group', 'file', 'prefilled'];
 
     /** 
      * @var string The database table used by the model.

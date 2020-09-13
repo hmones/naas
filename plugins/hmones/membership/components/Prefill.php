@@ -66,6 +66,7 @@ class Prefill extends \Cms\Classes\ComponentBase
                     "question_id" => $record->question_id,
                     "submission_id" => $submission->id,
                     "text" => $record->text,
+                    "prefilled" => 1,
                     "created_at" => Carbon::now(),
                     "updated_at" => Carbon::now()
                 );
