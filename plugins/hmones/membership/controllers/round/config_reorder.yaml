@@ -1,4 +1,0 @@
-title: Round
-modelClass: Hmones\Membership\Models\Round
-toolbar:
-    buttons: reorder_toolbar

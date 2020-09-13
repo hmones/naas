@@ -1,4 +1,0 @@
-title: Email
-modelClass: Hmones\Membership\Models\Email
-toolbar:
-    buttons: reorder_toolbar

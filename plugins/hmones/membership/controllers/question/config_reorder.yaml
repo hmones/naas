@@ -1,4 +1,0 @@
-title: Question
-modelClass: Hmones\Membership\Models\Question
-toolbar:
-    buttons: reorder_toolbar

@@ -1,4 +1,0 @@
-title: Theme
-modelClass: Hmones\Membership\Models\Theme
-toolbar:
-    buttons: reorder_toolbar
