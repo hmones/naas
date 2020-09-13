@@ -56,7 +56,7 @@ class Application extends \Cms\Classes\ComponentBase
         $this->page['sections'] = Theme::with([
             'questions' => function ($query) use ($selectColumn){
                 $query->where($selectColumn, 1)->where('published',1)->orderBy('display_order', 'asc');
-            }])->get();
+            }])->orderBy('display_order', 'asc')->get();
         
         $this->page['repeat_groups'] = Question::select('group','repeat_text')->where('published','1')->whereNotNull('group')->distinct('group')->get()->toJson();
         if($this->page['submission']){
