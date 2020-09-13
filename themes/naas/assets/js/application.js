@@ -47,7 +47,7 @@ function toogleCondQuestions(elem){
         var selector = 'div[data-condition=' + option.attributes.dataoption.value + ']';
         $(selector).map(function(index, element){
             if(typeof $(element).attr('group') !== typeof undefined){
-                $(element).parent().fadeOut().removeClass('required');
+                $(element).removeClass('required').parent().fadeOut();
             }else{
                 $(element).fadeOut().removeClass('required');
             }
