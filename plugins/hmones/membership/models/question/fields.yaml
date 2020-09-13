@@ -1,11 +1,5 @@
 tabs:
     fields:
-        question:
-            label: Question
-            span: auto
-            required: 1
-            type: text
-            tab: 'Basic Settings'
         theme:
             label: Theme
             nameFrom: theme
@@ -34,10 +28,17 @@ tabs:
             tab: 'Basic Settings'
         display_order:
             label: 'Question''s Order'
-            span: auto
+            span: full
             required: 1
             type: number
             comment: '0 appears first'
+            tab: 'Basic Settings'
+        question:
+            label: Question
+            size: small
+            span: auto
+            required: 1
+            type: textarea
             tab: 'Basic Settings'
         description:
             label: Description
