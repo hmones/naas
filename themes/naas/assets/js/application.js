@@ -266,7 +266,7 @@ $('input[type=text], textarea').change(function () {
 });
 $('input[type=file]').change(function () {
     if(this.files[0].size>2000000){
-        $("<div class='ui error message'>"+validationMessage+"</div>").insertBefore(this);
+        $("<div class='ui error message'>"+validationFileBig+"</div>").insertBefore(this);
         $(this).parent().addClass('error');
         $(this).siblings().show();
         $(this).val('');
