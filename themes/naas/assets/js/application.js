@@ -87,7 +87,7 @@ function validateEmptyFields(){
                     break;
                 //Attachments
                 case 5:
-                    if($(inputElem).siblings('div.ui.basic.message').length === 0){
+                    if($(inputElem).siblings('div.ui.basic.message').length === 0 && $(inputElem).val() === ""){
                         validationProcedure(inputElem);
                     }
                     break;
