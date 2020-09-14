@@ -54,6 +54,7 @@ class Submission extends Model
     public function afterCreate()
     {
         $this->sendEmail(
+            $this->id,
             $this->user_id, 
             $this->round_id,
             $this->status,
