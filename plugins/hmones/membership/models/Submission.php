@@ -91,10 +91,9 @@ class Submission extends Model
         $key = "hmones.membership::lang.ApplicationStatus.status_{$appStatus}";
         $status = Lang::get($key,[],$lang);
         $email = Email::where('name',$emailTemplate)->first();
-        $responses = Response::with('question')->where('submission_id',$submissionID)->get();
-        $responses_sorted = $responses->sortBy(function($response, $key){
-            return $response['question']['display_order'];
-        });
+        $responses = Response::with('question')->where('submission_id',$submissionID)->get()->sortBy(function($response, $key){
+            return intval($response->question->display_order);
+        })->values();
         $user = User::find($userID);
         $baseURL = Config::get('app.url');
         $applicationLink = "{$baseURL}/account/application/round/{$roundID}";
@@ -105,7 +104,7 @@ class Submission extends Model
                 'subject' => $email->lang($lang)->subject,
                 'ApplicationLink' => $applicationLink,
                 'ApplicationStatus' => $status,
-                'responses' => $responses_sorted
+                'responses' => $responses
             ];
             Mail::queue(['raw' => $email->lang($lang)->email_txt], $vars, function($message) use($vars) {
                 $message->to($vars['email'], $vars['name']);
