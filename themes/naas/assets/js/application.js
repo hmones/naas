@@ -3,13 +3,20 @@
 // responses_json (All responses that have been saved or submitted as part of a repeated group)
 // validationMessage (Avalidation message if input was wrong)
 // validationEmptyMessage (Validation Message if inputs were empty for submit validation)
+// validationFileLarge (Validation Message if file input is too large)
 
+// Initializing Variables if they don't exist
 var group_responses = []
 responses_json
 if(responses_json != ''){
     group_responses = Object.values($.parseJSON(responses_json));
 }
 var repeatGroupsCounter = [];
+
+/** 
+ * Section controls
+ * **/
+
 function activateSection(section) {
     var section_btn = '#section_btn_' + section;
     var section_content = '#section_content_' + section;
@@ -36,6 +43,11 @@ function nextSection(){
     }
     window.scrollTo(0,0);
 }
+
+/**
+ * Conditional questions hide and show sections
+ */
+
 function toogleCondQuestions(elem){
     var selector = 'div[data-condition=' + elem.attributes.dataoption.value + ']';
     $(selector).parent().show();
@@ -47,6 +59,9 @@ function toogleCondQuestions(elem){
         var selector = 'div[data-condition=' + option.attributes.dataoption.value + ']';
         $(selector).map(function(index, element){
             if(typeof $(element).attr('group') !== typeof undefined){
+                $(element).map(function(ind, op){
+                    console.log(op);
+                });
                 $(element).removeClass('required').parent().fadeOut();
             }else{
                 $(element).fadeOut().removeClass('required');
@@ -54,6 +69,10 @@ function toogleCondQuestions(elem){
         });
     });
 }
+
+/**
+ * Validation of inputs
+ */
 function displayErrorField(elem, msg){
     $(elem).val('').attr('placeholder', msg);
     $(elem).parent().addClass("error");
@@ -117,6 +136,63 @@ function IntegerValue(field){
     }
     return number;
 }
+function totalPercentageLimit(changedQuestion, questions, totalField=""){
+    var totalPercent = 0;
+    questions.forEach(function(question){
+        totalPercent = totalPercent + IntegerValue($('#q_'+question+'').val());
+    });
+    if(totalPercent > 100){
+            displayErrorField(changedQuestion, validationMessage);
+        }else{
+            removeErrorField(changedQuestion);
+        if(totalField != ""){
+            $('#q_'+totalField+'').val(totalPercent);
+        }
+    }   
+}
+$('input[type=text], input[type=hidden], textarea').on('change',function () {
+    function isInputValid(regexValidation, inputValue) {
+        var pattern = new RegExp(regexValidation);
+        return pattern.test(inputValue);
+    };
+    if (!isInputValid($(this).attr('validation'), $(this).val())) {
+        displayErrorField(this, validationMessage);
+    } else {
+        removeErrorField(this);
+    }
+});
+$('input[type=file]').on('change', function () {
+    if(this.files[0].size>2000000){
+        $("<div class='ui error message'>"+validationFileBig+"</div>").insertBefore(this);
+        $(this).parent().addClass('error');
+        $(this).siblings().show();
+        $(this).val('');
+    }else{
+        $(this).siblings('div.ui.error.message').remove();
+        $(this).parent().removeClass('error');
+    }
+});
+$('body').on('change', 'input.q_percentage', function () {
+    var questionSelector = $(this).attr('name').replace(/\[.*\]/gi, "");
+    var totalPercent = 0;
+    $('[name^="'+questionSelector+'"].q_percentage').each(function(index, elem){
+        totalPercent = totalPercent + IntegerValue($(elem).val());
+    });
+    if(totalPercent > 100){
+        displayErrorField(this, validationMessage);
+    }else{
+        removeErrorField(this);
+    }   
+    
+});
+$('body').on('change','input[type=text],textarea',function(){
+    var data = $(this).val();
+    $(this).val(data.replace("'","`"));
+});
+
+/**
+ * Function that handles groups and repeated sections
+ */
 function handleRepeat(group) {
     var currentGroup = "[group][1]";
     repeatGroupsCounter[group]++;
@@ -132,38 +208,31 @@ function handleRepeat(group) {
     $('#repeat_group_' + group + '_container > div > div > div.ui.header.question').remove();
     $('.ui.dropdown').dropdown();
 }
-function totalPercentageLimit(changedQuestion, questions, totalField=""){
-    var totalPercent = 0;
-    questions.forEach(function(question){
-        totalPercent = totalPercent + IntegerValue($('#q_'+question+'').val());
-    });
-    if(totalPercent > 100){
-            displayErrorField(changedQuestion, validationMessage);
-        }else{
-            removeErrorField(changedQuestion);
-        if(totalField != ""){
-            $('#q_'+totalField+'').val(totalPercent);
-        }
-    }   
-}
-$('#saveDraft').click(function(){
+
+/**
+ * Form functions
+ */
+$('#saveDraft').on('click', function(){
     $('input[name="applicationStatus"]').val('draft');
     $('input[name="applicationLocation"]').val(window.location.hash);
     $(this).addClass('loading');
-    $('#main_form').submit();
+    $('#main_form').trigger('submit');
 })
-$('#submitForm').click(function(){
+$('#submitForm').on('click', function(){
     var isFormValid = validateEmptyFields();
     if(isFormValid){
         $('input[name="applicationStatus"]').val('final');
         $(this).addClass('loading');
-        $('#main_form').submit();
+        $('#main_form').trigger("submit");
     }
 });
 $('input[type=radio][dataoption]').change(function () {
     toogleCondQuestions(this);
 });
 
+/**
+ * Page load functions that prefills questions and load responses
+ */
 $(function () {
     let prevLocation = window.location.hash.substr(1);
     if(prevLocation){
@@ -253,45 +322,10 @@ $(function () {
     });
     $('.tiny.modal').modal();   
 });   
-$('input[type=text], textarea').change(function () {
-    function isInputValid(regexValidation, inputValue) {
-        var pattern = new RegExp(regexValidation);
-        return pattern.test(inputValue);
-    };
-    if (!isInputValid($(this).attr('validation'), $(this).val())) {
-        displayErrorField(this, validationMessage);
-    } else {
-        removeErrorField(this);
-    }
-});
-$('input[type=file]').change(function () {
-    if(this.files[0].size>2000000){
-        $("<div class='ui error message'>"+validationFileBig+"</div>").insertBefore(this);
-        $(this).parent().addClass('error');
-        $(this).siblings().show();
-        $(this).val('');
-    }else{
-        $(this).siblings('div.ui.error.message').remove();
-        $(this).parent().removeClass('error');
-    }
-});
-$('body').delegate('input.q_percentage', 'change' , function () {
-    var questionSelector = $(this).attr('name').replace(/\[.*\]/gi, "");
-    var totalPercent = 0;
-    $('[name^="'+questionSelector+'"].q_percentage').each(function(index, elem){
-        totalPercent = totalPercent + IntegerValue($(elem).val());
-    });
-    if(totalPercent > 100){
-        displayErrorField(this, validationMessage);
-    }else{
-        removeErrorField(this);
-    }   
-    
-});
-$('body').delegate('input[type=text],textarea','change',function(){
-    var data = $(this).val();
-    $(this).val(data.replace("'","`"));
-});
+
+/**
+ * Loading of page elements for Semantic UI
+ */
 
 $('.ui.dropdown').dropdown();
 $('.questionTooltip')

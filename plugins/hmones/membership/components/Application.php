@@ -6,6 +6,7 @@ use Hmones\Membership\Models\Round;
 use Hmones\Membership\Models\Response;
 use Hmones\Membership\Models\Question;
 use Hmones\Membership\Classes\Utilities;
+use Rainlab\User\Models\User;
 use Illuminate\Support\Facades\URL;
 use Carbon\Carbon;
 use Auth;
@@ -26,8 +27,12 @@ class Application extends \Cms\Classes\ComponentBase
     }
 
     public function onRun(){
+        $user = Auth::getUser();
+        if(!$user){
+            return Redirect::to('login');
+        }
         $this->page['round'] = Round::find($this->param('id'));
-        $this->page['submission'] = Submission::where('round_id',$this->param('id'))->where('user_id',Auth::user()->id)->first();
+        $this->page['submission'] = Submission::where('round_id',$this->param('id'))->where('user_id',$user->id)->first();
         if(!$this->page['round']){
             Flash::error(
                 Lang::get('hmones.membership::lang.messages.roundNotExist',[],$this->page['activeLocale'])
@@ -48,7 +53,7 @@ class Application extends \Cms\Classes\ComponentBase
                 return Redirect::to('account/dashboard');
             }
         }
-        $isMember = Auth::user()->old_member;
+        $isMember = $user->old_member;
         $selectColumn = 'old_member'; // Default selection
         if($isMember == 0){ // In case the member is a new member
             $selectColumn = 'new_member';
