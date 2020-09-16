@@ -15,6 +15,7 @@ use Input;
 use ApplicationException;
 use Lang;
 use Flash;
+use Queue;
 use Storage;
 
 class Application extends \Cms\Classes\ComponentBase
@@ -160,6 +161,14 @@ class Application extends \Cms\Classes\ComponentBase
         if($submissionStatus == 1){
             // Return to the dashboard
             Flash::success(Lang::get('hmones.membership::lang.messages.applicationSubmitted',[],$this->page['activeLocale']));
+            Queue::push('Hmones\Membership\Classes\EmailEvents',[
+                $submission->id,
+                $user->id,
+                $round->id,
+                $submission->status,
+                $submission->lang,
+                'submission-submitted'
+            ]);
             return Redirect::to('account/dashboard');
         }else{
             // Return to application page
