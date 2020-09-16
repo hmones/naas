@@ -189,6 +189,18 @@ $('body').on('change','input[type=text],textarea',function(){
     var data = $(this).val();
     $(this).val(data.replace("'","`"));
 });
+$('body').on('change','div[id^="field_"][type=2] input,div[id^="field_"][type=3] input',function(){
+    if($(this).parent().children("input.valueOther").is(":checked")){
+        $(this).parent().children('input.inputOther').removeClass("disabled field");
+    }else{
+        if($(this).attr("class") != "valueOther"){
+            $(this).parent().parent().parent().find('input.inputOther').val("").addClass("disabled field");
+        }else{
+            $(this).parent().children('input.inputOther').val("").addClass("disabled field");
+        }
+        
+    }
+});
 
 /**
  * Function that handles groups and repeated sections
@@ -226,7 +238,7 @@ $('#submitForm').on('click', function(){
         $('#main_form').trigger("submit");
     }
 });
-$('input[type=radio][dataoption]').change(function () {
+$('body').on('change', 'input[type=radio][dataoption]',function () {
     toogleCondQuestions(this);
 });
 
@@ -284,7 +296,9 @@ $(function () {
                     });
                 }
                 if(array.hasOwnProperty('other')){
-                    $('[name="q_'+value.question.id+'[group]['+(key+1)+'][other]"]').val(array.other);
+                    $('[name="q_'+value.question.id+'[group]['+(key+1)+'][other]"]').val(array.other).removeClass("disabled field");
+                }else{
+                    $('[name="q_'+value.question.id+'[group]['+(key+1)+'][other]"]').addClass("disabled field");
                 }
             }
             //Phone
