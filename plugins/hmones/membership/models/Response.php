@@ -14,6 +14,7 @@ class Response extends Model
 
     protected $jsonable = ['text'];
     protected $fillable = ['created_at', 'updated_at', 'question_id', 'text', 'submission_id', 'group', 'file', 'prefilled'];
+    protected $appends = ['answer'];
 
     /** 
      * @var string The database table used by the model.
@@ -119,7 +120,7 @@ class Response extends Model
                 $result = "Empty Answer!";
             }
         }
-        return $result;
+        return $this->attributes['answer'] = $result;
     }
 
     

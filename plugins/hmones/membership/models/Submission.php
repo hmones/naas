@@ -6,6 +6,7 @@ use Auth;
 use Config;
 use Mail;
 use Log;
+use Queue;
 use Rainlab\User\Models\User;
 use Hmones\Membership\Models\Response;
 
@@ -53,64 +54,37 @@ class Submission extends Model
 
     public function afterCreate()
     {
-        $this->sendEmail(
+        Queue::push('Hmones\Membership\Classes\EmailEvents', [
             $this->id,
             $this->user_id, 
             $this->round_id,
             $this->status,
             $this->lang,
             'submission-created'
-        );
+        ]);
     }
     public function afterUpdate()
     {
         if($this->status == 1 && $this->original['status'] == 0){
-            $this->sendEmail(
+            Queue::push('Hmones\Membership\Classes\EmailEvents', [
                 $this->id,
                 $this->user_id, 
                 $this->round_id,
                 $this->status,
                 $this->lang,
                 'submission-submitted'
-            );
+            ]);
         }elseif($this->status != $this->original['status']){
-            $this->sendEmail(
+            Queue::push('Hmones\Membership\Classes\EmailEvents', [
                 $this->id,
                 $this->user_id, 
                 $this->round_id,
                 $this->status,
                 $this->lang,
                 'submission-status-changed'
-            );
+            ]);
         }
         
-    }
-
-    public function sendEmail($submissionID, $userID, $roundID, $appStatus, $lang, $emailTemplate)
-    {   
-        $key = "hmones.membership::lang.ApplicationStatus.status_{$appStatus}";
-        $status = Lang::get($key,[],$lang);
-        $email = Email::where('name',$emailTemplate)->first();
-        $responses = Response::with('question')->where('submission_id',$submissionID)->get()->sortBy(function($response, $key){
-            return intval($response->question->display_order);
-        })->values();
-        $user = User::find($userID);
-        $baseURL = Config::get('app.url');
-        $applicationLink = "{$baseURL}/account/application/round/{$roundID}";
-        if($email && $user){
-            $vars = [
-                'name' => $user->name,
-                'email' => $user->email,
-                'subject' => $email->lang($lang)->subject,
-                'ApplicationLink' => $applicationLink,
-                'ApplicationStatus' => $status,
-                'responses' => $responses
-            ];
-            Mail::queue(['raw' => $email->lang($lang)->email_txt], $vars, function($message) use($vars) {
-                $message->to($vars['email'], $vars['name']);
-                $message->subject($vars['subject']);
-            });
-        }
     }
 
 }
