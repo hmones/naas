@@ -126,6 +126,7 @@ tabs:
             options:
                 '.jpg,.jpeg,.png,.gif,image/*': 'Images (.png/.jpg/.jpeg)'
                 '.pdf,.doc,.docx,.xls,.xlsx,.csv,text/csv,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'Documents (.pdf/.doc/.docx/.xls/.xlsx/.csv)'
+                '.pdf,.doc,.docx,.xls,.xlsx,.csv,text/csv,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.jpg,.jpeg,.png,.gif,image/*': 'Documents and Images (.png/.jpg/.jpeg/.pdf/.doc/.docx/.xls/.xlsx/.csv)'
             showSearch: true
             span: full
             trigger:
