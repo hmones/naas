@@ -315,8 +315,8 @@ return [
 
         'media' => [
             'disk'   => 'local',
-            'folder' => 'media',
-            'path'   => '/storage/app/media',
+            'folder' => 'uploads',
+            'path'   => '/storage/app/uploads',
         ],
 
     ],
