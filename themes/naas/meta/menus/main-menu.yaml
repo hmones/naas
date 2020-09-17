@@ -93,9 +93,13 @@ items:
                     isExternal: '0'
     -
         title: MainMenu.News
+        nesting: null
         type: url
         url: 'https://naasnetwork.org/all-news'
         code: ''
+        reference: null
+        cmsPage: null
+        replace: null
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -154,6 +158,19 @@ items:
                     cssClass: ''
                     isExternal: '0'
     -
+        title: MainMenu.Support
+        nesting: null
+        type: url
+        url: 'https://naasnetwork.org/support-naas'
+        code: ''
+        reference: null
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
         title: MainMenu.Programs
         nesting: null
         type: url
@@ -179,17 +196,18 @@ items:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
-    -
-        title: MainMenu.Support
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/support-naas'
-        code: ''
-        reference: null
-        cmsPage: null
-        replace: null
-        viewBag:
-            isHidden: '0'
-            cssClass: ''
-            isExternal: '0'
+        items:
+            -
+                title: MainMenu.Programs
+                nesting: null
+                type: url
+                url: 'https://naasnetwork.org/programs'
+                code: ''
+                reference: null
+                cmsPage: null
+                replace: null
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
 name: 'Main Menu'

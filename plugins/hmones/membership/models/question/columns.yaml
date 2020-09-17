@@ -24,3 +24,8 @@ columns:
         type: datetime
         searchable: true
         sortable: true
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
