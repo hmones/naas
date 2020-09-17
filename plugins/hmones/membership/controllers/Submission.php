@@ -5,6 +5,7 @@ use BackendMenu;
 use Input;
 use Redirect;
 use Storage;
+use Carbon\Carbon;
 use Hmones\Membership\Models\Submission as SubmissionModel;
 use Hmones\Membership\Models\Question;
 use Hmones\Membership\Classes\ExportExcel;
@@ -74,7 +75,7 @@ class Submission extends Controller
                 #
                 Storage::delete($key);
                 Storage::put($key, $xls->sendFile());
-                return Redirect::to("storage/app/{$key}");
+                return Redirect::to("storage/app/{$key}". '?' . Carbon::now());
         }
     }
 }
