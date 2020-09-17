@@ -1,5 +1,5 @@
 {% for option in question.options %}
-<div class="field">
+<div class="padded field">
     <div class="ui checkbox">
         <input type="checkbox" {{option.id in responses[question.id][0].text.options?'checked':''}} name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[options][]" value="{{option.id}}">
         <label>{{option.option}}</label>
@@ -7,7 +7,7 @@
 </div>
 {% endfor %}
 {% if question.other_active %}
-<div class="field">
+<div class="padded field">
     <div class="ui checkbox">
         <input class="valueOther" type="checkbox" {{0 in responses[question.id][0].text.options?'checked':''}} name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[options][]" value="0"/>
         <label>{{question.other_text}}</label>

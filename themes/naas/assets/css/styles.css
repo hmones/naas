@@ -121,3 +121,7 @@ div.ui.repeating.pink.segment{
     color: #2c662d !important;
     border-color: #2c662d !important;
 }
+.padded.field{
+    padding-right:25px;
+    padding-left:25px;
+}

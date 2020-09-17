@@ -9,7 +9,7 @@
     {% if question.repeat_active and question.group %}group={{question.group}}{% endif %}>
     {% partial 'account/questions/header'%}
     <label for="q_{{question.id}}">
-        {{question.display_order}} - {{question.question}} &nbsp;
+        <i class="{{activeLocale == 'ar'? 'left':'right'}} caret red icon"></i> {{question.question}} &nbsp;
         {% if question.description %}
         <div class="ui icon circular grey mini basic button questionTooltip" data-html="<p>{{question.description}}</p>" data-inverted="" data-variation="wide">
             <i class="question black icon"></i>
