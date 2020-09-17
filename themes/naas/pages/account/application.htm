@@ -19,8 +19,9 @@ redirect = "account/login"
 {{form_close()}}
 <div class="ui message" style="border:solid #2185d0 1px;">
     <div class="ui stackable grid">
-        <div class="one wide column"> <i class="info blue circular icon"></i> </div>
-        <div class="fifteen wide column">
+        <div class="sixteen wide column">
+            <i class="info blue circular icon"></i>
+            &nbsp;
             {{'Pages.Account.Application.PrefillMessage'|_}}
             &nbsp;
             <a href="javascript:void(0)" onclick="$('.tiny.modal').modal('show');" class="ui blue basic tiny button"> {{'Keywords.Yes'|_}}</a>
@@ -70,11 +71,17 @@ redirect = "account/login"
             </div>
         </div>
         {% endfor %}
-        <div class="ui segment">
-            <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button"> <i class="left arrow icon"></i>{{'Keywords.back'|_}}</a>
-            <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button"> {{'Keywords.Next'|_}} <i class="right arrow icon"></i></a>
-            <a href="javascript:void(0);" id="saveDraft" class="ui red button"><i class="save icon"></i> {{'Keywords.SaveDraft'|_}}</a>
-            <a href="javascript:void(0);" id="submitForm" class="ui red button"><i class="check icon"></i> {{'Keywords.Submit'|_}}</a>
+        <br/><br/>
+        <div class="ui stackable grid">
+            <div class="center aligned eight wide column">
+                <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button"> <i class="{{activeLocale=='ar'?'right':'left'}} arrow icon"></i>{{'Keywords.back'|_}}</a>
+                <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button"> {{'Keywords.Next'|_}} <i class="{{activeLocale=='ar'?'left':'right'}} arrow icon"></i></a>
+            </div>
+            <div class="center aligned eight wide column">
+                <a href="javascript:void(0);" id="saveDraft" class="ui red button"><i class="save icon"></i> {{'Keywords.SaveDraft'|_}}</a>
+                <a href="javascript:void(0);" id="submitForm" class="ui red button"><i class="check icon"></i> {{'Keywords.Submit'|_}}</a>
+            </div>
+            
         </div>
         {{form_close()}}
     </div>

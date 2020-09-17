@@ -9,6 +9,8 @@ is_hidden = 0
 security = "user"
 redirect = "account/login"
 ==
+<div class="ui hidden divider"></div>
+<div class="ui hidden divider"></div>
 <div class="ui container">
     <h1 class="ui left aligned header"><i class="compass outline red icon"></i>{{'Pages.Account.Dashboard.Welcome'|_}}{{user.name}}</h1>
     <div class="ui divider"></div>
@@ -18,7 +20,7 @@ redirect = "account/login"
             <div class="ui stacked segment">
                 <h2 class="ui header"> <i class="user red icon"></i>{{'Pages.Account.Dashboard.YourProfile'|_}}</h2>
                 <div class="ui basic segment">
-                    <div class="ui stackable grid">
+                    <div class="ui grid">
                         <div class="two wide column"> <i class="info red circular small icon"></i> </div>
                         <div class="fourteen wide column">
                             {{'Pages.Account.Dashboard.MembershipStatus'|_}} 
@@ -43,7 +45,7 @@ redirect = "account/login"
             <div class="ui stacked segment">
                 <h2 class="ui header"><i class="archive red icon"></i>{{'Pages.Account.Dashboard.ApplicationRounds'|_}}</h2>
                 <div class="ui basic segment">
-                    <div class="ui stackable grid">
+                    <div class="ui grid">
                         <div class="two wide column"><i class="info circular red small icon"></i></div>
                         <div class="fourteen wide column">
                             {% if active_round %}
@@ -67,7 +69,7 @@ redirect = "account/login"
             <div class="ui stacked segment">
                 <h2 class="ui header"><i class="file alternate outline red icon"></i>{{'Pages.Account.Dashboard.CurrentApplication'|_}}</h2>
                 <div class="ui basic segment">
-                    <div class="ui stackable grid">
+                    <div class="ui grid">
                         <div class="two wide column"><i class="info circular red small icon"></i></div>
                         <div class="fourteen wide column">
                             {% if user_active_submission %}
@@ -93,7 +95,7 @@ redirect = "account/login"
             <div class="ui stacked segment">
                 <h2 class="ui header"><i class="newspaper red icon"></i>{{'Pages.Account.Dashboard.ApplicationUpdates'|_}}</h2>
                 <div class="ui basic segment">
-                    <div class="ui stackable grid">
+                    <div class="ui grid">
                         {% if user_submissions %}
                             {% for submission in user_submissions %}
                                 <div class="two wide column"><i class="info red circular small icon"></i></div>
