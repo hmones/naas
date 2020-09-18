@@ -1,17 +1,54 @@
 description = "Default layout"
+
+[staticMenu]
+code = "main-menu"
+
+[localePicker]
 ==
 <! DOCTYPE html>
-<html {% if activeLocale =='ar'%} dir="rtl" lang="ar" {% endif %}>
+    <html {% if activeLocale =='ar'%} dir="rtl" lang="ar" {% endif %}>
+
     <head>
         <title>NAAS network homepage </title>
-        <link rel="stylesheet" href="{{'assets/dist/semantic.min.css'|theme}}">
+        {% if activeLocale == 'ar' %}
+        <link rel="stylesheet" href="{{['assets/dist/semantic.rtl.min.css','assets/css/styles.css','assets/css/rtl.css']|theme}}">
+        {% else %}
+        <link rel="stylesheet" href="{{['assets/dist/semantic.min.css','assets/css/styles.css']|theme}}">
+        {% endif %}
+        <link rel="shortcut icon" href="{{'assets/fav.png'|theme}}" type="image/png">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168231892-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-168231892-1');
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     </head>
+
     <body>
         <!-- Nav -->
-        <br><br>
-        {% page %}
-        <script type="text/javascript" src="{{['assets/js/jquery-3.5.1.min.js','assets/dist/semantic.min.js']|theme}}"></script>
+        {% partial 'navigation' items=staticMenu.menuItems %}
+
+        <div class="pusher">
+            <div class="ui hidden divider"></div>
+            <div class="ui hidden divider"></div>
+            <div class="ui container" id="FlashMessage">
+                {% partial 'flash' %}
+            </div>
+            <div class="ui container" style="min-height: 60vh;">
+                {% page %}
+            </div>
+            {% partial 'footer' %}
+        </div>
+
+        <script type="text/javascript"
+            src="{{['assets/js/jquery-3.5.1.min.js','assets/dist/semantic.min.js']|theme}}"></script>
         {% framework %}
         {% scripts %}
     </body>
-</html>
+
+    </html>

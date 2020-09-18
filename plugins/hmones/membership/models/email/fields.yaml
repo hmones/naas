@@ -1,0 +1,20 @@
+fields:
+    name:
+        label: 'Name of Email template'
+        span: auto
+        disabled: 1
+        required: 1
+        type: text
+        comment: 'no spaces or special charachters allowed'
+    subject:
+        label: 'Email Subject'
+        span: full
+        required: 1
+        type: text
+    email_txt:
+        label: 'Content of the email'
+        size: large
+        mode: tab
+        span: full
+        stretch: 0
+        type: markdown

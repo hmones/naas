@@ -1,0 +1,188 @@
+tabs:
+    fields:
+        theme:
+            label: Theme
+            nameFrom: theme
+            descriptionFrom: Theme
+            span: auto
+            required: 1
+            type: relation
+            tab: 'Basic Settings'
+        type:
+            label: 'Question Type'
+            options:
+                - Text
+                - 'Text area'
+                - Checkbox
+                - Radio
+                - Dropdown
+                - Attachment
+                - City
+                - Country
+                - Phone
+                - 'Language Percentage'
+            showSearch: true
+            span: auto
+            required: 1
+            type: dropdown
+            tab: 'Basic Settings'
+        display_order:
+            label: 'Question''s Order'
+            span: full
+            required: 1
+            type: number
+            comment: '0 appears first'
+            tab: 'Basic Settings'
+        question:
+            label: Question
+            size: small
+            span: auto
+            required: 1
+            type: textarea
+            tab: 'Basic Settings'
+        description:
+            label: Description
+            size: small
+            span: auto
+            type: textarea
+            tab: 'Basic Settings'
+        section1:
+            label: Options
+            span: full
+            type: section
+            tab: 'Basic Settings'
+        header:
+            label: 'Question Header'
+            span: auto
+            type: text
+            tab: 'Basic Settings'
+        subheader:
+            label: 'Question subheader'
+            span: auto
+            type: text
+            tab: 'Basic Settings'
+        required:
+            label: 'Required?'
+            span: auto
+            required: 1
+            type: switch
+            tab: 'Basic Settings'
+        published:
+            label: 'Published?'
+            span: auto
+            required: 1
+            type: switch
+            tab: 'Basic Settings'
+        new_member:
+            label: 'Show for new members?'
+            span: auto
+            required: 1
+            type: switch
+            tab: 'Basic Settings'
+        old_member:
+            label: 'Show for old members?'
+            span: auto
+            required: 1
+            type: switch
+            tab: 'Basic Settings'
+        prefill:
+            label: 'Prefill in new applications?'
+            span: full
+            required: 1
+            type: switch
+            tab: 'Basic Settings'
+        options:
+            span: full
+            path: field_option
+            hidden: 0
+            trigger:
+                action: show
+                field: type
+                condition: 'value[2], value[3]'
+            type: partial
+            tab: 'Basic Settings'
+        other_active:
+            label: 'Add "other" field'
+            span: auto
+            hidden: 0
+            trigger:
+                action: show
+                field: type
+                condition: 'value[2], value[3]'
+            type: switch
+            tab: 'Basic Settings'
+        other_text:
+            label: 'Title of "other" field'
+            span: auto
+            hidden: 0
+            trigger:
+                action: show
+                field: type
+                condition: 'value[2], value[3]'
+            type: text
+            tab: 'Basic Settings'
+        file_type:
+            label: 'File Types Accepted'
+            options:
+                '.jpg,.jpeg,.png,.gif,image/*': 'Images (.png/.jpg/.jpeg)'
+                '.pdf,.doc,.docx,.xls,.xlsx,.csv,text/csv,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'Documents (.pdf/.doc/.docx/.xls/.xlsx/.csv)'
+                '.pdf,.doc,.docx,.xls,.xlsx,.csv,text/csv,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.jpg,.jpeg,.png,.gif,image/*': 'Documents and Images (.png/.jpg/.jpeg/.pdf/.doc/.docx/.xls/.xlsx/.csv)'
+            showSearch: true
+            span: full
+            trigger:
+                action: show
+                field: type
+                condition: 'value[5]'
+            type: dropdown
+            tab: 'Basic Settings'
+        section2:
+            label: 'Conditional Settings'
+            span: full
+            type: section
+            tab: 'Basic Settings'
+        cond_option_id:
+            label: 'Conditional display'
+            span: auto
+            type: number
+            comment: 'Enter the ID of the option that this question depends on'
+            tab: 'Basic Settings'
+        group:
+            label: 'Group ID'
+            span: auto
+            type: number
+            comment: 'A number (ID) of the group of questions to which this question belong'
+            tab: 'Advanced Settings'
+        repeat_active:
+            label: 'Is this question/group repeatable?'
+            span: auto
+            type: switch
+            tab: 'Advanced Settings'
+        repeat_text:
+            label: 'Text or HTML to appear on the repeat button'
+            span: auto
+            type: text
+            tab: 'Advanced Settings'
+        add_css:
+            label: 'Additional CSS'
+            size: small
+            span: auto
+            type: textarea
+            tab: 'Advanced Settings'
+        add_script:
+            label: 'Additional Scripts'
+            size: small
+            span: auto
+            type: textarea
+            tab: 'Advanced Settings'
+        validation:
+            label: Validation
+            options:
+                '^(100|[0-9]?[0-9])$': Percentage
+                '^[0-9]{0,25}$': 'Number (max size 25)'
+                '^(19|20)\d{2}$': Year
+                '^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,8})$': Email
+            showSearch: true
+            span: auto
+            emptyOption: 'No Validation'
+            type: dropdown
+            tab: 'Advanced Settings'

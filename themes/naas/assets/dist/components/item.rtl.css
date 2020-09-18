@@ -140,14 +140,14 @@
 .ui.items > .item > .content > .header {
   display: inline-block;
   margin: -0.21425em 0em 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Cairo', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.85);
 }
 
 /* Default Header Size */
 .ui.items > .item > .content > .header:not(.ui) {
-  font-size: 1.26666667em;
+  font-size: 1.3125em;
 }
 
 /*--------------
@@ -241,7 +241,7 @@
   color: rgba(0, 0, 0, 0.85);
 }
 .ui.items > .item > .content > a.header:hover {
-  color: #ED1D24;
+  color: #ef353b;
 }
 
 /* Meta */
@@ -418,7 +418,7 @@
 --------------------*/
 
 .ui.divided.items > .item {
-  border-top: 1px solid rgba(253, 210, 186, 0.13);
+  border-top: 1px solid rgba(253, 210, 186, 0.15);
   margin: 0em;
   padding: 1em 0em;
 }
@@ -452,7 +452,7 @@
 }
 .ui.items a.item:hover .content .header,
 .ui.link.items > .item:hover .content .header {
-  color: #ED1D24;
+  color: #ef353b;
 }
 
 /*--------------

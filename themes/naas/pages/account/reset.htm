@@ -1,0 +1,50 @@
+title = "Password Reset"
+url = "/password/reset/:code?"
+layout = "default"
+is_hidden = 0
+
+[resetPassword]
+paramCode = "code"
+==
+public function onResetPassword(){
+    try {
+        $this->resetPassword->onResetPassword();
+        Flash::success(Lang::get('hmones.membership::lang.messages.resetSuccess',[],$this['activeLocale']));
+        return Redirect::to('login/');
+    }catch(Exception $e){}
+}
+public function onRestorePassword(){
+    try {
+        $this->resetPassword->onRestorePassword();
+        Flash::success(Lang::get('hmones.membership::lang.messages.emailSent',[],$this['activeLocale']));
+        return Redirect::to('account/dashboard/');
+    }catch(Exception $e){}
+}
+==
+<div class="ui container">
+    <div class="ui stackable grid">
+        <div class="centered four wide column">
+            {% if this.param.code %}
+            <h3 class="ui small left aligned header"><i class="key red mini icon"></i>{{'Pages.Account.Reset.Header'|_}} </h3>
+                {{ form_ajax('onResetPassword', { class: 'ui form', update: {flash:'#FlashMessage'} }) }}
+                    <div class="field">
+                        <input name="code" type="text" id="resetCode" placeholder="{{'Pages.Account.Reset.CodePlaceholder'|_}}" value="{{ this.param.code }}">
+                    </div>
+                    <div class="field">
+                        <input name="password" type="password" id="resetPassword" placeholder="{{'Pages.Account.Reset.PasswordPlaceholder'|_}}">
+                    </div>
+                    <div class="ui hidden divider"></div>
+                    <button type="submit" class="fluid ui red button">{{'Pages.Account.Reset.ResetButton'|_}}</button>
+                {{ form_close() }}
+            {% else %}
+                <h3 class="ui small left aligned header">{{'Pages.Account.Reset.NoteHeader'|_}} <div class="sub header">{{'Pages.Account.Reset.NoteSubHeader'|_}}</div></h3>
+                {{ form_ajax('onRestorePassword', { class: 'ui form', update: {flash:'#FlashMessage'}}) }}
+                    <input name="email" type="email" id="userRestoreEmail" placeholder="{{'Pages.Account.Reset.EmailPlaceholder'|_}}" />
+                    <div class="ui hidden divider"></div>
+                    <button type="submit" class="fluid ui red button">{{'Pages.Account.Reset.RestoreButton'|_}}</button>
+                {{ form_close() }}
+            {% endif %}
+
+        </div>
+    </div>
+</div>

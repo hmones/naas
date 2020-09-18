@@ -1,0 +1,20 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    status:
+        label: Status
+        type: group
+        conditions: status = (:filtered)
+        options:
+            - Draft
+            - Submitted
+            - In Review
+            - Accepted
+            - Rejected
+    year:
+        label: Year
+        type: number
+        scope: year
+        condition: :filtered

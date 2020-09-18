@@ -1,0 +1,20 @@
+fields:
+    theme:
+        label: 'Section Name'
+        span: auto
+        required: 1
+        type: text
+    description:
+        label: 'Section Description'
+        span: auto
+        type: text
+    icon:
+        label: 'Icon (SemanticUI Icons)'
+        span: auto
+        type: text
+        comment: 'To select icon, check it from this link: https://semantic-ui.com/elements/icon.html'
+    display_order:
+        label: 'Display Order'
+        span: auto
+        type: number
+        comment: 'The sections will be ordered using this value in ascending order'

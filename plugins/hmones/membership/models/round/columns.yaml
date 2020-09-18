@@ -1,0 +1,39 @@
+columns:
+    year:
+        label: Year
+        type: text
+        searchable: true
+        sortable: true
+    start:
+        label: Start
+        type: timesince
+        searchable: true
+        sortable: true
+    end:
+        label: End
+        type: timesince
+        searchable: true
+        sortable: true
+    active:
+        label: Status
+        type: switch
+        searchable: true
+        sortable: true
+    total_accept:
+        label: total_accept
+        type: number
+        searchable: false
+        sortable: true
+    total_draft:
+        label: total_draft
+        type: number
+        searchable: false
+        sortable: true
+    total_reject:
+        label: total_reject
+        type: number
+        sortable: true
+    total_submit:
+        label: total_submit
+        type: number
+        sortable: true

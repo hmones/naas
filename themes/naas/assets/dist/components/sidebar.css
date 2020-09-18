@@ -206,13 +206,13 @@ body.pushable > .pusher {
 /* Shadow Direction */
 .ui.left.visible.sidebar,
 .ui.right.visible.sidebar {
-  -webkit-box-shadow: 0px 0px 20px rgba(253, 210, 186, 0.13);
-          box-shadow: 0px 0px 20px rgba(253, 210, 186, 0.13);
+  -webkit-box-shadow: 0px 0px 20px rgba(253, 210, 186, 0.15);
+          box-shadow: 0px 0px 20px rgba(253, 210, 186, 0.15);
 }
 .ui.top.visible.sidebar,
 .ui.bottom.visible.sidebar {
-  -webkit-box-shadow: 0px 0px 20px rgba(253, 210, 186, 0.13);
-          box-shadow: 0px 0px 20px rgba(253, 210, 186, 0.13);
+  -webkit-box-shadow: 0px 0px 20px rgba(253, 210, 186, 0.15);
+          box-shadow: 0px 0px 20px rgba(253, 210, 186, 0.15);
 }
 
 /* Visible On Load */
@@ -626,3 +626,6 @@ body.pushable > .pusher {
          Site Overrides
 *******************************/
 
+body.pushable {
+  background: #ffffff !important;
+}

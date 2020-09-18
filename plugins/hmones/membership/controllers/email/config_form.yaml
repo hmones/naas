@@ -1,0 +1,10 @@
+name: Email
+form: $/hmones/membership/models/email/fields.yaml
+modelClass: Hmones\Membership\Models\Email
+defaultRedirect: hmones/membership/email
+create:
+    redirect: 'hmones/membership/email/update/:id'
+    redirectClose: hmones/membership/email
+update:
+    redirect: hmones/membership/email
+    redirectClose: hmones/membership/email

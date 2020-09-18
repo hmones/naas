@@ -1,0 +1,5 @@
+fields:
+    option:
+        label: Option
+        span: auto
+        type: text

@@ -1,0 +1,10 @@
+name: Theme
+form: $/hmones/membership/models/theme/fields.yaml
+modelClass: Hmones\Membership\Models\Theme
+defaultRedirect: hmones/membership/theme
+create:
+    redirect: 'hmones/membership/theme/update/:id'
+    redirectClose: hmones/membership/theme
+update:
+    redirect: hmones/membership/theme
+    redirectClose: hmones/membership/theme

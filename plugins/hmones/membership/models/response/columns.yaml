@@ -1,0 +1,28 @@
+columns:
+    order:
+        label: Order
+        type: number
+        searchable: true
+        sortable: true
+        select: display_order
+        relation: question
+    Theme:
+        label: Theme
+        type: number
+        valueFrom: display_theme
+    question:
+        label: Question
+        type: text
+        searchable: true
+        sortable: true
+        select: question
+        relation: question
+    answer:
+        label: 'Answer'
+        type: text
+        valueFrom: answer
+    created_at:
+        label: 'Created at'
+        type: datetime
+        searchable: true
+        sortable: true

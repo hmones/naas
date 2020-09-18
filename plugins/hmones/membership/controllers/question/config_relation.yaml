@@ -1,0 +1,8 @@
+options:
+    label: Option
+    manage:
+        form: $/hmones/membership/models/option/fields.yaml
+        list: $/hmones/membership/models/option/columns.yaml
+    view:
+        list: $/hmones/membership/models/option/columns.yaml
+        toolbarButtons: create|delete

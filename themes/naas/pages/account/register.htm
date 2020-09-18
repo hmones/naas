@@ -1,0 +1,108 @@
+title = "Register"
+url = "/register/:code?"
+layout = "default"
+is_hidden = 0
+
+[account]
+redirect = "account/login"
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+==
+<?php
+public function onRegistration(){
+    
+    $this->account->onRegister();
+    $user = $this->account->user();
+    if($user){
+        $user->email_org=post('email_org');
+        $user->website=post('website');
+        $user->facebook=post('facebook');
+        $user->twitter=post('twitter');
+        $user->youtube=post('youtube');
+        $user->instagram=post('instagram');
+        $user->save();
+        return Redirect::to('login/');
+    }else{
+        return Redirect::to('/');
+    }
+}
+public function onEnd(){
+    if($this->param('code')){
+        return Redirect::to('login/');
+    }
+}
+?>
+==
+<div class="ui container">
+    <div class="ui header"><i class="pencil red icon"></i>{{'Pages.Account.Register.Header'|_}}</div>
+    <div class="ui divider"></div>
+    <div class="ui hidden divider"></div>
+    {{ form_ajax('onRegistration', { class: 'ui form'}) }}
+        <div class="two fields">
+            <div class="field">
+                <label>{{'Pages.Account.Register.EmailField'|_}}</label>
+                <input name="email" type="email" placeholder="{{'Pages.Account.Register.EmailPlaceholder'|_}}" />
+                
+            </div>
+            <div class="field">
+                <label>{{'Pages.Account.Register.PasswordField'|_}}</label>
+                <input name="password" type="password" placeholder="{{'Pages.Account.Register.PasswordPlaceholder'|_}}" />
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>{{'Pages.Account.Register.NameField'|_}}</label>
+                <input name="name" type="text" placeholder="{{'Pages.Account.Register.NamePlaceholder'|_}}" />
+                
+            </div>
+            <div class="field">
+                <label>{{'Pages.Account.Register.OrgEmailField'|_}}</label>
+                <input name="email_org" type="email" placeholder="{{'Pages.Account.Register.OrgEmailPlaceholder'|_}}" />
+            </div>
+        </div>
+        <div class="three fields">
+            <div class="field">
+                <label>{{'Pages.Account.Register.WebsiteField'|_}}</label>
+                <div class="ui left icon input">
+                    <input name="website" type="text" placeholder="{{'Pages.Account.Register.WebsitePlaceholder'|_}}" />
+                    <i class="globe icon"></i>
+                </div>
+                
+            </div>
+            <div class="field">
+                <label>{{'Pages.Account.Register.TwitterField'|_}}</label>
+                <div class="ui left icon input">
+                    <input name="twitter" type="text" placeholder="{{'Pages.Account.Register.TwitterPlaceholder'|_}}" />
+                    <i class="twitter icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <label>{{'Pages.Account.Register.InstagramField'|_}}</label>
+                <div class="ui left icon input">
+                    <input name="instagram" type="text" placeholder="{{'Pages.Account.Register.InstagramPlaceholder'|_}}" />
+                    <i class="instagram icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>{{'Pages.Account.Register.FacebookField'|_}}</label><div class="ui left icon input">
+                    <input name="facebook" type="text" placeholder="{{'Pages.Account.Register.FacebookPlaceholder'|_}}" />
+                    <i class="facebook icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <label>{{'Pages.Account.Register.YoutubeField'|_}}</label>
+                <div class="ui left icon input">
+                    <input name="youtube" type="text" placeholder="{{'Pages.Account.Register.YoutubePlaceholder'|_}}" />
+                    <i class="youtube icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="field">
+            <button type="submit" class="ui red button">{{'Pages.Account.Register.RegisterButton'|_}}</button>
+        </div>
+    {{ form_close() }}
+</div>

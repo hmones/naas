@@ -1,0 +1,10 @@
+name: Question
+form: $/hmones/membership/models/question/fields.yaml
+modelClass: Hmones\Membership\Models\Question
+defaultRedirect: hmones/membership/question
+create:
+    redirect: 'hmones/membership/question/update/:id'
+    redirectClose: hmones/membership/question
+update:
+    redirect: hmones/membership/question
+    redirectClose: hmones/membership/question

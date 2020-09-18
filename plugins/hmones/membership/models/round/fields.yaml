@@ -1,0 +1,30 @@
+fields:
+    year:
+        label: 'Year of application round'
+        span: auto
+        default: '2000'
+        required: 1
+        type: number
+    active:
+        label: Published
+        span: auto
+        required: 0
+        type: switch
+    start:
+        label: 'Start Date'
+        mode: datetime
+        minDate: '2017-01-01'
+        span: auto
+        required: 1
+        type: datepicker
+    end:
+        label: 'End Date'
+        mode: datetime
+        minDate: '2017-01-01'
+        span: auto
+        required: 1
+        type: datepicker
+    comment:
+        label: 'Remarks for the application round'
+        span: auto
+        type: text

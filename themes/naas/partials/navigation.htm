@@ -1,0 +1,102 @@
+<div class="ui top menu topAdditionalMenu" style="direction:ltr;">
+    <div class="ui container">
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'ar'">العربية</a>
+        &nbsp;|&nbsp;
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'">English</a>
+        &nbsp;|&nbsp;
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'">Français</a>
+        <div class="socialMediaIcons">
+            {% partial 'socialMediaLinks' %}
+        </div>
+        <div class="{{activeLocale=="ar"?'left':'right'}} menu">
+            {% partial 'navSearch' %}
+            <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> {{'TopMenu.MemberSpace'|_}}</a>
+            &nbsp;&nbsp;&nbsp;
+            {% if user %}
+            <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="ui top fixed menu topMainMenu">
+    <div class="ui container">
+        <a class="item" href="{{'home'|page}}">
+            <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
+        </a>
+        <div class="right menu">
+            {% partial 'menu-items' items=items %}
+        </div>
+    </div>
+
+</div>
+
+<div class="ui top menu mobileMenu">
+    <div class="ui container">
+        <a class="item" href="{{'home'|page}}">
+            <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
+        </a>
+        <div class="right menu">
+            <a href="#" onclick="onToggleMenu();"><i class="bars large icon"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="ui left sidebar vertical menu mobileMenuContent">
+    <div class="item">
+        <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
+    </div>
+    <div class="item">
+        {% partial 'navSearch' %}
+    </div>
+    {% partial 'menu-items' items=items type="mobile" %}
+    <div class="ui divider"></div>
+    <div class="item">
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'ar'">العربية</a>
+        &nbsp;|&nbsp;
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'">English</a>
+        &nbsp;|&nbsp;
+        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'">Français</a>
+    </div>
+    <div class="item">
+        <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> {{'TopMenu.MemberSpace'|_}}</a>
+    </div>
+
+    {% if user %}
+    <div class="item">
+        <a href="#" data-request="onLogout" data-request-data="redirect: '/'"><i class="power off red icon"></i>
+            {{'TopMenu.Logout'|_}}</a>
+    </div>
+    {% endif %}
+
+    <div class="item">
+        {% partial 'socialMediaLinks' %}
+    </div>
+    <br><br>
+</div>
+
+{% put scripts %}
+<script>
+    $(function () {
+        $('.ui.top.menu')
+            .visibility({
+                onBottomVisible: function () {
+                    $('.ui.top.fixed.menu').css('top', '27px');
+                },
+                onBottomPassed: function () {
+                    $('.ui.top.fixed.menu').css('top', '0px');
+                },
+                continuous: true
+            })
+            ;
+    });
+    function onToggleMenu() {
+        $('.ui.left.sidebar')
+            .sidebar({
+                dimPage: true,
+                transition: 'overlay'
+            })
+            .sidebar('toggle')
+            ;
+    };
+</script>
+{% endput %}

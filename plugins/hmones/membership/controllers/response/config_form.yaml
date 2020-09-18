@@ -1,0 +1,10 @@
+name: Response
+form: $/hmones/membership/models/response/fields.yaml
+modelClass: Hmones\Membership\Models\Response
+defaultRedirect: hmones/membership/response
+create:
+    redirect: 'hmones/membership/response/update/:id'
+    redirectClose: hmones/membership/response
+update:
+    redirect: hmones/membership/response
+    redirectClose: hmones/membership/response
