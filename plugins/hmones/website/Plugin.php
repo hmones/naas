@@ -17,9 +17,9 @@ class Plugin extends PluginBase
     {
         return [
             'name'        => 'website',
-            'description' => 'No description provided yet...',
+            'description' => 'Plugin for the display options for the main public website',
             'author'      => 'hmones',
-            'icon'        => 'icon-leaf'
+            'icon'        => 'icon-desktop'
         ];
     }
 
@@ -70,26 +70,6 @@ class Plugin extends PluginBase
             'hmones.website.some_permission' => [
                 'tab' => 'website',
                 'label' => 'Some permission'
-            ],
-        ];
-    }
-
-    /**
-     * Registers back-end navigation items for this plugin.
-     *
-     * @return array
-     */
-    public function registerNavigation()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'website' => [
-                'label'       => 'website',
-                'url'         => Backend::url('hmones/website/mycontroller'),
-                'icon'        => 'icon-leaf',
-                'permissions' => ['hmones.website.*'],
-                'order'       => 500,
             ],
         ];
     }

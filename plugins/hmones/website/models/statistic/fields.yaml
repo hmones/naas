@@ -1,0 +1,17 @@
+fields:
+    property:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+    value:
+        label: Value
+        span: auto
+        required: 1
+        type: number
+    display_order:
+        label: 'Display Order'
+        span: auto
+        required: 1
+        type: number
+        comment: '0 is the highest values then 1, 2, 3 ..etc'
