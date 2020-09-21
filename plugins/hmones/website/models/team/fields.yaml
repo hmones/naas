@@ -1,0 +1,55 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        required: 1
+        type: text
+    slug:
+        label: 'Slug (displayed in links)'
+        span: auto
+        required: 1
+        preset:
+            field: name
+            type: slug
+        type: text
+    category:
+        label: Category
+        options:
+            - 'Core team'
+            - 'Steering Committee'
+            - 'Administrative Board'
+        showSearch: true
+        span: auto
+        required: 1
+        type: dropdown
+    position:
+        label: Position
+        span: auto
+        required: 1
+        type: text
+    bio:
+        label: Biography
+        size: small
+        span: full
+        required: 1
+        type: richeditor
+    image:
+        label: Image
+        mode: image
+        useCaption: 0
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        required: 1
+        type: fileupload
+    img_credits:
+        label: 'Image Credits'
+        span: auto
+        type: text
+    display_order:
+        label: 'Display Order'
+        span: full
+        required: 1
+        type: number
+        comment: '0 is the highest order, followed by 1, 2, 3 ..etc'
