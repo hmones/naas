@@ -17,10 +17,10 @@ fields:
     file:
         label: 'File upload'
         mode: file
-        useCaption: 1
+        useCaption: 0
         thumbOptions:
             mode: crop
             extension: auto
         span: auto
-        required: 1
+        required: 0
         type: fileupload

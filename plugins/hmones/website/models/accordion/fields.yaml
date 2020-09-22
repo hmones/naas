@@ -14,8 +14,13 @@ fields:
         span: auto
         required: 1
         type: text
+    is_open:
+        label: 'Open by default?'
+        span: auto
+        required: 1
+        type: switch
     content:
         label: Content
-        span: auto
-        size: small
+        size: large
+        span: full
         type: richeditor
