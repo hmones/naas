@@ -15,13 +15,13 @@ class Statistic extends Model
      */
     public $table = 'hmones_website_statistics';
 
-    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
-
-    public $translatable = ['name'];
-
     /**
      * @var array Validation rules
      */
     public $rules = [
     ];
+
+    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+
+    public $translatable = ['property'];
 }

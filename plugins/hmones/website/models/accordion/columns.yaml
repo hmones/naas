@@ -6,7 +6,7 @@ columns:
         sortable: true
     title:
         label: Title
-        type: datetime
+        type: text
         searchable: true
         sortable: true
     display_order:
