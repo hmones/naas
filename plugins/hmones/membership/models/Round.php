@@ -6,6 +6,36 @@ use Hmones\Membership\Models\Submission;
 
 /**
  * Model
+ *
+ * @property int $active
+ * @property string|null $comment
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string $end
+ * @property int $id
+ * @property string $start
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $year
+ * @property-read mixed $accepted
+ * @property-read mixed $draft
+ * @property-read mixed $rejected
+ * @property-read mixed $submitted
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round active()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round inactive()
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Round newModelQuery()
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Round newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round published()
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Round query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round whereEnd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round whereStart($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Round whereYear($value)
+ * @mixin \Eloquent
  */
 class Round extends Model
 {
