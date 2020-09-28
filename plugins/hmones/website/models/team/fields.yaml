@@ -30,12 +30,29 @@ fields:
     bio:
         label: Biography
         size: small
-        span: full
+        span: auto
         required: 1
         type: richeditor
+    bio_summary:
+        label: 'Biography Summary'
+        size: small
+        span: auto
+        type: richeditor
+    display_order:
+        label: 'Display Order'
+        span: auto
+        required: 1
+        type: number
+        comment: '0 is the highest order, followed by 1, 2, 3 ..etc'
+    img_credits:
+        label: 'Image Credits'
+        span: auto
+        type: text
     image:
         label: Image
         mode: image
+        imageWidth: '300'
+        imageHeight: '300'
         useCaption: 0
         thumbOptions:
             mode: crop
@@ -43,13 +60,3 @@ fields:
         span: auto
         required: 1
         type: fileupload
-    img_credits:
-        label: 'Image Credits'
-        span: auto
-        type: text
-    display_order:
-        label: 'Display Order'
-        span: full
-        required: 1
-        type: number
-        comment: '0 is the highest order, followed by 1, 2, 3 ..etc'
