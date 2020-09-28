@@ -29,4 +29,17 @@ class Team extends Model
     public $rules = [
         'image' => 'image|max:2000|dimensions:min_width=100,min_height=100'
     ];
+
+    public function getTeamCategoryAttribute(){
+        switch($this->category){
+            case 0:
+                return "Core Team";
+            case 1: 
+                return "Steering Committee";
+            case 2:
+                return "Administrative Board";
+            default:
+                return "Unspecified";
+        }
+    }
 }
