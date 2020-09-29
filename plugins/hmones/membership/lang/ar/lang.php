@@ -17,9 +17,9 @@
     ],
     'ApplicationStatus' => [
         'status_0' => 'مسودة',
-        'status_1' => 'استمارة نهائية',
+        'status_1' => 'تم التسليم',
         'status_2' => 'قيد الفحص',
         'status_3' => 'قبول',
-        'status_4' => 'رفض'
+        'status_4' => 'مؤجل'
     ]
 ];

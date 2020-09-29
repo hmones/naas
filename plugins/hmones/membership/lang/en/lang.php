@@ -21,6 +21,6 @@
         'status_1' => 'Submitted',
         'status_2' => 'In Review',
         'status_3' => 'Accepted',
-        'status_4' => 'Rejected'
+        'status_4' => 'Reported'
     ]
 ];

@@ -17,10 +17,10 @@
 
     ],
     'ApplicationStatus' => [
-        'status_0' => 'Draft',
-        'status_1' => 'Submitted',
-        'status_2' => 'In Review',
-        'status_3' => 'Accepted',
-        'status_4' => 'Rejected'
+        'status_0' => 'En cours',
+        'status_1' => 'Deposée',
+        'status_2' => 'En cours d\'examen',
+        'status_3' => 'Acceptée',
+        'status_4' => 'Reportée'
     ]
 ];

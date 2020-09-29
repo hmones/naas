@@ -6,7 +6,6 @@ use Rainlab\User\Models\User;
 use Config;
 use Hmones\Membership\Models\Response;
 use Hmones\Membership\Models\Email;
-use Log;
 
 
 class EmailEvents
