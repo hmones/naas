@@ -8,7 +8,7 @@
     data-title="{{question.order}}"
     {% if question.repeat_active and question.group %}
         group={{question.group}}
-        data-repeat-btn={{question.repeat_text}}
+        data-repeat-btn="{{question.repeat_text}}"
     {% endif %}>
     {% partial 'account/questions/header'%}
     <label for="q_{{question.id}}">
