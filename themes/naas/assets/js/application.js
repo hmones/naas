@@ -241,13 +241,16 @@ $('#saveDraft').on('click', function(){
     $('#main_form').trigger('submit');
 })
 $('#submitForm').on('click', function(){
+    $('.tiny.modal.submit').modal('show');
+});
+function handleSubmitForm(){
     var isFormValid = validateEmptyFields();
     if(isFormValid){
         $('input[name="applicationStatus"]').val('final');
-        $(this).addClass('loading');
+        $('#submitForm').addClass('loading');
         $('#main_form').trigger("submit");
     }
-});
+}
 $('body').on('change', 'input[type=radio][dataoption]',function () {
     toogleCondQuestions(this);
 });

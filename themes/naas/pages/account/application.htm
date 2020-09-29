@@ -25,16 +25,25 @@ redirect = "account/login"
             &nbsp;
             {{'Pages.Account.Application.PrefillMessage'|_}}
             &nbsp;
-            <a href="javascript:void(0)" onclick="$('.tiny.modal').modal('show');" class="ui blue basic tiny button"> {{'Keywords.Yes'|_}}</a>
+            <a href="javascript:void(0)" onclick="$('.tiny.modal.prefill').modal('show');" class="ui blue basic tiny button"> {{'Keywords.Yes'|_}}</a>
         </div>
     </div>
 </div>
-<div class="ui tiny modal">
+<div class="ui tiny modal prefill">
     <div class="content">
         {{'Pages.Account.Application.PrefillConfirmation'|_}}
     </div>
     <div class="actions">
         <a href="javascript:void(0)" onclick="$('#prefill_form').submit();" class="ui approve button">{{'Keywords.Yes'|_}}</a>
+        <div class="ui cancel button">{{'Keywords.No'|_}}</div>
+    </div>
+</div>
+<div class="ui tiny modal submit">
+    <div class="content">
+        {{'Pages.Account.Application.SubmitConfirmation'|_}}
+    </div>
+    <div class="actions">
+        <a href="javascript:void(0)" onclick="handleSubmitForm()" class="ui approve button">{{'Keywords.Yes'|_}}</a>
         <div class="ui cancel button">{{'Keywords.No'|_}}</div>
     </div>
 </div>
