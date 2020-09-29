@@ -17,7 +17,8 @@ redirect = "account/login"
 {{form_ajax({request: 'onPrefill'},{'id':'prefill_form'})}}
     <input type="hidden" name="submission_id" value="{{userLatestSubmission.id}}"/>
 {{form_close()}}
-<div class="ui message" style="border:solid #2185d0 1px;">
+<div class="ui message" id="prefillMessage" style="border:solid #2185d0 1px;">
+    <i class="close blue icon" onClick="$(this).closest('.message').transition('fade');" style="z-index: 1000;"></i>
     <div class="ui stackable grid">
         <div class="sixteen wide column">
             <i class="info blue circular icon"></i>
