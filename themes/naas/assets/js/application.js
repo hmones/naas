@@ -219,6 +219,7 @@ function handleRepeat(group) {
     $('#repeat_group_' + group + '_container > div > div.repeat.group.addons').remove();
     $('#repeat_group_' + group + '_container > div > div > div.ui.header.question').remove();
     $('.ui.dropdown').dropdown();
+    $('.questionTooltip').popup();
 }
 
 /**
@@ -334,7 +335,8 @@ $(function () {
         });
         
     });
-    $('.tiny.modal').modal();   
+    $('.tiny.modal').modal();
+    $('.questionTooltip').popup();   
 });   
 
 /**
@@ -342,6 +344,4 @@ $(function () {
  */
 
 $('.ui.dropdown').dropdown();
-$('.questionTooltip')
-  .popup()
-;
+$('.questionTooltip').popup();
