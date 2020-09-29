@@ -42,8 +42,8 @@ redirect = "account/login"
     <div class="five wide column">
         <div class="ui fluid vertical right attached steps">
             {% for section in sections %}
-            <a class="{{loop.index == 1? 'active':''}} step" id="section_btn_{{section.id}}"
-                style="border-bottom:4px solid rgba(253,210,186,.15);" onclick="activateSection({{section.id}});" section="{{section.id}}">
+            <a class="{{loop.index == 1? 'active':''}} step" id="section_btn_{{section.display_order}}"
+                style="border-bottom:4px solid rgba(253,210,186,.15);" onclick="activateSection({{section.display_order}});" section="{{section.display_order}}">
                 <i class="{{section.icon}} red icon" style="font-size:17px;"></i>
                 <div class="content">
                     <div class="title">{{str_limit(section.theme,24)}}</div>
@@ -58,7 +58,7 @@ redirect = "account/login"
         <input type="hidden" value="draft" name="applicationStatus"/>
         <input type="hidden" value"" name="applicationLocation"/>
         {% for section in sections %}
-        <div class="ui attached {{loop.index == 1? 'active':''}} segment" id="section_content_{{section.id}}"
+        <div class="ui attached {{loop.index == 1? 'active':''}} segment" id="section_content_{{section.display_order}}"
             style="{{loop.index == 1? '':'display:none;'}} border:none;">
             <div class="ui header">{{section.theme}}</div>
             <div class="ui divider"></div>
@@ -74,8 +74,8 @@ redirect = "account/login"
         <br/><br/>
         <div class="ui stackable grid">
             <div class="center aligned eight wide column">
-                <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button"> <i class="{{activeLocale=='ar'?'right':'left'}} arrow icon"></i>{{'Keywords.back'|_}}</a>
-                <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button"> {{'Keywords.Next'|_}} <i class="{{activeLocale=='ar'?'left':'right'}} arrow icon"></i></a>
+                <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button back"> <i class="{{activeLocale=='ar'?'right':'left'}} arrow icon"></i>{{'Keywords.back'|_}}</a>
+                <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button next"> {{'Keywords.Next'|_}} <i class="{{activeLocale=='ar'?'left':'right'}} arrow icon"></i></a>
             </div>
             <div class="center aligned eight wide column">
                 <a href="javascript:void(0);" id="saveDraft" class="ui red button"><i class="save icon"></i> {{'Keywords.SaveDraft'|_}}</a>

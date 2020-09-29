@@ -4,7 +4,7 @@
     data-condition="{{question.cond_option_id}}" 
     style="{{question.cond_option_id?'display:none;':''}}"
     data-required="{{question.required ? 'yes':'no'}}"
-    data-theme="{{question.theme_id}}"
+    data-theme="{{question.theme.display_order}}"
     data-title="{{question.order}}"
     {% if question.repeat_active and question.group %}group={{question.group}}{% endif %}>
     {% partial 'account/questions/header'%}

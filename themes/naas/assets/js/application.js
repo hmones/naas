@@ -24,8 +24,17 @@ function activateSection(section) {
     $(section_btn).addClass('active');
     $('div.ui.attached.active.segment').removeClass('active').hide();
     $(section_content).addClass('active').fadeIn();
+    if(section === 1){
+        $('a.back').addClass('disabled');
+    }else{
+        $('a.back').removeClass('disabled');
+    }
+    if($('a[section='+ (section + 1 ) +']').length){
+        $('a.next').removeClass('disabled');
+    }else{
+        $('a.next').addClass('disabled');
+    }
     window.location.hash = section;
-
 }
 function prevSection(){
     var currSection = parseInt($('a.active.step').attr("section"));
