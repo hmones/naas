@@ -272,7 +272,7 @@ $(function () {
                 '_container"></div><a href="javascript:void(0)" onclick="handleRepeat('
                 + group.group +
                 ')" class="ui basic red right floated button repeater"><i class="plus icon"></i>'
-                + group.repeat_text +
+                + $('div[group=' + group.group + ']').attr('data-repeat-btn') +
                 '</a><div><br></br>'
             );
         if ($('#q_group_' + group.group).children().css("display") == "none") {

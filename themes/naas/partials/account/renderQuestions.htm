@@ -6,7 +6,10 @@
     data-required="{{question.required ? 'yes':'no'}}"
     data-theme="{{question.theme.display_order}}"
     data-title="{{question.order}}"
-    {% if question.repeat_active and question.group %}group={{question.group}}{% endif %}>
+    {% if question.repeat_active and question.group %}
+        group={{question.group}}
+        data-repeat-btn={{question.repeat_text}}
+    {% endif %}>
     {% partial 'account/questions/header'%}
     <label for="q_{{question.id}}">
         <i class="{{activeLocale == 'ar'? 'left':'right'}} caret red icon"></i> {{question.question}} &nbsp;
