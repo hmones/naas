@@ -156,7 +156,14 @@
     <div class="field">
         <label>{{'Pages.Account.Application.Percentage'|_}}</label>
         <div class="ui icon input">
-            <input type="text" class="q_percentage" placeholder="e.g. 99" maxlength="3" value="" name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[language][percentage]">
+            <input 
+                type="text"
+                class="q_percentage"
+                placeholder="e.g. 99"
+                maxlength="3"
+                value=""
+                name="q_{{question.id}}{{question.repeat_active?'[group][1]':''}}[language][percentage]"
+                validation="^(100|[0-9]?[0-9])$">
             <i>%</i>
         </div>
     </div>
