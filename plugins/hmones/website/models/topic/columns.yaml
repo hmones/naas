@@ -9,7 +9,11 @@ columns:
         type: text
         searchable: true
         sortable: true
+<<<<<<< HEAD
     topic_category:
+=======
+    category:
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
         label: Category
         type: number
         searchable: true

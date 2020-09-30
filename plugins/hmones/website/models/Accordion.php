@@ -17,7 +17,11 @@ class Accordion extends Model
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
+<<<<<<< HEAD
     public $translatable = ['title', 'content'];
+=======
+    public $translatable = ['title, content'];
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
 
     /**
      * @var array Validation rules

@@ -17,6 +17,7 @@ class Member extends Model
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
+<<<<<<< HEAD
     public $translatable = ['name', 'content', 'location'];
 
     public function getMemberRoleAttribute(){
@@ -29,6 +30,9 @@ class Member extends Model
                 return "Unspecified";
         }
     }
+=======
+    public $translatable = ['name, content, location'];
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
 
     public $attachOne = [
         'image' => 'System\Models\File'

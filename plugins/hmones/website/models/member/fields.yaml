@@ -57,6 +57,7 @@ fields:
         label: YouTube
         span: auto
         type: text
+<<<<<<< HEAD
     website:
         label: Website
         span: auto
@@ -73,3 +74,5 @@ fields:
         span: auto
         required: 1
         type: fileupload
+=======
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e

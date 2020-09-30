@@ -30,10 +30,15 @@ items:
                 title: MainMenu.About.History
                 nesting: 0
                 type: static-page
+<<<<<<< HEAD
                 url: null
                 code: ''
                 reference: history
                 cmsPage: null
+=======
+                code: ''
+                reference: history
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -43,10 +48,15 @@ items:
                 title: MainMenu.About.Supporters
                 nesting: 0
                 type: static-page
+<<<<<<< HEAD
                 url: null
                 code: ''
                 reference: supporters
                 cmsPage: null
+=======
+                code: ''
+                reference: supporters
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -56,10 +66,15 @@ items:
                 title: MainMenu.About.AdminBoard
                 nesting: 0
                 type: static-page
+<<<<<<< HEAD
                 url: null
                 code: ''
                 reference: board
                 cmsPage: null
+=======
+                code: ''
+                reference: board
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -69,10 +84,15 @@ items:
                 title: MainMenu.About.Steering
                 nesting: 0
                 type: static-page
+<<<<<<< HEAD
                 url: null
                 code: ''
                 reference: steering-committee
                 cmsPage: null
+=======
+                code: ''
+                reference: steering-committee
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -82,10 +102,15 @@ items:
                 title: MainMenu.About.Team
                 nesting: 0
                 type: static-page
+<<<<<<< HEAD
                 url: null
                 code: ''
                 reference: team
                 cmsPage: null
+=======
+                code: ''
+                reference: team
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -95,10 +120,15 @@ items:
                 title: MainMenu.About.Work
                 nesting: 0
                 type: static-page
+<<<<<<< HEAD
                 url: null
                 code: ''
                 reference: work-with-us
                 cmsPage: null
+=======
+                code: ''
+                reference: work-with-us
+>>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
                 replace: 0
                 viewBag:
                     isHidden: '0'
