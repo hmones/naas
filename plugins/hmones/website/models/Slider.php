@@ -17,7 +17,7 @@ class Slider extends Model
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
-    public $translatable = ['title, subtitle, btn_txt'];
+    public $translatable = ['title', 'subtitle', 'btn_txt'];
 
     public $attachOne = [
         'image' => 'System\Models\File'

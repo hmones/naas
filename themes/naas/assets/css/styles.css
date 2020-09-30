@@ -127,3 +127,11 @@ div.ui.repeating.pink.segment{
     padding-right:25px;
     padding-left:25px;
 }
+
+/*--------------------
+|   Topics       
+----------------------*/
+
+img.topicImage:hover{
+    filter:grayscale();
+}

@@ -17,7 +17,7 @@ class Member extends Model
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
-    public $translatable = ['name, content, location'];
+    public $translatable = ['name', 'content', 'location'];
 
     public $attachOne = [
         'image' => 'System\Models\File'

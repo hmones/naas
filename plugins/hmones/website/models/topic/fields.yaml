@@ -29,8 +29,8 @@ fields:
         span: auto
         required: 1
         type: datepicker
-    richeditor1:
-        label: 'Rich editor'
+    content:
+        label: Content
         size: large
         span: full
         type: richeditor

@@ -15,9 +15,28 @@ class Topic extends Model
      */
     public $table = 'hmones_website_topics';
 
+    /**
+     * date fields
+     * @var [type]
+     */
+    protected $dates = ['published_at'];
+
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
-    public $translatable = ['title, content, img_credits'];
+    public $translatable = ['title', 'content', 'img_credits'];
+
+    public function getTopicCategoryAttribute(){
+        switch($this->category){
+            case 0:
+                return "News";
+            case 1: 
+                return "Programs";
+            case 2:
+                return "Research";
+            default:
+                return "Unspecified";
+        }
+    }
 
     public $attachOne = [
         'image' => 'System\Models\File'
