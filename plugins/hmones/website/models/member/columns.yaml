@@ -4,11 +4,7 @@ columns:
         type: text
         searchable: true
         sortable: true
-<<<<<<< HEAD
     member_role:
-=======
-    role:
->>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
         label: Role
         type: number
         searchable: true

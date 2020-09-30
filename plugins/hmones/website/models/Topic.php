@@ -15,7 +15,6 @@ class Topic extends Model
      */
     public $table = 'hmones_website_topics';
 
-<<<<<<< HEAD
     /**
      * date fields
      * @var [type]
@@ -38,11 +37,6 @@ class Topic extends Model
                 return "Unspecified";
         }
     }
-=======
-    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
-
-    public $translatable = ['title, content, img_credits'];
->>>>>>> 41abf6a1c72d6fb6f3007eab788a323cb06f8c1e
 
     public $attachOne = [
         'image' => 'System\Models\File'
