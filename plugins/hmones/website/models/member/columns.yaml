@@ -4,7 +4,7 @@ columns:
         type: text
         searchable: true
         sortable: true
-    role:
+    member_role:
         label: Role
         type: number
         searchable: true

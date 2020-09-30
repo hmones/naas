@@ -108,8 +108,10 @@ items:
         title: MainMenu.News
         nesting: 0
         type: static-page
+        url: null
         code: ''
         reference: topic-news
+        cmsPage: null
         replace: 0
         viewBag:
             isHidden: '0'
@@ -117,13 +119,13 @@ items:
             isExternal: '0'
     -
         title: MainMenu.Network
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/members'
+        nesting: 0
+        type: static-page
+        url: null
         code: ''
-        reference: null
+        reference: members
         cmsPage: null
-        replace: null
+        replace: 0
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -131,39 +133,37 @@ items:
         items:
             -
                 title: MainMenu.Network.Members
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/members'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: members
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: MainMenu.Network.Affiliates
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/affiliates'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: affiliate
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: MainMenu.Network.Become
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/become-member'
+                nesting: 0
+                type: static-page
                 code: ''
-                reference: null
-                cmsPage: null
-                replace: null
+                reference: become-member
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -172,8 +172,10 @@ items:
         title: MainMenu.Programs
         nesting: 0
         type: static-page
+        url: null
         code: ''
         reference: topic-programs
+        cmsPage: null
         replace: 0
         viewBag:
             isHidden: '0'
@@ -183,8 +185,10 @@ items:
         title: MainMenu.Research
         nesting: 0
         type: static-page
+        url: null
         code: ''
         reference: topic-research
+        cmsPage: null
         replace: 0
         viewBag:
             isHidden: '0'

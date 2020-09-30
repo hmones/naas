@@ -9,7 +9,7 @@ columns:
         type: text
         searchable: true
         sortable: true
-    category:
+    topic_category:
         label: Category
         type: number
         searchable: true

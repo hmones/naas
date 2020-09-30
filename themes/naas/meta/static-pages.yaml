@@ -10,3 +10,6 @@ static-pages:
     topic-news: {  }
     topic-programs: {  }
     topic-research: {  }
+    members: {  }
+    affiliate: {  }
+    become-member: {  }

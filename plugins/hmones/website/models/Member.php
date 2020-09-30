@@ -19,6 +19,17 @@ class Member extends Model
 
     public $translatable = ['name', 'content', 'location'];
 
+    public function getMemberRoleAttribute(){
+        switch($this->role){
+            case 0:
+                return "Core";
+            case 1: 
+                return "Affiliate";
+            default:
+                return "Unspecified";
+        }
+    }
+
     public $attachOne = [
         'image' => 'System\Models\File'
     ];
