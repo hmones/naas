@@ -21,12 +21,13 @@ class EmailEvents
         $key = "hmones.membership::lang.ApplicationStatus.status_{$appStatus}";
         $status = Lang::get($key,[],$lang);
         $email = Email::where('name',$emailTemplate)->first();
-        $responses = Response::with('question')->where('submission_id',$submissionID)->get()->sortBy(function($response, $key){
-            if(isset($response->question->display_order)){
-                return intval($response->question->display_order);
-            }
-            return intval($response->question_id);
-        });
+        if($lang == 'en'){
+            $responses = Response::where('submission_id',$submissionID)->join('hmones_membership_questions','hmones_membership_questions.id','=','hmones_membership_responses.question_id')->selectRaw("hmones_membership_questions.display_order, hmones_membership_responses.*, hmones_membership_questions.question")->orderBy('hmones_membership_questions.display_order', 'asc')->get();
+        }else{
+            $responses = Response::where('submission_id',$submissionID)->join('hmones_membership_questions','hmones_membership_questions.id','=','hmones_membership_responses.question_id')->join("rainlab_translate_attributes", function ($join) use ($lang){
+                $join->on('rainlab_translate_attributes.model_id', '=', 'hmones_membership_responses.question_id')->where('rainlab_translate_attributes.locale', '=', $lang)->where('rainlab_translate_attributes.model_type','=','Hmones\Membership\Models\Question');
+            })->selectRaw("hmones_membership_questions.display_order, hmones_membership_responses.*, json_extract(rainlab_translate_attributes.attribute_data, '$.question') as question")->orderBy('hmones_membership_questions.display_order', 'asc')->get();
+        }
         $user = User::find($userID);
         $baseURL = Config::get('app.url');
         $applicationLink = "{$baseURL}/{$lang}/account/application/round/{$roundID}";
