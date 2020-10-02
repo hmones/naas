@@ -22,11 +22,11 @@ class EmailEvents
         $status = Lang::get($key,[],$lang);
         $email = Email::where('name',$emailTemplate)->first();
         if($lang == 'en'){
-            $responses = Response::where('submission_id',$submissionID)->join('hmones_membership_questions','hmones_membership_questions.id','=','hmones_membership_responses.question_id')->selectRaw("hmones_membership_questions.display_order, hmones_membership_responses.*, hmones_membership_questions.question")->orderBy('hmones_membership_questions.display_order', 'asc')->get();
+            $responses = Response::where('submission_id',$submissionID)->join('hmones_membership_questions','hmones_membership_questions.id','=','hmones_membership_responses.question_id')->selectRaw("hmones_membership_questions.display_order, hmones_membership_responses.*, hmones_membership_questions.question")->orderByRaw('hmones_membership_questions.display_order ASC')->get();
         }else{
             $responses = Response::where('submission_id',$submissionID)->join('hmones_membership_questions','hmones_membership_questions.id','=','hmones_membership_responses.question_id')->join("rainlab_translate_attributes", function ($join) use ($lang){
                 $join->on('rainlab_translate_attributes.model_id', '=', 'hmones_membership_responses.question_id')->where('rainlab_translate_attributes.locale', '=', $lang)->where('rainlab_translate_attributes.model_type','=','Hmones\Membership\Models\Question');
-            })->selectRaw("hmones_membership_questions.display_order, hmones_membership_responses.*, json_extract(rainlab_translate_attributes.attribute_data, '$.question') as question")->orderBy('hmones_membership_questions.display_order', 'asc')->get();
+            })->selectRaw("hmones_membership_questions.display_order, hmones_membership_responses.*, json_extract(rainlab_translate_attributes.attribute_data, '$.question') as question")->orderByRaw('hmones_membership_questions.display_order ASC')->get();
         }
         $user = User::find($userID);
         $baseURL = Config::get('app.url');
