@@ -2,6 +2,7 @@
 
 use Model;
 use Hmones\Membership\Classes\Constants;
+use Log;
 
 /**
  * Model
@@ -40,7 +41,12 @@ class Response extends Model
     ];
 
     public function getDisplayThemeAttribute(){
-        return Question::find($this->question_id)->theme->theme;
+	$question=Question::find($this->question_id);
+	if(isset($question->theme->theme)){
+		return $question->theme->theme;
+	}
+	Log::info($this->question_id);
+        return "Unspecified";
     }
     public function ResolveOption($jsonArray){
         $result = "";

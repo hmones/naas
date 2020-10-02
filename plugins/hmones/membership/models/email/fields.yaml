@@ -14,7 +14,5 @@ fields:
     email_txt:
         label: 'Content of the email'
         size: large
-        mode: tab
         span: full
-        stretch: 0
-        type: markdown
+        type: richeditor
