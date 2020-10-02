@@ -22,7 +22,10 @@ class EmailEvents
         $status = Lang::get($key,[],$lang);
         $email = Email::where('name',$emailTemplate)->first();
         $responses = Response::select('id', 'submission_id', 'question_id', 'text')->with('question:id,question,type,display_order')->where('submission_id',$submissionID)->get()->sortBy(function($response, $key){
-            return intval($response->question->display_order);
+            if(isset($response->question->display_order)){
+                return intval($response->question->display_order);
+            }
+            return intval($response->question_id);
         })->values()->toArray();
         $user = User::find($userID);
         $baseURL = Config::get('app.url');

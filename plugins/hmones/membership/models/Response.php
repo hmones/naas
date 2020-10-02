@@ -41,11 +41,10 @@ class Response extends Model
     ];
 
     public function getDisplayThemeAttribute(){
-	$question=Question::find($this->question_id);
-	if(isset($question->theme->theme)){
-		return $question->theme->theme;
-	}
-	Log::info($this->question_id);
+        $question=Question::find($this->question_id);
+        if(isset($question->theme->theme)){
+            return $question->theme->theme;
+        }
         return "Unspecified";
     }
     public function ResolveOption($jsonArray){
