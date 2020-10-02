@@ -240,9 +240,6 @@ $('#saveDraft').on('click', function(){
     $(this).addClass('loading');
     $('#main_form').trigger('submit');
 })
-$('#submitForm').on('click', function(){
-    $('.tiny.modal.submit').modal('show');
-});
 function handleSubmitForm(){
     var isFormValid = validateEmptyFields();
     if(isFormValid){
