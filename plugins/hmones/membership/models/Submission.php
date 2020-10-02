@@ -65,15 +65,27 @@ class Submission extends Model
     }
     public function afterUpdate()
     {
-        if($this->status != $this->original['status'] && $this->status != 1){
-            Queue::push('Hmones\Membership\Classes\EmailEvents', [
-                $this->id,
-                $this->user_id, 
-                $this->round_id,
-                $this->status,
-                $this->lang,
-                'submission-status-changed'
-            ]);
+        if($this->status != $this->original['status']){
+            if($this->status == 1){
+                Queue::push('Hmones\Membership\Classes\EmailEvents', [
+                    $this->id,
+                    $this->user_id, 
+                    $this->round_id,
+                    $this->status,
+                    $this->lang,
+                    'submission-submitted'
+                ]);
+            }else{
+                Queue::push('Hmones\Membership\Classes\EmailEvents', [
+                    $this->id,
+                    $this->user_id, 
+                    $this->round_id,
+                    $this->status,
+                    $this->lang,
+                    'submission-status-changed'
+                ]);
+            }
+            
         }
         
     }

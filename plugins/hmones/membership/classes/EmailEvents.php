@@ -26,7 +26,7 @@ class EmailEvents
         })->values()->toArray();
         $user = User::find($userID);
         $baseURL = Config::get('app.url');
-        $applicationLink = "{$baseURL}/account/application/round/{$roundID}";
+        $applicationLink = "{$baseURL}/{$lang}/account/application/round/{$roundID}";
         if($email && $user){
             $vars = [
                 'name' => $user->name,
