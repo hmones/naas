@@ -38,7 +38,7 @@ class EmailEvents
                 'subject' => $email->lang($lang)->subject,
                 'ApplicationLink' => $applicationLink,
                 'ApplicationStatus' => $status,
-                'responses' => $responses,
+                'responses' => $responses->values()->toArray(),
                 'lang' => $lang
             ];
             Mail::queue(['raw' => $email->lang($lang)->email_txt], $vars, function($message) use($vars) {
