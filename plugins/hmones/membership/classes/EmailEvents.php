@@ -21,12 +21,12 @@ class EmailEvents
         $key = "hmones.membership::lang.ApplicationStatus.status_{$appStatus}";
         $status = Lang::get($key,[],$lang);
         $email = Email::where('name',$emailTemplate)->first();
-        $responses = Response::select('id', 'submission_id', 'question_id', 'text')->with('question:id,question,type,display_order')->where('submission_id',$submissionID)->get()->sortBy(function($response, $key){
+        $responses = Response::with('question')->where('submission_id',$submissionID)->get()->sortBy(function($response, $key){
             if(isset($response->question->display_order)){
                 return intval($response->question->display_order);
             }
             return intval($response->question_id);
-        })->values()->toArray();
+        });
         $user = User::find($userID);
         $baseURL = Config::get('app.url');
         $applicationLink = "{$baseURL}/{$lang}/account/application/round/{$roundID}";
