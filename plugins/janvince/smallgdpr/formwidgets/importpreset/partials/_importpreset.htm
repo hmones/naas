@@ -1,0 +1,30 @@
+<div class="form-group text-field span-left">
+
+    <label>
+        <?= e(trans('janvince.smallgdpr::lang.formwidgets.importpreset.file_name')) ?>
+    </label>
+    
+    <input id="<?= $this->alias ?>-path-file-name" type="text" name="path_file_name" placeholder="<?= e(trans('janvince.smallgdpr::lang.formwidgets.importpreset.file_name_default')) ?>" class="form-control" />
+    
+    <p class="help-block after-field">
+        <?= e(trans('janvince.smallgdpr::lang.formwidgets.importpreset.file_name_comment')) ?>
+    </p>
+
+</div>
+
+<div class="form-group span-left">
+    
+    <button
+        class="btn btn-danger oc-icon-upload"
+        onclick="$(this).data('request-data', {
+            media_file_name: $('div[data-field-name=import_preset_media]').find('input').val(),
+            path_file_name: $('#<?= $this->alias ?>-path-file-name').val(),
+            })"
+        data-request="onImportPreset"
+        data-request-confirm="<?= e(trans('janvince.smallgdpr::lang.settings.form_fields.import_confirm')) ?>"
+        data-request-success="location.reload(true);"
+        data-stripe-load-indicator>
+            <?= e(trans('janvince.smallgdpr::lang.settings.form_fields.import')) ?>
+        </button>
+
+</div>
