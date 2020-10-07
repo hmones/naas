@@ -1,13 +1,11 @@
 items:
     -
         title: MainMenu.About
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/content/naas-network-arab-alternative-screens'
+        nesting: 0
+        type: static-page
         code: ''
-        reference: null
-        cmsPage: null
-        replace: null
+        reference: about
+        replace: 0
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -161,8 +159,10 @@ items:
                 title: MainMenu.Network.Become
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: become-member
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'

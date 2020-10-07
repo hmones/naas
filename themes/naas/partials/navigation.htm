@@ -3,8 +3,10 @@
         <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'ar'">العربية</a>
         &nbsp;|&nbsp;
         <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'">English</a>
-        &nbsp;|&nbsp;
-        <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'">Français</a>
+        {% if this.page.id in ['account-login', 'account-register','account-reset','account-update','account-dashboard','account-application'] %}
+            &nbsp;|&nbsp;
+            <a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'">Français</a>
+        {% endif %}
         <div class="socialMediaIcons">
             {% partial 'socialMediaLinks' %}
         </div>
