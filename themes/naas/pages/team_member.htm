@@ -1,0 +1,45 @@
+title = "Team Member"
+url = "/team/:slug"
+layout = "page-no-sidebar"
+is_hidden = 0
+==
+<?php
+use Hmones\Website\Models\Team;
+    public function onStart(){
+        $slug = $this->param('slug');
+        $team_member = Team::where('slug', $slug)->first();
+        if($team_member){
+            $this['team_member'] = $team_member;
+        }else{
+            return Redirect::to('/team');
+        }
+    }
+?>
+==
+<div class="ui stackable grid">
+    <div class="four wide column">
+        
+        <div class="ui card" style="box-shadow: none;border:1px solid #e6e7e8;">
+            <img src="{{team_member.image.getThumb(300,300,{'mode':'crop'})}}" alt="{{team_member.name}}" class="ui image">
+            <div class="content">
+                <div class="header">{{team_member.name}}</div>
+            <br/>
+            <div class="meta">
+                <div class="date">{{team_member.position}}</div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="twelve wide column">
+        <div class="ui padded basic segment">
+            {{team_member.bio | raw}}
+        </div>
+    </div>
+</div>
+{% put scripts %}
+<script>
+    $(function(){
+        $('div.ui.center.aligned.header').html('{{team_member.name}}');
+    });
+</script>
+{% endput %}

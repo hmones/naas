@@ -1,13 +1,11 @@
 items:
     -
         title: MainMenu.About
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/content/naas-network-arab-alternative-screens'
+        nesting: 0
+        type: static-page
         code: ''
-        reference: null
-        cmsPage: null
-        replace: null
+        reference: about
+        replace: 0
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -15,104 +13,117 @@ items:
         items:
             -
                 title: MainMenu.About.Naas
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/content/naas-network-arab-alternative-screens'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: about
                 cmsPage: null
-                replace: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: MainMenu.About.History
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: history
+                cmsPage: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: MainMenu.About.Supporters
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/content/naas-supporters-2018'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: supporters
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: MainMenu.About.AdminBoard
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/naas-board'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: board
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: MainMenu.About.Steering
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/steering-committee'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: steering-committee
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: MainMenu.About.Team
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/team'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: team
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: MainMenu.About.Work
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/content/work-us'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: work-with-us
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
     -
         title: MainMenu.News
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/all-news'
+        nesting: 0
+        type: static-page
+        url: null
         code: ''
-        reference: null
+        reference: topic-news
         cmsPage: null
-        replace: null
+        replace: 0
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
     -
         title: MainMenu.Network
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/members'
+        nesting: 0
+        type: static-page
+        url: null
         code: ''
-        reference: null
+        reference: members
         cmsPage: null
-        replace: null
+        replace: 0
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -120,94 +131,80 @@ items:
         items:
             -
                 title: MainMenu.Network.Members
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/members'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: members
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: MainMenu.Network.Affiliates
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/affiliates'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: affiliate
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: MainMenu.Network.Become
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/become-member'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: become-member
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
     -
-        title: MainMenu.Support
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/support-naas'
-        code: ''
-        reference: null
-        cmsPage: null
-        replace: null
-        viewBag:
-            isHidden: '0'
-            cssClass: ''
-            isExternal: '0'
-    -
         title: MainMenu.Programs
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/programs'
+        nesting: 0
+        type: static-page
+        url: null
         code: ''
-        reference: null
+        reference: topic-programs
         cmsPage: null
-        replace: null
+        replace: 0
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
     -
         title: MainMenu.Research
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/research'
+        nesting: 0
+        type: static-page
+        url: null
         code: ''
-        reference: null
+        reference: topic-research
         cmsPage: null
-        replace: null
+        replace: 0
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
-        items:
-            -
-                title: MainMenu.Programs
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/programs'
-                code: ''
-                reference: null
-                cmsPage: null
-                replace: null
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
+    -
+        title: MainMenu.Support
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: support-naas
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
 name: 'Main Menu'

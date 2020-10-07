@@ -1,0 +1,91 @@
+title = "Member"
+url = "/member/:slug"
+layout = "page-no-sidebar"
+is_hidden = 0
+==
+<?php
+use Hmones\Website\Models\Member;
+    public function onStart(){
+        $slug = $this->param('slug');
+        $member = Member::where('slug', $slug)->first();
+        if($member){
+            $this['member'] = $member;
+        }else{
+            return Redirect::to('/');
+        }
+    }
+?>
+==
+<div class="ui stackable grid">
+    <div class="five wide column">
+        <div class="ui fluid card" style="box-shadow: none;border:1px solid #e6e7e8;">
+            <img src="{{member.image.getThumb(300,300,{'mode':'crop'})}}" alt="{{team_member.name}}" class="ui image">
+            <div class="content">
+                <div class="header">{{member.name}}</div>
+                <div class="ui relaxed divided left aligned list">
+                    {% if member.location %}
+                        <div class="item">
+                            <i class="marker red icon"></i>
+                            <div class="content">
+                                {{member.location}}
+                            </div> 
+                        </div>
+                    {% endif %}
+                    {% if member.email %}
+                        <div class="item">
+                            <i class="envelope outline red icon"></i>
+                            <div class="content">
+                                {{member.email}}
+                            </div> 
+                        </div>
+                    {% endif %}
+                    {% if member.website %}
+                        <div class="item">
+                            <i class="globe red icon"></i>
+                            <div class="content">
+                                {{member.website}}
+                            </div> 
+                        </div>
+                    {% endif %}
+                </div>
+               
+                <div class="ui divider"></div>
+                <div class="date">
+                    {% if member.facebook %}
+                        <a href="{{member.facebook}}">
+                            <i class="red facebook f icon"></i>
+                        </a>
+                    {% endif %}
+                    {% if member.twitter %}
+                        <a href="{{member.twitter}}">
+                            <i class="red twitter t icon"></i>
+                        </a>
+                    {% endif %}
+                    {% if member.instagram %}
+                        <a href="{{member.instagram}}">
+                            <i class="red instagram icon"></i>
+                        </a>
+                    {% endif %}
+                    {% if member.youtube %}
+                        <a href="{{member.youtube}}">
+                            <i class="red youtube icon"></i>
+                        </a>
+                    {% endif %}
+                </div>
+        
+            </div>
+        </div>
+    </div>
+    <div class="eleven wide column">
+        <div class="ui basic segment">
+            {{member.content | raw}}
+        </div>
+    </div>
+</div>
+{% put scripts %}
+<script>
+    $(function(){
+        $('div.ui.center.aligned.header').html('{{team_member.name}}');
+    });
+</script>
+{% endput %}

@@ -12,6 +12,28 @@ use Hmones\Membership\Models\Response;
 
 /**
  * Model
+ *
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int $id
+ * @property string $lang
+ * @property int|null $round_id
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $user_id
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Submission newModelQuery()
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Submission newQuery()
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Submission query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Submission whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Submission whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Submission whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Submission whereLang($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Submission whereRoundId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Submission whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Submission whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Submission whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Submission year($year)
+ * @mixin \Eloquent
  */
 class Submission extends Model
 {

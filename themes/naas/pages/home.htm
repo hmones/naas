@@ -1,12 +1,94 @@
 title = "Home"
 url = "/"
-layout = "default"
+layout = "home"
 is_hidden = 0
 ==
+use Hmones\Website\Models\Topic;
+use Hmones\Website\Models\Slider;
+
 public function onStart(){
-    return Redirect::to('/account/dashboard/');
+    $this['news'] = Topic::where('category',0)->orderBy('published_at','desc')->take(6)->get();
+    $this['main_slides'] = Slider::where('position','main')->orderBy('display_order', 'asc')->get();
+    $this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_order', 'asc')->get();
 }
 ==
-<h1 class="ui horizontal divider header">Hello world</h1>
-
-<button class="ui pink button">Learn More <i class="info icon"></i></button>
+<div class="main-slider" style="height: 80vh;">
+    {% for slide in main_slides %}
+        <div class="ui placeholder basic segment" style="margin-top:0px;background-image: url({{slide.image.getThumb('1900','800',{'mode':'crop'})}}); background-size:cover;background-position:center;">
+            <div>
+                <h1 class="ui inverted centered header" style="margin-bottom: 0px;">
+                    {{slide.title}}
+                </h1>
+                <h3 class="ui inverted centered header" style="margin-top:0px;">
+                    {{slide.subtitle}}
+                </h3>
+                <a href="{{slide.link}}" class="ui pink large button">{{slide.btn_txt}}</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div class="ui hidden divider"></div>
+<div class="ui hidden divider"></div>
+<div class="ui container">
+    <div class="ui stackable grid">
+        <div class="seven wide column">
+            <div class="ui header">{{'Pages.Home.AboutSection.Header'|_}}</div>
+            <div class="ui basic segment">
+                <p>
+                    {{'Pages.Home.AboutSection.Content'|_}}
+                </p>
+            </div>
+            <div class="ui divider"></div>
+        </div>
+        <div class="nine wide column">
+            <div class="ui header">{{'Pages.Home.SliderSection.Header'|_}}</div>
+            <div class="secondary-slider">
+                {% for slide in secondary_slides %}
+                    <a href="{{slide.image.path}}" target="_blank">
+                        <img src="{{slide.image.path}}" height="280px" alt="{{slide.title}}">
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <h1 class="ui centered header" style="margin-bottom: 40px;">{{'Pages.Home.News'|_}}</h1>
+    <div class="ui {% if news.count() < 2 %} one {% else %} three {% endif %} stackable cards">
+    {% for topic in news %}
+        <div class="ui raised card" style="box-shadow:none;">
+            <a href="{{'topic'|page({'slug':topic.slug, 'category':category_name})}}">
+                <div class="image">
+                    <img class="ui image topicImage" src="{{topic.image.getThumb('300','300', {'mode':'crop'})}}" width="100%">
+                </div>
+                <div class="ui pink inverted padded segment content">
+                    <a class="header" href="{{'topic'|page({'slug':topic.slug, 'category':category_name})}}">{{str_limit(topic.title, 60)}}</a>
+                </div>
+                <div class="ui grey inverted padded segment extra content">
+                    <div class="meta">
+                        <span class="date"> <i class="clock outline icon"></i> {{topic.published_at.diffForHumans()}}</span>
+                    </div>
+                </div> 
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% put scripts %}
+    <script>
+        $('.main-slider').slick({
+            dots:true,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            infinite: true,
+        });
+        $('.secondary-slider').slick({
+            autoplay: true,
+            autoplaySpeed: 2000,
+            variableWidth: true,
+            infinite: true,
+            adaptiveHeight:true,
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+        });
+    </script>
+{% endput %}
