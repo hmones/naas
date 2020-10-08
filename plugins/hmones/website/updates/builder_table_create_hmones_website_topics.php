@@ -13,7 +13,7 @@ class BuilderTableCreateHmonesWebsiteTopics extends Migration
             $table->increments('id')->unsigned();
             $table->text('title');
             $table->text('content')->nullable();
-            $table->text('slug')->nullable()->index();
+            $table->text('slug')->nullable();
             $table->text('img_credits')->nullable();
             $table->smallInteger('category')->default(0)->index();
             $table->timestamp('published_at')->nullable()->index();
