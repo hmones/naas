@@ -1,4 +1,6 @@
-1.0.1: 'First version of website'
+1.0.1: 
+    - 'First version of website'
+    - builder_table_create_hmones_website_topics.php
 1.0.2:
     - 'Created table hmones_website_slider'
     - builder_table_create_hmones_website_slider.php
