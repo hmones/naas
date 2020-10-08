@@ -7,6 +7,7 @@ use Hmones\Website\Models\Topic;
 use Hmones\Website\Models\Slider;
 
 public function onStart(){
+    return Redirect::to('account/dashboard');
     $this['news'] = Topic::where('category',0)->orderBy('published_at','desc')->take(6)->get();
     $this['main_slides'] = Slider::where('position','main')->orderBy('display_order', 'asc')->get();
     $this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_order', 'asc')->get();
