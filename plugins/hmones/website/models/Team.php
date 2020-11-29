@@ -17,7 +17,7 @@ class Team extends Model
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
-    public $translatable = ['bio', 'name', 'img_credits', 'position'];
+    public $translatable = ['bio', 'name', 'img_credits', 'position', 'bio_summary'];
 
     public $attachOne = [
         'image' => 'System\Models\File'
