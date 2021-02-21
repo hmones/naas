@@ -7,25 +7,26 @@ use Hmones\Website\Models\Topic;
 use Hmones\Website\Models\Slider;
 
 public function onStart(){
-    //return Redirect::to('account/dashboard');
-    $this['news'] = Topic::where('category',0)->orderBy('published_at','desc')->take(6)->get();
-    $this['main_slides'] = Slider::where('position','main')->orderBy('display_order', 'asc')->get();
-    $this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_order', 'asc')->get();
+//return Redirect::to('account/dashboard');
+$this['news'] = Topic::where('category',0)->orderBy('published_at','desc')->take(6)->get();
+$this['main_slides'] = Slider::where('position','main')->orderBy('display_order', 'asc')->get();
+$this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_order', 'asc')->get();
 }
 ==
-<div class="main-slider" style="height: 80vh;">
+<div class="main-slider">
     {% for slide in main_slides %}
-        <div class="ui placeholder basic segment" style="margin-top:0px;background-image: url({{slide.image.getThumb('1900','800',{'mode':'crop'})}}); background-size:cover;background-position:center;">
-            <div>
-                <h1 class="ui inverted centered header" style="margin-bottom: 0px;">
-                    {{slide.title}}
-                </h1>
-                <h3 class="ui inverted centered header" style="margin-top:0px;">
-                    {{slide.subtitle}}
-                </h3>
-                <a href="{{slide.link}}" class="ui pink large button">{{slide.btn_txt}}</a>
-            </div>
+    <div class="ui placeholder basic segment slide">
+        <img alt="{{slide.title}}" class="slide image custom css" src="{{slide.image.getThumb('1900','800',{'mode':'crop'})}}" />
+        <div>
+            <h1 class="ui inverted centered header" style="margin-bottom: 0px;">
+                {{slide.title}}
+            </h1>
+            <h3 class="ui inverted centered header" style="margin-top:0px;">
+                {{slide.subtitle}}
+            </h3>
+            <a class="ui pink large button" href="{{slide.link}}">{{slide.btn_txt}}</a>
         </div>
+    </div>
     {% endfor %}
 </div>
 <div class="ui hidden divider"></div>
@@ -45,16 +46,16 @@ public function onStart(){
             <div class="ui header">{{'Pages.Home.SliderSection.Header'|_}}</div>
             <div class="secondary-slider">
                 {% for slide in secondary_slides %}
-                    <a href="{{slide.image.path}}" target="_blank">
-                        <img src="{{slide.image.path}}" height="280px" alt="{{slide.title}}">
-                    </a>
+                <a href="{{slide.image.path}}" target="_blank">
+                    <img alt="{{slide.title}}" height="280px" src="{{slide.image.path}}">
+                </a>
                 {% endfor %}
             </div>
         </div>
     </div>
     <h1 class="ui centered header" style="margin-bottom: 40px;">{{'Pages.Home.News'|_}}</h1>
     <div class="ui {% if news.count() < 2 %} one {% else %} three {% endif %} stackable cards">
-    {% for topic in news %}
+        {% for topic in news %}
         <div class="ui raised card" style="box-shadow:none;">
             <a href="{{'topic'|page({'slug':topic.slug, 'category':category_name})}}">
                 <div class="image">
@@ -67,36 +68,36 @@ public function onStart(){
                     <div class="meta">
                         <span class="date"> <i class="clock outline icon"></i> {{topic.published_at.diffForHumans()}}</span>
                     </div>
-                </div> 
+                </div>
             </a>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 </div>
 
 {% put scripts %}
-    <script>
-        $('.main-slider').slick({
-	    {% if activeLocale == 'ar'%}
-		rtl:true,
-	    {% endif %}
-            dots:true,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            infinite: true,
-        });
-        $('.secondary-slider').slick({
-	    {% if activeLocale == 'ar' %}
-		rtl:true,
-	    {% endif %}
-            autoplay: true,
-            autoplaySpeed: 2000,
-            variableWidth: true,
-            infinite: true,
-            adaptiveHeight:true,
-            centerMode: true,
-            centerPadding: '60px',
-            slidesToShow: 3,
-        });
-    </script>
+<script>
+    $('.main-slider').slick({
+    {% if activeLocale == 'ar'%}
+    rtl:true,
+    {% endif %}
+    dots:true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        infinite: true,
+    });
+    $('.secondary-slider').slick({
+    {% if activeLocale == 'ar' %}
+    rtl:true,
+    {% endif %}
+    autoplay: true,
+        autoplaySpeed: 2000,
+        variableWidth: true,
+        infinite: true,
+        adaptiveHeight:true,
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3,
+    });
+</script>
 {% endput %}
