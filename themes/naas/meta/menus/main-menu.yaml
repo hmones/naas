@@ -1,13 +1,11 @@
 items:
     -
         title: MainMenu.About
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/content/naas-network-arab-alternative-screens'
+        nesting: 0
+        type: static-page
         code: ''
-        reference: null
-        cmsPage: null
-        replace: null
+        reference: about
+        replace: 0
         viewBag:
             locale:
                 ar:
@@ -22,13 +20,13 @@ items:
         items:
             -
                 title: MainMenu.About.Naas
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/content/naas-network-arab-alternative-screens'
+                nesting: 0
+                type: static-page
+                url: null
                 code: ''
-                reference: null
+                reference: about
                 cmsPage: null
-                replace: null
+                replace: 0
                 viewBag:
                     locale:
                         ar:
@@ -64,8 +62,10 @@ items:
                 title: MainMenu.About.Supporters
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: supporters
+                cmsPage: null
                 replace: 0
                 viewBag:
                     locale:
@@ -82,8 +82,10 @@ items:
                 title: MainMenu.About.AdminBoard
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: board
+                cmsPage: null
                 replace: 0
                 viewBag:
                     locale:
@@ -120,8 +122,10 @@ items:
                 title: MainMenu.About.Team
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: team
+                cmsPage: null
                 replace: 0
                 viewBag:
                     locale:
@@ -136,13 +140,11 @@ items:
                     isExternal: '0'
             -
                 title: MainMenu.About.Work
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/content/work-us'
+                nesting: 0
+                type: static-page
                 code: ''
-                reference: null
-                cmsPage: null
-                replace: null
+                reference: work-with-us
+                replace: 0
                 viewBag:
                     locale:
                         ar:
@@ -156,13 +158,11 @@ items:
                     isExternal: '0'
     -
         title: MainMenu.News
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/all-news'
+        nesting: 0
+        type: static-page
         code: ''
-        reference: null
-        cmsPage: null
-        replace: null
+        reference: topic-news
+        replace: 0
         viewBag:
             locale:
                 ar:
@@ -176,13 +176,11 @@ items:
             isExternal: '0'
     -
         title: MainMenu.Network
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/members'
+        nesting: 0
+        type: static-page
         code: ''
-        reference: null
-        cmsPage: null
-        replace: null
+        reference: members
+        replace: 0
         viewBag:
             locale:
                 ar:
@@ -197,13 +195,11 @@ items:
         items:
             -
                 title: MainMenu.Network.Members
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/members'
+                nesting: 0
+                type: static-page
                 code: ''
-                reference: null
-                cmsPage: null
-                replace: null
+                reference: members
+                replace: 0
                 viewBag:
                     locale:
                         ar:
@@ -217,13 +213,11 @@ items:
                     isExternal: '0'
             -
                 title: MainMenu.Network.Affiliates
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/affiliates'
+                nesting: 0
+                type: static-page
                 code: ''
-                reference: null
-                cmsPage: null
-                replace: null
+                reference: affiliate
+                replace: 0
                 viewBag:
                     locale:
                         ar:
@@ -237,13 +231,11 @@ items:
                     isExternal: '0'
             -
                 title: MainMenu.Network.Become
-                nesting: null
-                type: url
-                url: 'https://naasnetwork.org/become-member'
+                nesting: 0
+                type: static-page
                 code: ''
-                reference: null
-                cmsPage: null
-                replace: null
+                reference: become-member
+                replace: 0
                 viewBag:
                     locale:
                         ar:
@@ -257,13 +249,11 @@ items:
                     isExternal: '0'
     -
         title: MainMenu.Programs
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/programs'
+        nesting: 0
+        type: static-page
         code: ''
-        reference: null
-        cmsPage: null
-        replace: null
+        reference: topic-programs
+        replace: 0
         viewBag:
             locale:
                 ar:
@@ -277,13 +267,11 @@ items:
             isExternal: '0'
     -
         title: MainMenu.Research
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/research'
+        nesting: 0
+        type: static-page
         code: ''
-        reference: null
-        cmsPage: null
-        replace: null
+        reference: topic-research
+        replace: 0
         viewBag:
             locale:
                 ar:
@@ -297,13 +285,11 @@ items:
             isExternal: '0'
     -
         title: MainMenu.Support
-        nesting: null
-        type: url
-        url: 'https://naasnetwork.org/support-naas'
+        nesting: 0
+        type: static-page
         code: ''
-        reference: null
-        cmsPage: null
-        replace: null
+        reference: support-naas
+        replace: 0
         viewBag:
             locale:
                 ar:

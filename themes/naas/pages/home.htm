@@ -7,7 +7,7 @@ use Hmones\Website\Models\Topic;
 use Hmones\Website\Models\Slider;
 
 public function onStart(){
-    return Redirect::to('account/dashboard');
+    //return Redirect::to('account/dashboard');
     $this['news'] = Topic::where('category',0)->orderBy('published_at','desc')->take(6)->get();
     $this['main_slides'] = Slider::where('position','main')->orderBy('display_order', 'asc')->get();
     $this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_order', 'asc')->get();
@@ -73,15 +73,22 @@ public function onStart(){
     {% endfor %}
     </div>
 </div>
+
 {% put scripts %}
     <script>
         $('.main-slider').slick({
+	    {% if activeLocale == 'ar'%}
+		rtl:true,
+	    {% endif %}
             dots:true,
             autoplay: true,
             autoplaySpeed: 2000,
             infinite: true,
         });
         $('.secondary-slider').slick({
+	    {% if activeLocale == 'ar' %}
+		rtl:true,
+	    {% endif %}
             autoplay: true,
             autoplaySpeed: 2000,
             variableWidth: true,
