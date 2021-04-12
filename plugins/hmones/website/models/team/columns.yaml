@@ -18,7 +18,7 @@ columns:
     label: Category
     type: number
     searchable: false
-    sortable: true
+    sortable: false
   updated_at:
     label: Updated
     type: timesince

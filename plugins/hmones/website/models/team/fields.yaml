@@ -18,6 +18,7 @@ fields:
             - 'Core team'
             - 'Steering Committee'
             - 'Administrative Board'
+            - 'German Board'
         showSearch: true
         span: auto
         required: 1
