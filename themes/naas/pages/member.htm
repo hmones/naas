@@ -28,27 +28,27 @@ use Hmones\Website\Models\Member;
                             <i class="marker red icon"></i>
                             <div class="content">
                                 {{member.location}}
-                            </div> 
+                            </div>
                         </div>
                     {% endif %}
                     {% if member.email %}
                         <div class="item">
                             <i class="envelope outline red icon"></i>
                             <div class="content">
-                                {{member.email}}
-                            </div> 
+                                <a href="mailto:{{member.email}}">{{member.email}}</a>
+                            </div>
                         </div>
                     {% endif %}
                     {% if member.website %}
                         <div class="item">
                             <i class="globe red icon"></i>
                             <div class="content">
-                                {{member.website}}
-                            </div> 
+                                <a href="{{member.website}}">{{str_limit(member.website, 30)}}</a>
+                            </div>
                         </div>
                     {% endif %}
                 </div>
-               
+
                 <div class="ui divider"></div>
                 <div class="date">
                     {% if member.facebook %}
@@ -72,7 +72,7 @@ use Hmones\Website\Models\Member;
                         </a>
                     {% endif %}
                 </div>
-        
+
             </div>
         </div>
     </div>
