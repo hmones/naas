@@ -35,7 +35,7 @@ use Hmones\Website\Models\Member;
                         <div class="item">
                             <i class="envelope outline red icon"></i>
                             <div class="content">
-                                <a href="mailto:{{member.email}}">{{member.email}}</a>
+                                <a href="mailto:{{member.email}}" target="_blank">{{member.email}}</a>
                             </div>
                         </div>
                     {% endif %}
@@ -43,7 +43,7 @@ use Hmones\Website\Models\Member;
                         <div class="item">
                             <i class="globe red icon"></i>
                             <div class="content">
-                                <a href="{{member.website}}">{{str_limit(member.website, 30)}}</a>
+                                <a href="{{member.website}}" target="_blank">{{str_limit(member.website, 30)}}</a>
                             </div>
                         </div>
                     {% endif %}
@@ -52,22 +52,22 @@ use Hmones\Website\Models\Member;
                 <div class="ui divider"></div>
                 <div class="date">
                     {% if member.facebook %}
-                        <a href="{{member.facebook}}">
+                        <a href="{{member.facebook}}"  target="_blank">
                             <i class="red facebook f icon"></i>
                         </a>
                     {% endif %}
                     {% if member.twitter %}
-                        <a href="{{member.twitter}}">
+                        <a href="{{member.twitter}}" target="_blank">
                             <i class="red twitter t icon"></i>
                         </a>
                     {% endif %}
                     {% if member.instagram %}
-                        <a href="{{member.instagram}}">
+                        <a href="{{member.instagram}}" target="_blank">
                             <i class="red instagram icon"></i>
                         </a>
                     {% endif %}
                     {% if member.youtube %}
-                        <a href="{{member.youtube}}">
+                        <a href="{{member.youtube}}" target="_blank">
                             <i class="red youtube icon"></i>
                         </a>
                     {% endif %}
