@@ -33,7 +33,7 @@ $this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_
 <div class="ui hidden divider"></div>
 <div class="ui container">
     <div class="ui stackable grid">
-        <div class="seven wide column">
+        <div class="column">
             <div class="ui header">{{'Pages.Home.AboutSection.Header'|_}}</div>
             <div class="ui basic segment">
                 <p>
@@ -41,16 +41,6 @@ $this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_
                 </p>
             </div>
             <div class="ui divider"></div>
-        </div>
-        <div class="nine wide column">
-            <div class="ui header">{{'Pages.Home.SliderSection.Header'|_}}</div>
-            <div class="secondary-slider">
-                {% for slide in secondary_slides %}
-                <a href="{{slide.image.path}}" target="_blank">
-                    <img alt="{{slide.title}}" height="280px" src="{{slide.image.path}}">
-                </a>
-                {% endfor %}
-            </div>
         </div>
     </div>
     <h1 class="ui centered header" style="margin-bottom: 40px;">{{'Pages.Home.News'|_}}</h1>
@@ -85,19 +75,6 @@ $this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_
         autoplay: true,
         autoplaySpeed: 2000,
         infinite: true,
-    });
-    $('.secondary-slider').slick({
-    {% if activeLocale == 'ar' %}
-    rtl:true,
-    {% endif %}
-    autoplay: true,
-        autoplaySpeed: 2000,
-        variableWidth: true,
-        infinite: true,
-        adaptiveHeight:true,
-        centerMode: true,
-        centerPadding: '60px',
-        slidesToShow: 3,
     });
 </script>
 {% endput %}
