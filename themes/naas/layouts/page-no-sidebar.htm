@@ -44,7 +44,9 @@ default = 1
                 </div>
                 <div class="ui centered stackable grid">
                     {% partial 'header-image' %}
-                    {% page %}
+                    <div class="ui {{activeLocale == 'ar' ? 'right' : 'left'}} aligned ">
+                        {% page %}
+                    </div>
                 </div>
                 {% partial 'mailing-list' %}
             </div>
