@@ -44,13 +44,13 @@ default = 1
                 </div>
                 <div class="ui centered stackable grid">
                     {% partial 'header-image' %}
-                    <div class="ui {{activeLocale == 'ar' ? 'right' : 'left'}} aligned ">
+                    <div class="ui left aligned container">
                         {% page %}
                     </div>
                 </div>
                 {% partial 'mailing-list' %}
             </div>
-            
+
             {% partial 'footer' %}
             {% component 'cookiesBar' %}
         </div>
