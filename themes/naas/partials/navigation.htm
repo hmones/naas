@@ -14,16 +14,15 @@
         <div class="socialMediaIcons">
             {% partial 'socialMediaLinks' %}
         </div>
-        <div ar class="{{activeLocale=="
-        "?'left':'right'}} menu">
-        {% partial 'navSearch' %}
-        <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> {{'TopMenu.MemberSpace'|_}}</a>
-        &nbsp;&nbsp;&nbsp;
-        {% if user %}
-        <a data-request="onLogout" data-request-data="redirect: '/'" href="#"><i class="power off red icon"></i></a>
-        {% endif %}
+        <div class="{{activeLocale=='ar' ? 'left':'right'}} menu">
+            {% partial 'navSearch' %}
+            <a href="{{'account/dashboard'|page}}"> <i class="user red small icon"></i> {{'TopMenu.MemberSpace'|_}}</a>
+            &nbsp;&nbsp;&nbsp;
+            {% if user %}
+            <a data-request="onLogout" data-request-data="redirect: '/'" href="#"><i class="power off red icon"></i></a>
+            {% endif %}
+        </div>
     </div>
-</div>
 </div>
 <div class="ui top fixed menu topMainMenu">
     <div class="ui container">
@@ -40,7 +39,7 @@
 <div class="ui top menu mobileMenu">
     <div class="ui container">
         <a class="item" href="{{'home'|page}}">
-            <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
+            <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px"/>
         </a>
         <div class="right menu">
             <a href="#" onclick="onToggleMenu();"><i class="bars large icon"></i></a>
@@ -50,7 +49,7 @@
 
 <div class="ui left sidebar vertical menu mobileMenuContent">
     <div class="item">
-        <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px">
+        <img class="ui image" src="{{'assets/images/logo.png'|theme}}" width="170px"/>
     </div>
     <div class="item">
         {% partial 'navSearch' %}
