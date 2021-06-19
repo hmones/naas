@@ -18,7 +18,7 @@ $this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_
     <div class="ui placeholder basic segment slide">
         <img alt="{{slide.title}}" class="slide image custom css" src="{{slide.image.getThumb('1900','800',{'mode':'crop'})}}" />
         <div>
-            <h1 class="ui inverted centered header" style="margin-bottom: 0px;">
+            <h1 class="ui inverted centered header" style="margin-bottom: 0px;padding-bottom:5px;">
                 {{slide.title}}
             </h1>
             <h3 class="ui inverted centered header" style="margin-top:0px;">

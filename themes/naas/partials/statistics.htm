@@ -12,7 +12,7 @@ public function onStart(){
 ?>
 ==
 <div id="statistics" style="display: none;">
-    <h3>Statistics</h3>
+    <h3>{{'Sidebar.Statistics.Title'|_}}</h3>
     <div class="ui divider"></div>
     <div class="ui hidden divider"></div>
     {% for statistic in statistics %}
@@ -38,15 +38,15 @@ public function onStart(){
         {% for statistic in statistics %}
             var {{'statistic_' ~ statistic.id}} = parseInt('{{statistic.value}}');
             var {{'statistic_counter_' ~ statistic.id}} = 0;
-            var {{'statistic_timer' ~ statistic.id }} = setInterval(function(){ 
+            var {{'statistic_timer' ~ statistic.id }} = setInterval(function(){
                 increment_{{statistic.id}}();
             }, Math.ceil(duration/{{'statistic_' ~ statistic.id}}));
             function increment_{{statistic.id}}(){
                 $('#statistic_'+'{{statistic.id}}').html({{'statistic_counter_' ~ statistic.id}});
                 {{'statistic_counter_' ~ statistic.id}} += {{statistic.step}};
-                if({{'statistic_counter_' ~ statistic.id}} > {{'statistic_' ~ statistic.id}}){ 
+                if({{'statistic_counter_' ~ statistic.id}} > {{'statistic_' ~ statistic.id}}){
                     clearInterval({{'statistic_timer' ~ statistic.id }});
-                } 
+                }
             }
         {% endfor %}
     });
