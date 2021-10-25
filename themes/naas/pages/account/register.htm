@@ -11,11 +11,9 @@ requirePassword = 0
 ==
 <?php
 public function onRegistration(){
-    
     $this->account->onRegister();
     $user = $this->account->user();
     if($user){
-        $user->email_org=post('email_org');
         $user->website=post('website');
         $user->facebook=post('facebook');
         $user->twitter=post('twitter');
@@ -39,26 +37,20 @@ public function onEnd(){
     <div class="ui divider"></div>
     <div class="ui hidden divider"></div>
     {{ form_ajax('onRegistration', { class: 'ui form'}) }}
+        <div class="field">
+            <label>{{'Pages.Account.Register.NameField'|_}}</label>
+            <input name="name" type="text" placeholder="{{'Pages.Account.Register.NamePlaceholder'|_}}" />
+
+        </div>
         <div class="two fields">
             <div class="field">
                 <label>{{'Pages.Account.Register.EmailField'|_}}</label>
                 <input name="email" type="email" placeholder="{{'Pages.Account.Register.EmailPlaceholder'|_}}" />
-                
+
             </div>
             <div class="field">
                 <label>{{'Pages.Account.Register.PasswordField'|_}}</label>
                 <input name="password" type="password" placeholder="{{'Pages.Account.Register.PasswordPlaceholder'|_}}" />
-            </div>
-        </div>
-        <div class="two fields">
-            <div class="field">
-                <label>{{'Pages.Account.Register.NameField'|_}}</label>
-                <input name="name" type="text" placeholder="{{'Pages.Account.Register.NamePlaceholder'|_}}" />
-                
-            </div>
-            <div class="field">
-                <label>{{'Pages.Account.Register.OrgEmailField'|_}}</label>
-                <input name="email_org" type="email" placeholder="{{'Pages.Account.Register.OrgEmailPlaceholder'|_}}" />
             </div>
         </div>
         <div class="three fields">
@@ -68,7 +60,7 @@ public function onEnd(){
                     <input name="website" type="text" placeholder="{{'Pages.Account.Register.WebsitePlaceholder'|_}}" />
                     <i class="globe icon"></i>
                 </div>
-                
+
             </div>
             <div class="field">
                 <label>{{'Pages.Account.Register.TwitterField'|_}}</label>

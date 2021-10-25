@@ -16,15 +16,14 @@ public function onHandleUpdate(){
     if($user){
         $data = Input::post();
         $rules = [
-        'name' => 'required',
-        'email' => 'required|email'
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email'
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
             Flash::error(Lang::get('hmones.membership::lang.messages.emptyNameEmail',[],$this['activeLocale']));
             return Redirect::to('account/profile');
         }
-        $user->email_org=post('email_org');
         $user->website=post('website');
         $user->facebook=post('facebook');
         $user->twitter=post('twitter');
@@ -51,34 +50,25 @@ public function onEnd(){
     <div class="ui divider"></div>
     <div class="ui hidden divider"></div>
     {{ form_ajax('onHandleUpdate', { class: 'ui form'}) }}
-    <div class="two fields">
-        <div class="field">
-            <label>{{'Pages.Account.Register.NameField'|_}}</label>
-            <input name="name" type="text" placeholder="{{'Pages.Account.Register.NamePlaceholder'|_}}" value="{{user.name}}" />
-        </div>
-        <div class="field">
-            <label>{{'Pages.Account.Register.EmailField'|_}}Email</label>
-            <input name="email" type="email" placeholder="{{'Pages.Account.Register.EmailPlaceholder'|_}}" value="{{user.email}}" required />
-        </div>
+    <div class="field">
+        <label>{{'Pages.Account.Register.NameField'|_}}</label>
+        <input name="name" type="text" placeholder="{{'Pages.Account.Register.NamePlaceholder'|_}}" value="{{user.name}}" />
     </div>
     <div class="two fields">
         <div class="field">
-            <label>{{'Pages.Account.Register.OrgEmailField'|_}}</label>
-            <input name="email_org" type="email" placeholder="{{'Pages.Account.Register.OrgEmailPlaceholder'|_}}"
-                value="{{user.email_org}}" />
+            <label>{{'Pages.Account.Register.EmailField'|_}}Email</label>
+            <input name="email" type="email" placeholder="{{'Pages.Account.Register.EmailPlaceholder'|_}}" value="{{user.email}}" required />
         </div>
         <div class="field">
             <label>{{'Pages.Account.Register.WebsiteField'|_}}</label>
             <div class="ui left icon input">
                 <input name="website" type="text" placeholder="{{'Pages.Account.Register.WebsitePlaceholder'|_}}"
-                    value="{{user.website}}" />
+                       value="{{user.website}}" />
                 <i class="globe icon"></i>
             </div>
-
         </div>
     </div>
     <div class="two fields">
-
         <div class="field">
             <label>{{'Pages.Account.Register.TwitterField'|_}}</label>
             <div class="ui left icon input">
