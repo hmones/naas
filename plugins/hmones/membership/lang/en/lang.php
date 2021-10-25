@@ -7,7 +7,7 @@
         'resetSuccess' => 'Password reset successfully',
         'emailSent' => 'Check your email for password reset code',
         'profileUpdated' => 'Profile updated successfully',
-        'emptyNameEmail' => 'Name or email can not be empty',
+        'emptyNameEmail' => 'Name or email can not be empty and email has to be unique',
         'applicationSaved' => 'Form saved successfully',
         'applicationSubmitted' => 'Membership form has been submitted successfully',
         'applicationAlreadySubmitted' => 'We received your membership form for this round, it can no longer be modified. Please reach out to the NAAS team on membership@naasnetwork.org for any modifications.',
