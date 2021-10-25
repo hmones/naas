@@ -26,7 +26,7 @@ use Hmones\Website\Models\Member;
                       </div>
                 </div>
                 <div class="ui grey inverted basic padded segment hidden content" style="height:100%;">
-                    <span style="color:black;">{{str_limit(member.content, 200) | raw}}</span>
+                    <span style="color:black;">{{html_strip(str_limit(member.content, 200))}}</span>
                     <br/>
                     <a href="{{'member'|page({'slug':member.slug})}}"><i class="red plus icon"></i></a>
                 </div>
@@ -38,9 +38,9 @@ use Hmones\Website\Models\Member;
               </div>
             </div>
           </div>
-
 {% endfor %}
 </div>
+
 
 {% put scripts %}
 <script>
