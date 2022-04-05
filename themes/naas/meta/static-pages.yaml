@@ -15,3 +15,5 @@ static-pages:
     become-member: {  }
     privacy-policy: {  }
     impresum: {  }
+    draft: {  }
+    rrang: {  }
