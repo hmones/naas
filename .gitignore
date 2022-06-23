@@ -1,6 +1,8 @@
 /bootstrap/compiled.php
 /semantic
 /vendor
+/backup
+.htaccess.*
 composer.phar
 .DS_Store
 .idea
@@ -24,3 +26,4 @@ _ide_helper.php
 .phpstorm.meta.php
 config/ide-helper.php
 nbproject
+error_log

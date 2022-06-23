@@ -27,6 +27,6 @@ class Slider extends Model
      * @var array Validation rules
      */
     public $rules = [
-        'image' => 'image|max:2000|dimensions:min_width=100,min_height=100'
+        'image' => 'file|max:10000'
     ];
 }

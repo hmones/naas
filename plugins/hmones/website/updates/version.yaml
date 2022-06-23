@@ -1,4 +1,4 @@
-1.0.1: 
+1.0.1:
     - 'First version of website'
     - builder_table_create_hmones_website_topics.php
 1.0.2:
@@ -37,3 +37,6 @@
 1.0.13:
     - 'Updated table hmones_website_teams'
     - builder_table_update_hmones_website_teams.php
+1.0.14:
+    - 'Updated table hmones_website_teams'
+    - builder_table_update_hmones_website_teams_2.php

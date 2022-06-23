@@ -3,28 +3,39 @@ url = "/"
 layout = "home"
 is_hidden = 0
 ==
+<?php
 use Hmones\Website\Models\Topic;
 use Hmones\Website\Models\Slider;
 
 public function onStart(){
-//return Redirect::to('account/dashboard');
 $this['news'] = Topic::where('category',0)->orderBy('published_at','desc')->take(6)->get();
 $this['main_slides'] = Slider::where('position','main')->orderBy('display_order', 'asc')->get();
 $this['secondary_slides'] = Slider::where('position','main2')->orderBy('display_order', 'asc')->get();
 }
+?>
 ==
 <div class="main-slider">
     {% for slide in main_slides %}
     <div class="ui placeholder basic segment slide">
-        <img alt="{{slide.title}}" class="slide image custom css" src="{{slide.image.getThumb('1900','800',{'mode':'crop'})}}" />
+        {% if slide.image.extension() == 'mp4' %}
+            <video style="height:90vh;width:100vw;" autoplay loop muted playsinline src="{{slide.image.path}}" class="slide image custom css"></video>
+        {% else %}
+            <img alt="{{slide.title}}" class="slide image custom css" src="{{slide.image.getThumb('1900','800',{'mode':'crop'})}}" />
+        {% endif %}
         <div>
-            <h1 class="ui inverted centered header" style="margin-bottom: 0px;padding-bottom:5px;">
-                {{slide.title}}
-            </h1>
-            <h3 class="ui inverted centered header" style="margin-top:0px;padding-bottom:5px;">
-                {{slide.subtitle}}
-            </h3>
-            <a class="ui pink large button" href="{{slide.link}}">{{slide.btn_txt}}</a>
+            {% if slide.title != '' %}
+                <h1 class="ui inverted centered header" style="margin-bottom: 0px;padding-bottom:5px;">
+                    {{slide.title}}
+                </h1>
+            {% endif %}
+            {% if slide.subtitle != '' %}
+                <h3 class="ui inverted centered header" style="margin-top:0px;padding-bottom:5px;">
+                    {{slide.subtitle}}
+                </h3>
+            {% endif %}
+            {% if slide.btn_txt != '' %}
+                <a class="ui pink large button" href="{{slide.link}}">{{slide.btn_txt}}</a>
+            {% endif %}
         </div>
     </div>
     {% endfor %}

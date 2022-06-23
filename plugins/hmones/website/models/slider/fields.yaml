@@ -2,12 +2,12 @@ fields:
     title:
         label: Title
         span: auto
-        required: 1
+        required: 0
         type: text
     subtitle:
         label: Sub-title
         span: auto
-        required: 1
+        required: 0
         type: text
     position:
         label: Position
@@ -33,10 +33,11 @@ fields:
         type: text
     image:
         label: Image
-        mode: image
+        mode: file
+        fileTypes: 'jpg,jpeg,png,mp4'
         useCaption: 0
         thumbOptions:
-            mode: crop
+            mode: auto
             extension: auto
         span: auto
         required: 1

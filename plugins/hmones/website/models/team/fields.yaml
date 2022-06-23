@@ -49,6 +49,30 @@ fields:
         label: 'Image Credits'
         span: auto
         type: text
+    facebook:
+        label: Facebook
+        span: auto
+        type: text
+    email:
+        label: Email
+        span: auto
+        type: text
+    twitter:
+        label: Twitter
+        span: auto
+        type: text
+    instagram:
+        label: Instagram
+        span: auto
+        type: text
+    linkedin:
+        label: Linkedin
+        span: auto
+        type: text
+    website:
+        label: Website
+        span: auto
+        type: text
     image:
         label: Image
         mode: image
