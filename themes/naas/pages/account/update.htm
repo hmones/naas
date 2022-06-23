@@ -17,7 +17,7 @@ public function onHandleUpdate(){
         $data = Input::post();
         $rules = [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email'
+            'email' => 'required|email|unique:users,email,' . $user->id
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
