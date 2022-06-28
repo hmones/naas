@@ -2,9 +2,37 @@
 
 use Model;
 use Hmones\Membership\Classes\Constants;
+use Log;
 
 /**
  * Model
+ *
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property string|null $deleted_at
+ * @property int $file
+ * @property int $group
+ * @property int $id
+ * @property int $prefilled
+ * @property int $question_id
+ * @property int $submission_id
+ * @property string|null $text
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $answer
+ * @property-read mixed $display_theme
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Response newModelQuery()
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Response newQuery()
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Response query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response whereFile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response whereGroup($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response wherePrefilled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response whereQuestionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response whereSubmissionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Response whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Response extends Model
 {
@@ -40,7 +68,11 @@ class Response extends Model
     ];
 
     public function getDisplayThemeAttribute(){
-        return Question::find($this->question_id)->theme->theme;
+        $question=Question::find($this->question_id);
+        if(isset($question->theme->theme)){
+            return $question->theme->theme;
+        }
+        return "Unspecified";
     }
     public function ResolveOption($jsonArray){
         $result = "";

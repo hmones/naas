@@ -9,6 +9,7 @@ columns:
     Theme:
         label: Theme
         type: number
+        sortable: true
         valueFrom: display_theme
     question:
         label: Question
@@ -18,8 +19,9 @@ columns:
         select: question
         relation: question
     answer:
-        label: 'Answer'
+        label: Answer
         type: text
+        sortable: true
         valueFrom: answer
     created_at:
         label: 'Created at'

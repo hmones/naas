@@ -17,18 +17,19 @@ redirect = "account/login"
 {{form_ajax({request: 'onPrefill'},{'id':'prefill_form'})}}
     <input type="hidden" name="submission_id" value="{{userLatestSubmission.id}}"/>
 {{form_close()}}
-<div class="ui message" style="border:solid #2185d0 1px;">
+<div class="ui message" id="prefillMessage" style="border:solid #2185d0 1px;">
+    <i class="close blue icon" onClick="$(this).closest('.message').transition('fade');" style="z-index: 1000;"></i>
     <div class="ui stackable grid">
         <div class="sixteen wide column">
             <i class="info blue circular icon"></i>
             &nbsp;
             {{'Pages.Account.Application.PrefillMessage'|_}}
             &nbsp;
-            <a href="javascript:void(0)" onclick="$('.tiny.modal').modal('show');" class="ui blue basic tiny button"> {{'Keywords.Yes'|_}}</a>
+            <a href="javascript:void(0)" onclick="$('.tiny.modal.prefill').modal('show');" class="ui blue basic tiny button"> {{'Keywords.Yes'|_}}</a>
         </div>
     </div>
 </div>
-<div class="ui tiny modal">
+<div class="ui tiny modal prefill">
     <div class="content">
         {{'Pages.Account.Application.PrefillConfirmation'|_}}
     </div>
@@ -38,12 +39,21 @@ redirect = "account/login"
     </div>
 </div>
 {% endif %}
+<div class="ui tiny modal submit">
+    <div class="content">
+        {{'Pages.Account.Application.SubmitConfirmation'|_}}
+    </div>
+    <div class="actions">
+        <a href="javascript:void(0)" onclick="handleSubmitForm()" class="ui approve button">{{'Keywords.Yes'|_}}</a>
+        <div class="ui cancel button">{{'Keywords.No'|_}}</div>
+    </div>
+</div>
 <div class="ui stackable grid">
     <div class="five wide column">
         <div class="ui fluid vertical right attached steps">
             {% for section in sections %}
-            <a class="{{loop.index == 1? 'active':''}} step" id="section_btn_{{section.id}}"
-                style="border-bottom:4px solid rgba(253,210,186,.15);" onclick="activateSection({{section.id}});" section="{{section.id}}">
+            <a class="{{loop.index == 1? 'active':''}} step" id="section_btn_{{section.display_order}}"
+                style="border-bottom:4px solid rgba(253,210,186,.15);" onclick="activateSection({{section.display_order}});" section="{{section.display_order}}">
                 <i class="{{section.icon}} red icon" style="font-size:17px;"></i>
                 <div class="content">
                     <div class="title">{{str_limit(section.theme,24)}}</div>
@@ -58,7 +68,7 @@ redirect = "account/login"
         <input type="hidden" value="draft" name="applicationStatus"/>
         <input type="hidden" value"" name="applicationLocation"/>
         {% for section in sections %}
-        <div class="ui attached {{loop.index == 1? 'active':''}} segment" id="section_content_{{section.id}}"
+        <div class="ui attached {{loop.index == 1? 'active':''}} segment" id="section_content_{{section.display_order}}"
             style="{{loop.index == 1? '':'display:none;'}} border:none;">
             <div class="ui header">{{section.theme}}</div>
             <div class="ui divider"></div>
@@ -74,12 +84,12 @@ redirect = "account/login"
         <br/><br/>
         <div class="ui stackable grid">
             <div class="center aligned eight wide column">
-                <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button"> <i class="{{activeLocale=='ar'?'right':'left'}} arrow icon"></i>{{'Keywords.back'|_}}</a>
-                <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button"> {{'Keywords.Next'|_}} <i class="{{activeLocale=='ar'?'left':'right'}} arrow icon"></i></a>
+                <a href="javascript:void(0);" onclick="prevSection();" class="ui basic red button back"> <i class="{{activeLocale=='ar'?'right':'left'}} arrow icon"></i>{{'Keywords.back'|_}}</a>
+                <a href="javascript:void(0);" onclick="nextSection();" class="ui basic red button next"> {{'Keywords.Next'|_}} <i class="{{activeLocale=='ar'?'left':'right'}} arrow icon"></i></a>
             </div>
             <div class="center aligned eight wide column">
                 <a href="javascript:void(0);" id="saveDraft" class="ui red button"><i class="save icon"></i> {{'Keywords.SaveDraft'|_}}</a>
-                <a href="javascript:void(0);" id="submitForm" class="ui red button"><i class="check icon"></i> {{'Keywords.Submit'|_}}</a>
+                <a href="javascript:void(0);" id="submitForm" onclick="$('.tiny.modal.submit').modal('show');" class="ui red button"><i class="check icon"></i> {{'Keywords.Submit'|_}}</a>
             </div>
             
         </div>

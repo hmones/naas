@@ -1,44 +1,29 @@
 <?php namespace Hmones\Membership\Models;
 
-use Model;
 use DB;
+use Model;
+use October\Rain\Database\Traits\SoftDelete;
+use October\Rain\Database\Traits\Validation;
 
-/**
- * Model
- */
 class Question extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
-    
-    use \October\Rain\Database\Traits\SoftDelete;
+    use Validation;
+    use SoftDelete;
 
-    protected $dates = ['deleted_at'];
-
-
-    /**
-     * @var string The database table used by the model.
-     */
     public $table = 'hmones_membership_questions';
-
-    /**
-     * @var array Validation rules
-     */
-    public $rules = [
-    ];
-
+    public $rules = [];
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
-
     public $translatable = ['question', 'other_text', 'repeat_text', 'description', 'header', 'subheader'];
-
     public $hasMany = [
         'options' => 'Hmones\Membership\Models\Option'
     ];
-
     public $belongsTo = [
         'theme' => 'Hmones\Membership\Models\Theme'
     ];
+    protected $dates = ['deleted_at'];
 
-    public function getQuestionTypeAttribute(){
+    public function getQuestionTypeAttribute()
+    {
         $display_type = "";
         switch ($this->type) {
             case 1:
@@ -77,30 +62,36 @@ class Question extends Model
 
     public function beforeCreate()
     {
-        Question::where('display_order','>=',$this->display_order)->update(
-            ['display_order' => DB::raw('display_order + 1')]
-        );
+        $question = Question::where('display_order', intval($this->display_order))->first();
+
+        if ($question) {
+            Question::where('display_order', '>=', intval($this->display_order))->update(
+                ['display_order' => DB::raw('display_order + 1')]
+            );
+        }
     }
+
     public function beforeDelete()
     {
-        Question::where('display_order','>=',$this->display_order)->update(
+        Question::where('display_order', '>=', intval($this->display_order))->update(
             ['display_order' => DB::raw('display_order - 1')]
         );
     }
+
     public function beforeUpdate()
-    {   
+    {
         $oldOrder = intval($this->original['display_order']);
         $newOrder = intval($this->display_order);
 
-        if($newOrder > $oldOrder){
-            Question::whereBetween('display_order',[$oldOrder,$newOrder])->update(
+        if ($newOrder > $oldOrder) {
+            Question::where('display_order', '>', $oldOrder)->where('display_order', '<=', $newOrder)->update(
                 ['display_order' => DB::raw('display_order - 1')]
-        );
+            );
         }
-        if($newOrder < $oldOrder)
-        {
-            Question::whereBetween('display_order',[$newOrder,$oldOrder])->update(
-                    ['display_order' => DB::raw('display_order + 1')]
+
+        if ($newOrder < $oldOrder) {
+            Question::where('display_order', '>=', $newOrder)->where('display_order', '<', $oldOrder)->update(
+                ['display_order' => DB::raw('display_order + 1')]
             );
         }
     }

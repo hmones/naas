@@ -1,9 +1,12 @@
 /bootstrap/compiled.php
 /semantic
 /vendor
+/backup
+.htaccess.*
 composer.phar
 .DS_Store
 .idea
+.vscode
 .env
 .env.*.php
 .env.php
@@ -20,9 +23,7 @@ composer.lock
 package-lock.json
 /node_modules
 _ide_helper.php
-
-# for netbeans
+.phpstorm.meta.php
+config/ide-helper.php
 nbproject
-
-# for visual studio
-/.vscode
+error_log

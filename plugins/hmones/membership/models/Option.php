@@ -4,6 +4,23 @@ use Model;
 
 /**
  * Model
+ *
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int $id
+ * @property string $option
+ * @property int|null $question_id
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Option newModelQuery()
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Option newQuery()
+ * @method static \October\Rain\Database\Builder|\Hmones\Membership\Models\Option query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Option whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Option whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Option whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Option whereOption($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Option whereQuestionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Hmones\Membership\Models\Option whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Option extends Model
 {

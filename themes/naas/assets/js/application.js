@@ -24,8 +24,17 @@ function activateSection(section) {
     $(section_btn).addClass('active');
     $('div.ui.attached.active.segment').removeClass('active').hide();
     $(section_content).addClass('active').fadeIn();
+    if(section === 1){
+        $('a.back').addClass('disabled');
+    }else{
+        $('a.back').removeClass('disabled');
+    }
+    if($('a[section='+ (section + 1 ) +']').length){
+        $('a.next').removeClass('disabled');
+    }else{
+        $('a.next').addClass('disabled');
+    }
     window.location.hash = section;
-
 }
 function prevSection(){
     var currSection = parseInt($('a.active.step').attr("section"));
@@ -219,6 +228,7 @@ function handleRepeat(group) {
     $('#repeat_group_' + group + '_container > div > div.repeat.group.addons').remove();
     $('#repeat_group_' + group + '_container > div > div > div.ui.header.question').remove();
     $('.ui.dropdown').dropdown();
+    $('.questionTooltip').popup();
 }
 
 /**
@@ -230,14 +240,14 @@ $('#saveDraft').on('click', function(){
     $(this).addClass('loading');
     $('#main_form').trigger('submit');
 })
-$('#submitForm').on('click', function(){
+function handleSubmitForm(){
     var isFormValid = validateEmptyFields();
     if(isFormValid){
         $('input[name="applicationStatus"]').val('final');
-        $(this).addClass('loading');
+        $('#submitForm').addClass('loading');
         $('#main_form').trigger("submit");
     }
-});
+}
 $('body').on('change', 'input[type=radio][dataoption]',function () {
     toogleCondQuestions(this);
 });
@@ -259,7 +269,7 @@ $(function () {
                 '_container"></div><a href="javascript:void(0)" onclick="handleRepeat('
                 + group.group +
                 ')" class="ui basic red right floated button repeater"><i class="plus icon"></i>'
-                + group.repeat_text +
+                + $('div[group=' + group.group + ']').attr('data-repeat-btn') +
                 '</a><div><br></br>'
             );
         if ($('#q_group_' + group.group).children().css("display") == "none") {
@@ -334,7 +344,8 @@ $(function () {
         });
         
     });
-    $('.tiny.modal').modal();   
+    $('.tiny.modal').modal();
+    $('.questionTooltip').popup();   
 });   
 
 /**
@@ -342,6 +353,4 @@ $(function () {
  */
 
 $('.ui.dropdown').dropdown();
-$('.questionTooltip')
-  .popup()
-;
+$('.questionTooltip').popup();

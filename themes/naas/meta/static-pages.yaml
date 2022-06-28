@@ -1,1 +1,19 @@
-static-pages: {  }
+static-pages:
+    about: {  }
+    history: {  }
+    supporters: {  }
+    work-with-us: {  }
+    steering-committee: {  }
+    team: {  }
+    board: {  }
+    support-naas: {  }
+    topic-news: {  }
+    topic-programs: {  }
+    topic-research: {  }
+    members: {  }
+    affiliate: {  }
+    become-member: {  }
+    privacy-policy: {  }
+    impresum: {  }
+    draft: {  }
+    rrang: {  }

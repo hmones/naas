@@ -13,14 +13,14 @@
         'applicationAlreadySubmitted' => "Nous avons reçu votre formulaire d'adhésion pour ce cycle, il ne peut être modifié. Prière d'écrire à l'équipe NAAS sur membership@naasnetwork.org pour toute modification à votre formulaire d'adhésion",
         'roundNotExist' => "Le cycle de candidature n'existe pas",
         'roundNotActive' => "Le cycle de candidature n'est pas actif actuellement",
-        'applicationPrefilled' => "Le formulaire d'adhésion est actuellement pré-rempli avec les réponses précédentes et sauvegard. Veuillez apporter les modifications nécessaires pour fournir les données de cette année."
+        'applicationPrefilled' => "Le formulaire d'adhésion est actuellement pré-rempli avec les réponses précédentes et sauvegardé. Veuillez apporter les modifications nécessaires pour fournir les données de cette année."
 
     ],
     'ApplicationStatus' => [
-        'status_0' => 'Draft',
-        'status_1' => 'Submitted',
-        'status_2' => 'In Review',
-        'status_3' => 'Accepted',
-        'status_4' => 'Rejected'
+        'status_0' => 'En cours',
+        'status_1' => 'Deposée',
+        'status_2' => 'En cours d\'examen',
+        'status_3' => 'Acceptée',
+        'status_4' => 'Reportée'
     ]
 ];

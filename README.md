@@ -14,6 +14,20 @@ The portal is a web application designed as NAAS Network platform supporting bot
 - JQuery 3.1
 - [Semantic UI 2.4](https://semantic-ui.com/)
 
+## Installation
+
+- Make sure you have docker and docker-compose installed on your system
+- Create a `.env` file in the root of the project with the environment variables of your choice. Make sure to add the following to it:
+  - DB_TYPE=mysql
+  - DB_HOST=db
+  - DB_DATABASE=octobercms
+  - DB_USERNAME=octobercms
+  - DB_PASSWORD=octobercms
+- Run `docker-compose up` to build the images and run the containers
+- Download a fresh export of the online database.
+- Import database through this command `docker-compose exec -T db mysql -uoctobercms -poctobercms octobercms < ~/databaseBackup.sql`
+- Make the folders for `storage/`, `plugins/` and `themes/` executable by writing this command `chmod -R 777 storage` from inside the web container
+- Access the website for development on `http://localhost` and enjoy coding!
 
 ## Contributing
 
@@ -36,4 +50,4 @@ Lebanon
 
 info@naasnetwork.org
 
-naasnetwork.org 
+naasnetwork.org

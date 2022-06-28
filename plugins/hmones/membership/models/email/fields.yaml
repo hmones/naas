@@ -14,7 +14,6 @@ fields:
     email_txt:
         label: 'Content of the email'
         size: large
-        mode: tab
         span: full
-        stretch: 0
-        type: markdown
+        type: richeditor
+        comment: 'The following variables are available (lang, name, ApplicationLink, ApplicationStatus, responses), please use them as follows: {{VARIABLE_NAME}}'

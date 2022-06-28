@@ -6,7 +6,6 @@ use Rainlab\User\Models\User;
 use Config;
 use Hmones\Membership\Models\Response;
 use Hmones\Membership\Models\Email;
-use Log;
 
 
 class EmailEvents
@@ -22,12 +21,16 @@ class EmailEvents
         $key = "hmones.membership::lang.ApplicationStatus.status_{$appStatus}";
         $status = Lang::get($key,[],$lang);
         $email = Email::where('name',$emailTemplate)->first();
-        $responses = Response::select('id', 'submission_id', 'question_id', 'text')->with('question:id,question,type,display_order')->where('submission_id',$submissionID)->get()->sortBy(function($response, $key){
-            return intval($response->question->display_order);
-        })->values()->toArray();
+        if($lang == 'en'){
+            $responses = Response::where('submission_id',$submissionID)->join('hmones_membership_questions','hmones_membership_questions.id','=','hmones_membership_responses.question_id')->selectRaw("hmones_membership_questions.display_order, hmones_membership_responses.*, hmones_membership_questions.question")->orderByRaw('hmones_membership_questions.display_order ASC')->get();
+        }else{
+            $responses = Response::where('submission_id',$submissionID)->join('hmones_membership_questions','hmones_membership_questions.id','=','hmones_membership_responses.question_id')->join("rainlab_translate_attributes", function ($join) use ($lang){
+                $join->on('rainlab_translate_attributes.model_id', '=', 'hmones_membership_responses.question_id')->where('rainlab_translate_attributes.locale', '=', $lang)->where('rainlab_translate_attributes.model_type','=','Hmones\Membership\Models\Question');
+            })->selectRaw("hmones_membership_questions.display_order, hmones_membership_responses.*, json_extract(rainlab_translate_attributes.attribute_data, '$.question') as question")->orderByRaw('hmones_membership_questions.display_order ASC')->get();
+        }
         $user = User::find($userID);
         $baseURL = Config::get('app.url');
-        $applicationLink = "{$baseURL}/account/application/round/{$roundID}";
+        $applicationLink = "{$baseURL}/{$lang}/account/application/round/{$roundID}";
         if($email && $user){
             $vars = [
                 'name' => $user->name,
@@ -35,7 +38,8 @@ class EmailEvents
                 'subject' => $email->lang($lang)->subject,
                 'ApplicationLink' => $applicationLink,
                 'ApplicationStatus' => $status,
-                'responses' => $responses
+                'responses' => $responses->values()->toArray(),
+                'lang' => $lang
             ];
             Mail::queue(['raw' => $email->lang($lang)->email_txt], $vars, function($message) use($vars) {
                 $message->to($vars['email'], $vars['name']);
