@@ -3,8 +3,10 @@ items:
         title: MainMenu.About
         nesting: 0
         type: static-page
+        url: null
         code: ''
         reference: about
+        cmsPage: null
         replace: 0
         viewBag:
             locale:
@@ -142,8 +144,10 @@ items:
                 title: MainMenu.About.Work
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: work-with-us
+                cmsPage: null
                 replace: 0
                 viewBag:
                     locale:
@@ -160,8 +164,10 @@ items:
         title: MainMenu.News
         nesting: 0
         type: static-page
+        url: null
         code: ''
         reference: topic-news
+        cmsPage: null
         replace: 0
         viewBag:
             locale:
@@ -178,8 +184,10 @@ items:
         title: MainMenu.Network
         nesting: 0
         type: static-page
+        url: null
         code: ''
         reference: members
+        cmsPage: null
         replace: 0
         viewBag:
             locale:
@@ -197,8 +205,10 @@ items:
                 title: MainMenu.Network.Members
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: members
+                cmsPage: null
                 replace: 0
                 viewBag:
                     locale:
@@ -215,26 +225,10 @@ items:
                 title: MainMenu.Network.Affiliates
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: affiliate
-                replace: 0
-                viewBag:
-                    locale:
-                        ar:
-                            title: ''
-                            url: ''
-                        fr:
-                            title: ''
-                            url: ''
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: MainMenu.Network.Become
-                nesting: 0
-                type: static-page
-                code: ''
-                reference: become-member
+                cmsPage: null
                 replace: 0
                 viewBag:
                     locale:
@@ -251,8 +245,10 @@ items:
         title: MainMenu.Programs
         nesting: 0
         type: static-page
+        url: null
         code: ''
         reference: topic-programs
+        cmsPage: null
         replace: 0
         viewBag:
             locale:
@@ -269,8 +265,10 @@ items:
         title: MainMenu.Research
         nesting: 0
         type: static-page
+        url: null
         code: ''
         reference: topic-research
+        cmsPage: null
         replace: 0
         viewBag:
             locale:
@@ -287,8 +285,10 @@ items:
         title: MainMenu.Support
         nesting: 0
         type: static-page
+        url: null
         code: ''
         reference: support-naas
+        cmsPage: null
         replace: 0
         viewBag:
             locale:
