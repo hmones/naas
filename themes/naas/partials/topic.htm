@@ -2,13 +2,16 @@ description = "Displays topic cards in the page"
 
 [viewBag]
 snippetCode = "topics"
-snippetName = "Topics - Research, News or Programs"
+snippetName = "Topics"
 snippetProperties[category][title] = "category"
 snippetProperties[category][type] = "dropdown"
 snippetProperties[category][default] = 0
 snippetProperties[category][options][] = "News"
 snippetProperties[category][options][] = "Programs"
-snippetProperties[category][options][] = "Research"
+snippetProperties[category][options][] = "Research and Publications"
+snippetProperties[category][options][] = "Resources"
+snippetProperties[category][options][] = "Malaffat"
+snippetProperties[category][options][] = "Fellowship"
 ==
 <?php
 use Hmones\Website\Models\Topic;
@@ -21,6 +24,12 @@ use Hmones\Website\Models\Topic;
                 break;
             case 2:
                 $category_name = 'research';
+            case 3:
+                $category_name = 'resources';
+            case 4:
+                $category_name = 'malaffat';
+            case 5:
+                $category_name = 'fellowship';
             default:
                 $category_name = 'news';
         }

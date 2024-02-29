@@ -10,8 +10,10 @@ static-pages:
     topic-news: {  }
     topic-programs: {  }
     topic-research: {  }
+    topic-resources: {  }
+    malaffat: {  }
+    topic-fellowship: {  }
     members: {  }
-    affiliate: {  }
     privacy-policy: {  }
     impresum: {  }
     draft: {  }

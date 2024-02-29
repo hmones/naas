@@ -17,7 +17,10 @@ fields:
         options:
             - News
             - Programs
-            - Research
+            - 'Research and Publications'
+            - Resources
+            - Malaffat
+            - Fellowship
         showSearch: true
         span: auto
         required: 1

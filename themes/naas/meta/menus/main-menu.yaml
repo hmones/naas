@@ -200,47 +200,6 @@ items:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
-        items:
-            -
-                title: MainMenu.Network.Members
-                nesting: 0
-                type: static-page
-                url: null
-                code: ''
-                reference: members
-                cmsPage: null
-                replace: 0
-                viewBag:
-                    locale:
-                        ar:
-                            title: ''
-                            url: ''
-                        fr:
-                            title: ''
-                            url: ''
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: MainMenu.Network.Affiliates
-                nesting: 0
-                type: static-page
-                url: null
-                code: ''
-                reference: affiliate
-                cmsPage: null
-                replace: 0
-                viewBag:
-                    locale:
-                        ar:
-                            title: ''
-                            url: ''
-                        fr:
-                            title: ''
-                            url: ''
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
     -
         title: MainMenu.Programs
         nesting: 0
@@ -281,6 +240,93 @@ items:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
+        items:
+            -
+                title: MainMenu.ResearchAndPublications
+                nesting: 0
+                type: static-page
+                code: ''
+                reference: topic-research
+                replace: 0
+                viewBag:
+                    locale:
+                        ar:
+                            title: ''
+                            url: ''
+                        fr:
+                            title: ''
+                            url: ''
+                        de:
+                            title: ''
+                            url: ''
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: MainMenu.Resources
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: topic-resources
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    locale:
+                        ar:
+                            title: ''
+                            url: ''
+                        fr:
+                            title: ''
+                            url: ''
+                        de:
+                            title: ''
+                            url: ''
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: MainMenu.Malaffat
+                nesting: 0
+                type: static-page
+                code: ''
+                reference: malaffat
+                replace: 0
+                viewBag:
+                    locale:
+                        ar:
+                            title: ''
+                            url: ''
+                        fr:
+                            title: ''
+                            url: ''
+                        de:
+                            title: ''
+                            url: ''
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: MainMenu.Fellowship
+                nesting: 0
+                type: static-page
+                code: ''
+                reference: topic-fellowship
+                replace: 0
+                viewBag:
+                    locale:
+                        ar:
+                            title: ''
+                            url: ''
+                        fr:
+                            title: ''
+                            url: ''
+                        de:
+                            title: ''
+                            url: ''
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
     -
         title: MainMenu.Support
         nesting: 0

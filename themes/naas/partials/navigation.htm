@@ -1,16 +1,11 @@
+[viewBag]
+==
 <div class="ui top menu topAdditionalMenu" style="direction:ltr;">
     <div class="ui container">
         <a data-request="onSwitchLocale" data-request-data="locale: 'ar'" href="#">العربية</a>
         &nbsp;|&nbsp;
         <a data-request="onSwitchLocale" data-request-data="locale: 'en'" href="#">English</a>
-        {% if this.page.id in ['account-login',
-        'account-register','account-reset','account-update','account-dashboard','account-application'] %}
-        &nbsp;|&nbsp;
-        <a data-request="onSwitchLocale" data-request-data="locale: 'fr'" href="#">Français</a>
-        {% else %}
-        &nbsp;|&nbsp;
-        <a data-request="onSwitchLocale" data-request-data="locale: 'de'" href="#">Deutsch</a>
-        {% endif %}
+        &nbsp;
         <div class="socialMediaIcons">
             {% partial 'socialMediaLinks' %}
         </div>
