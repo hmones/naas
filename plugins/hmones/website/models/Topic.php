@@ -8,7 +8,7 @@ use Model;
 class Topic extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    
+
 
     /**
      * @var string The database table used by the model.
@@ -29,10 +29,16 @@ class Topic extends Model
         switch($this->category){
             case 0:
                 return "News";
-            case 1: 
+            case 1:
                 return "Programs";
             case 2:
-                return "Research";
+                return "Research and Publications";
+            case 3:
+                return "Resources";
+            case 4:
+                return "Malaffat";
+            case 5:
+                return "Fellowship";
             default:
                 return "Unspecified";
         }
