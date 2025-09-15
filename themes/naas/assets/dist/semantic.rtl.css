@@ -5325,8 +5325,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 ---------------*/
 
 .ui.divider:not(.vertical):not(.horizontal) {
-  border-top: 1px solid rgba(253, 210, 186, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border: none;
 }
 
 /*--------------
@@ -5560,8 +5559,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 *******************************/
 
 .ui.divider:not(.vertical):not(.horizontal) {
-  border-top: 1px solid #fdd2ba;
-  border-bottom: 1px solid #fdd2ba;
+  border: none;
 }
 /*!
  * # Semantic UI 2.4.2 - Flag
