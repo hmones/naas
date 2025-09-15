@@ -5,7 +5,7 @@ services:
         restart: always
         depends_on:
             - db
-        image: aspendigital/octobercms:latest
+        image: docker.io/aspendigital/octobercms:latest
         ports:
             - 80:80
         env_file:
@@ -17,7 +17,7 @@ services:
             - ./themes:/var/www/html/themes
 
     db:
-        image: mariadb
+        image: docker.io/library/mariadb:latest
         container_name: db
         restart: always
         environment:
