@@ -197,4 +197,5 @@ img.slide.image.custom.css {
     color: black;
     font-weight: bold;
     text-decoration: underline;
+    cursor: pointer;
 }
