@@ -34,6 +34,7 @@
 
 .ui.divider:not(.vertical):not(.horizontal) {
   border: none !important;
+  height: 2px;
 }
 
 /*--------------
@@ -259,4 +260,5 @@
 
 .ui.divider:not(.vertical):not(.horizontal) {
   border: none !important;
+  height: 2px;
 }

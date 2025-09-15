@@ -5327,6 +5327,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 .ui.divider:not(.vertical):not(.horizontal) {
   border: none !important;
+  height: 2px;
 }
 
 /*--------------
@@ -5561,6 +5562,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 .ui.divider:not(.vertical):not(.horizontal) {
   border: none !important;
+  height: 2px;
 }
 /*!
  * # Semantic UI 2.4.2 - Flag
