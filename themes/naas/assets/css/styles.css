@@ -143,7 +143,7 @@ div.ui.bottom.sidebar.inverted.vertical.menu.mobileMenuContent {
 }
 
 /*--------------------
-|   Questions       
+|   Questions
 ----------------------*/
 div.ui.repeating.pink.segment {
     border: 2px pink dashed;
@@ -161,7 +161,7 @@ div.ui.repeating.pink.segment {
 }
 
 /*--------------------
-|   Topics       
+|   Topics
 ----------------------*/
 
 img.topicImage:hover {
@@ -185,4 +185,16 @@ img.slide.image.custom.css {
     right: 0px !important;
     min-width: 100% !important;
     height: 100% !important;
+}
+
+.newsletter-button {
+    background: transparent;
+    color: #ed1c23;
+    border: none;
+}
+
+.newsletter-button:hover {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
 }
