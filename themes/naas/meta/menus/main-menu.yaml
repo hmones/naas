@@ -140,26 +140,27 @@ items:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
-            -
-                title: MainMenu.About.Work
-                nesting: 0
-                type: static-page
-                url: null
-                code: ''
-                reference: work-with-us
-                cmsPage: null
-                replace: 0
-                viewBag:
-                    locale:
-                        ar:
-                            title: ''
-                            url: ''
-                        fr:
-                            title: ''
-                            url: ''
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
+                items:
+                    -
+                        title: MainMenu.About.Work
+                        nesting: 0
+                        type: static-page
+                        url: null
+                        code: ''
+                        reference: work-with-us
+                        cmsPage: null
+                        replace: 0
+                        viewBag:
+                            locale:
+                                ar:
+                                    title: ''
+                                    url: ''
+                                fr:
+                                    title: ''
+                                    url: ''
+                            isHidden: '0'
+                            cssClass: ''
+                            isExternal: '0'
     -
         title: MainMenu.News
         nesting: 0
@@ -245,8 +246,10 @@ items:
                 title: MainMenu.ResearchAndPublications
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: topic-research
+                cmsPage: null
                 replace: 0
                 viewBag:
                     locale:
@@ -289,29 +292,10 @@ items:
                 title: MainMenu.Malaffat
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: malaffat
-                replace: 0
-                viewBag:
-                    locale:
-                        ar:
-                            title: ''
-                            url: ''
-                        fr:
-                            title: ''
-                            url: ''
-                        de:
-                            title: ''
-                            url: ''
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: MainMenu.Fellowship
-                nesting: 0
-                type: static-page
-                code: ''
-                reference: topic-fellowship
+                cmsPage: null
                 replace: 0
                 viewBag:
                     locale:
