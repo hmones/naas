@@ -6,10 +6,6 @@
 /*-------------------
     Navigation
 --------------------*/
-.ui.simple.dropdown.item > div.menu {
-    border-top: solid 2px #fdd2ba;
-}
-
 .ui.top.fixed.menu.topMainMenu {
     margin-top: 27px;
     border: none;

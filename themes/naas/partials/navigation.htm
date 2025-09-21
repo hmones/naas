@@ -1,6 +1,6 @@
 [viewBag]
 ==
-<div class="ui top menu topAdditionalMenu" style="direction:ltr;">
+<div class="ui top fixed menu topAdditionalMenu" style="direction:ltr;">
     <div class="ui container">
         <a data-request="onSwitchLocale" data-request-data="locale: 'ar'" href="#">ع</a>
         &nbsp;|&nbsp;
@@ -83,20 +83,6 @@
 
 {% put scripts %}
 <script>
-    $(function () {
-        $('.ui.top.menu')
-            .visibility({
-                onBottomVisible: function () {
-                    $('.ui.top.fixed.menu').css('margin-top', '27px');
-                },
-                onBottomPassed: function () {
-                    $('.ui.top.fixed.menu').css('margin-top', '0px');
-                },
-                continuous: true
-            })
-        ;
-    });
-
     function onToggleMenu() {
         $('.ui.left.sidebar')
             .sidebar({
