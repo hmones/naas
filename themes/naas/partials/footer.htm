@@ -1,18 +1,25 @@
 [viewBag]
 ==
 <footer>
-    <div class="ui grey inverted padded center aligned segment" style="margin-bottom: 0px;margin-top:100px;">
-        <a class="ui header" href="mailto:info@naasnetwork.org" style="color:#979797;">{{'Footer.ContactLink'|_}}</a>&nbsp;&nbsp;
-        <i class="pink circle icon"></i>
-        <a class="ui header" href="{{ 'impresum' | staticPage }}" style="color:#979797;">{{'Footer.ImpresumLink'|_}}</a>
-        <i class="pink circle icon"></i>
-        <a class="ui header" href="{{ 'privacy-policy' | staticPage }}" style="color:#979797;">{{'Footer.PrivacyLink'|_}}</a>
+    <div class="ui padded center aligned segment" style="margin-bottom: 0px;margin-top:100px;">
+        <a class="ui header" href="mailto:info@naasnetwork.org" style="color:#979797;">
+            <img class="ui image" src="{{'assets/images/diamond.png'|theme}}" width="170px" />
+            {{'Footer.ContactLink'|_}}
+        </a>&nbsp;&nbsp;
+        <a class="ui header" href="{{ 'impresum' | staticPage }}" style="color:#979797;">
+            <img class="ui image" src="{{'assets/images/diamond.png'|theme}}" width="170px" />
+            {{'Footer.ImpresumLink'|_}}
+        </a>
+        <a class="ui header" href="{{ 'privacy-policy' | staticPage }}" style="color:#979797;">
+            <img class="ui image" src="{{'assets/images/diamond.png'|theme}}" width="170px" />
+            {{'Footer.PrivacyLink'|_}}
+        </a>
     </div>
-    <div class="ui pink inverted padded segment" style="margin-top: 0px;">
+    <div class="ui basic padded segment" style="margin-top: 0px;">
         <div class="ui container">
             <div class="ui stackable grid">
                 <div class="left floated ten wide left aligned column">
-                    <div class="ui black small header">
+                    <div>
                         {{'Footer.Copyrights'|_}}
                     </div>
                 </div>
