@@ -194,8 +194,7 @@ img.slide.image.custom.css {
 }
 
 .newsletter-button:hover {
-    color: black;
+    color: #ed1c23;
     font-weight: bold;
-    text-decoration: underline;
     cursor: pointer;
 }
