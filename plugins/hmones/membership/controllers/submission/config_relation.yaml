@@ -1,8 +1,0 @@
-responses:
-    label: Response
-    manage:
-        form: $/hmones/membership/models/response/fields.yaml
-        list: $/hmones/membership/models/response/columns.yaml
-    view:
-        list: $/hmones/membership/models/response/columns.yaml
-        toolbarButtons: create|delete

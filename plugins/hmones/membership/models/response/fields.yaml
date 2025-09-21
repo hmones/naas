@@ -1,5 +1,0 @@
-fields:
-    answer:
-        label: Answer
-        span: auto
-        type: text
