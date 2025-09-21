@@ -196,9 +196,9 @@ img.slide.image.custom.css {
 }
 
 .ui.secondary.link:hover {
-    color: #ed1c23;
+    color: #ed1c23 !important;
 }
 
 .ui.secondary.link {
-    color: black;
+    color: black !important;
 }
