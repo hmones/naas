@@ -194,3 +194,11 @@ img.slide.image.custom.css {
     font-weight: bold;
     cursor: pointer;
 }
+
+.ui.secondary.link:hover {
+    color: #ed1c23;
+}
+
+.ui.secondary.link {
+    color: black;
+}

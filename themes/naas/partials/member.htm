@@ -24,16 +24,16 @@ use Hmones\Website\Models\Member;
                         <img class="ui image" src="{{member.image.getThumb('300','300', {'mode':'crop'})}}" width="100%">
                       </div>
                 </div>
-                <div class="ui grey inverted basic padded segment hidden content" style="height:100%;">
-                    <span style="color:black;">{{html_strip(str_limit(member.content, 200))}}</span>
-                    <br/>
-                    <a href="{{'member'|page({'slug':member.slug})}}"><i class="red plus icon"></i></a>
+                <div class="ui grey inverted basic padded segment hidden content" style="height:100%;padding:20px!important">
+                    <a class="ui secondary link" href="{{'member'|page({'slug':member.slug})}}">
+                        {{html_strip(str_limit(member.content, 200))}}
+                    </a>
                 </div>
             </div>
-            <div class="ui center aligned pink inverted padded segment content">
+            <div class="content" style="padding-right:0;padding-left:0;">
               <a class="header" href="{{'member'|page({'slug':member.slug})}}">{{member.name}}</a>
               <div class="meta">
-                <span class="date">{{member.location}}</span>
+                <i class="date">{{member.location}}</i>
               </div>
             </div>
           </div>

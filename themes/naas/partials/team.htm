@@ -18,7 +18,7 @@ use Hmones\Website\Models\Team;
     }
 ?>
 ==
-<div class="ui three stackable cards">
+<div class="ui four stackable cards">
 {% for team_member in team_members %}
         <div class="ui raised card" style="box-shadow:none;">
             <div class="ui move reveal">
@@ -27,16 +27,14 @@ use Hmones\Website\Models\Team;
                         <img class="ui image" src="{{team_member.image.getThumb('300','300', {'mode':'crop'})}}" width="100%">
                       </div>
                 </div>
-                <div class="ui grey inverted basic segment hidden content" style="height:100%;">
-                    <span style="color:black;">{{team_member.bio_summary | raw}}</span>
-                    <br/>
-                    <a href="{{'team_member'|page({'slug':team_member.slug})}}"><i class="red plus icon"></i></a>
+                <div class="ui grey inverted basic segment hidden content" style="height:100%;padding:20px!important;">
+                    <a href="{{'team_member'|page({'slug':team_member.slug})}}" class="ui secondary link">{{team_member.bio_summary | raw}}</a>
                 </div>
             </div>
             <div class="ui center aligned pink inverted padded segment content">
               <a class="header" href="{{'team_member'|page({'slug':team_member.slug})}}">{{team_member.name}}</a>
               <div class="meta">
-                <span class="date" style="word-break: break-all;">{{team_member.position}}</span>
+                <i class="date" style="word-break: break-all;">{{team_member.position}}</i>
               </div>
             </div>
           </div>
