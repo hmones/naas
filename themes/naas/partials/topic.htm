@@ -45,14 +45,9 @@ use Hmones\Website\Models\Topic;
             <div class="image">
                 <img class="ui image topicImage" src="{{topic.image.getThumb('300','300', {'mode':'crop'})}}" width="100%">
             </div>
-            <div class="ui pink inverted padded segment content">
+            <div class="content" style="padding-left:0;padding-right:0;">
                 <a class="header" href="{{'topic'|page({'slug':topic.slug, 'category':category_name})}}">{{str_limit(topic.title, 60)}}</a>
             </div>
-            <div class="ui grey inverted padded segment extra content">
-                <div class="meta">
-                    <span class="date"> <i class="clock outline icon"></i> {{topic.published_at.diffForHumans()}}</span>
-                </div>
-            </div> 
         </a>
     </div>
 {% endfor %}
