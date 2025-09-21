@@ -28,10 +28,12 @@ use Hmones\Website\Models\Team;
                       </div>
                 </div>
                 <div class="ui grey inverted basic segment hidden content" style="height:100%;padding:20px!important;">
-                    <a href="{{'team_member'|page({'slug':team_member.slug})}}" class="ui secondary link">{{team_member.bio_summary | raw}}</a>
+                    <a class="ui secondary link" href="{{'team_member'|page({'slug':team_member.slug})}}">
+                        {{html_strip(str_limit(team_member.bio_summary, 200)}}
+                    </a>
                 </div>
             </div>
-            <div class="ui center aligned pink inverted padded segment content">
+            <div class="content" style="padding-right:0;padding-left:0;">
               <a class="header" href="{{'team_member'|page({'slug':team_member.slug})}}">{{team_member.name}}</a>
               <div class="meta">
                 <i class="date" style="word-break: break-all;">{{team_member.position}}</i>
